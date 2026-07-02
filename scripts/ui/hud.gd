@@ -67,6 +67,13 @@ var stats_art: TextureRect
 var right_art: TextureRect
 var stats_panel: TextureRect
 var right_panel: TextureRect
+var currency_gold_bar: TextureRect
+var currency_gold_label: Label
+var currency_gem_bar: TextureRect
+var currency_gem_label: Label
+var pause_badge: TextureRect
+var menu_strip: TextureRect
+var menu_strip_labels: Array[Label] = []
 var xp_bar: TextureProgressBar
 var level_label: Label
 var exit_run_button: Button
@@ -109,6 +116,7 @@ func _ready() -> void:
 	health_label.show()
 	health_bar.show()
 	_build_pixel_ui_art()
+	_build_currency_hud()
 	_build_bottom_xp_bar()
 	_build_loadout_icon_rows()
 	_build_contract_card()
@@ -182,6 +190,10 @@ func _input(event: InputEvent) -> void:
 
 func set_stats(health: float, max_health: float, score: int, elapsed: float, enemy_count: int, level: int, experience: int, experience_to_next: int, wave: int, max_wave: int, time_left: float, weapons_summary: String, relics_summary: String, attack_power := 1.0, crit_chance := 0.0, crit_damage := 1.0, lifesteal_chance := 0.0, lifesteal_amount := 0.0, run_magic_crystals := 0, contract_summary := "") -> void:
 	stats.text = HUDControllerScript.format_stats(health, max_health, score, elapsed, enemy_count, level, experience, experience_to_next, wave, max_wave, time_left, attack_power, crit_chance, crit_damage, lifesteal_chance, lifesteal_amount, run_magic_crystals, contract_summary)
+	if currency_gold_label != null:
+		currency_gold_label.text = str(score)
+	if currency_gem_label != null:
+		currency_gem_label.text = str(run_magic_crystals)
 	xp_bar.max_value = experience_to_next
 	xp_bar.value = experience
 	level_label.text = "Lv.%d" % level
@@ -279,10 +291,48 @@ func _build_contract_card() -> void:
 
 func _build_pixel_ui_art() -> void:
 	option_card_texture = TextureFactory.pixel_ui_asset("option_card")
-	stats_art = null
-	right_art = null
-	stats_panel = null
-	right_panel = null
+	stats_art = _new_ui_texture("PortraitArt", TextureFactory.pixel_ui_asset("portrait_frame"), Color(1.0, 1.0, 1.0, 1.0))
+	right_art = _new_ui_texture("MapArt", TextureFactory.pixel_ui_asset("mini_map"), Color(1.0, 1.0, 1.0, 1.0))
+	stats_panel = _new_ui_texture("StatsPanel", TextureFactory.pixel_ui_asset("menu_frame"), Color(1.0, 1.0, 1.0, 0.88))
+	right_panel = _new_ui_texture("RightPanel", TextureFactory.pixel_ui_asset("menu_frame"), Color(1.0, 1.0, 1.0, 0.92))
+
+func _build_currency_hud() -> void:
+	currency_gold_bar = _new_ui_texture("CurrencyGoldBar", TextureFactory.pixel_ui_asset("currency_gold"), Color(1.0, 1.0, 1.0, 1.0))
+	currency_gold_label = _new_currency_label("GoldValue", Color(1.0, 0.92, 0.42, 1.0))
+	currency_gold_bar.add_child(currency_gold_label)
+	currency_gem_bar = _new_ui_texture("CurrencyGemBar", TextureFactory.pixel_ui_asset("currency_gem"), Color(1.0, 1.0, 1.0, 1.0))
+	currency_gem_label = _new_currency_label("GemValue", Color(0.86, 0.68, 1.0, 1.0))
+	currency_gem_bar.add_child(currency_gem_label)
+	pause_badge = _new_ui_texture("PauseBadge", TextureFactory.pixel_ui_asset("pause_badge"), Color(1.0, 1.0, 1.0, 0.98))
+	menu_strip = _new_ui_texture("MenuStrip", TextureFactory.pixel_ui_asset("menu_strip"), Color(1.0, 1.0, 1.0, 0.98))
+	var menu_titles := ["角色", "武器", "遗物", "成就", "图鉴", "设置"]
+	for index in range(menu_titles.size()):
+		var label := Label.new()
+		label.name = "MenuLabel%d" % index
+		label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+		label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		label.text = menu_titles[index]
+		label.add_theme_font_size_override("font_size", 22)
+		label.add_theme_color_override("font_color", Color(0.97, 0.92, 1.0, 1.0))
+		label.add_theme_color_override("font_shadow_color", Color(0.0, 0.0, 0.0, 1.0))
+		label.add_theme_constant_override("shadow_offset_x", 2)
+		label.add_theme_constant_override("shadow_offset_y", 2)
+		CJKFontTheme.apply_to(label)
+		menu_strip.add_child(label)
+		menu_strip_labels.append(label)
+
+func _new_currency_label(node_name: String, color: Color) -> Label:
+	var label := Label.new()
+	label.name = node_name
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	label.add_theme_font_size_override("font_size", 24)
+	label.add_theme_color_override("font_color", color)
+	label.add_theme_color_override("font_shadow_color", Color(0.0, 0.0, 0.0, 1.0))
+	label.add_theme_constant_override("shadow_offset_x", 2)
+	label.add_theme_constant_override("shadow_offset_y", 2)
+	CJKFontTheme.apply_to(label)
+	return label
 
 func _new_ui_texture(node_name: String, texture: Texture2D, color: Color) -> TextureRect:
 	var rect := TextureRect.new()
@@ -815,6 +865,8 @@ func _apply_pixel_button_style(button: Button, texture: Texture2D) -> void:
 	button.add_theme_stylebox_override("focus", style)
 
 func _apply_portrait_layout(size: Vector2) -> void:
+	_layout_art(stats_art, Rect2(14.0, 12.0, 108.0, 128.0))
+	_layout_currency_hud(size, true)
 	health_bar.offset_left = 18.0
 	health_bar.offset_top = 16.0
 	health_bar.offset_right = min(size.x - 18.0, 346.0)
@@ -843,7 +895,10 @@ func _apply_portrait_layout(size: Vector2) -> void:
 	relics_label.offset_bottom = 330.0
 	relics_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	_layout_icon_row(relic_icon_row, Rect2(relics_label.offset_left, 58.0, col_width, 60.0))
+	_layout_art(stats_panel, Rect2(8.0, 8.0, max(340.0, stats.offset_right + 12.0), 184.0))
+	_layout_art(right_art, Rect2(right_panel_left + 10.0, 64.0, min(220.0, right_width - 26.0), 220.0))
 	_layout_art(right_panel, Rect2(right_panel_left - 12.0, 52.0, size.x - right_panel_left + 4.0, 290.0))
+	_layout_menu_strip(size, true)
 	_layout_bottom_xp(size)
 	wave_alert.anchor_left = 0.0
 	wave_alert.anchor_right = 0.0
@@ -877,6 +932,8 @@ func _apply_portrait_layout(size: Vector2) -> void:
 
 func _apply_landscape_layout() -> void:
 	var viewport_size := get_viewport().get_visible_rect().size
+	_layout_art(stats_art, Rect2(16.0, 14.0, 108.0, 128.0))
+	_layout_currency_hud(viewport_size, false)
 	health_bar.offset_left = 24.0
 	health_bar.offset_top = 18.0
 	health_bar.offset_right = 392.0
@@ -904,7 +961,10 @@ func _apply_landscape_layout() -> void:
 	relics_label.offset_bottom = 300.0
 	relics_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
 	_layout_icon_row(relic_icon_row, Rect2(relics_label.offset_left, 58.0, land_col_width, 60.0))
+	_layout_art(stats_panel, Rect2(14.0, 8.0, 520.0, 190.0))
+	_layout_art(right_art, Rect2(600.0, 118.0, 230.0, 220.0))
 	_layout_art(right_panel, Rect2(860.0, 50.0, 408.0, 260.0))
+	_layout_menu_strip(viewport_size, false)
 	_layout_bottom_xp(viewport_size)
 	wave_alert.anchor_left = 0.5
 	wave_alert.anchor_right = 0.5
@@ -949,6 +1009,58 @@ func _layout_performance_hud(size: Vector2) -> void:
 	performance_label.offset_top = size.y - 116.0
 	performance_label.offset_right = size.x - 12.0
 	performance_label.offset_bottom = size.y - 12.0
+
+func _layout_currency_hud(size: Vector2, portrait: bool) -> void:
+	if currency_gold_bar != null:
+		var gold_width := 188.0
+		var gold_left := size.x - 326.0 if portrait else size.x - 324.0
+		currency_gold_bar.offset_left = gold_left
+		currency_gold_bar.offset_top = 16.0
+		currency_gold_bar.offset_right = gold_left + gold_width
+		currency_gold_bar.offset_bottom = 42.0
+		if currency_gold_label != null:
+			currency_gold_label.offset_left = 70.0
+			currency_gold_label.offset_top = 0.0
+			currency_gold_label.offset_right = gold_width - 16.0
+			currency_gold_label.offset_bottom = 26.0
+	if currency_gem_bar != null:
+		var gem_width := 188.0
+		var gem_left := size.x - 326.0 if portrait else size.x - 324.0
+		currency_gem_bar.offset_left = gem_left
+		currency_gem_bar.offset_top = 46.0
+		currency_gem_bar.offset_right = gem_left + gem_width
+		currency_gem_bar.offset_bottom = 72.0
+		if currency_gem_label != null:
+			currency_gem_label.offset_left = 70.0
+			currency_gem_label.offset_top = 0.0
+			currency_gem_label.offset_right = gem_width - 16.0
+			currency_gem_label.offset_bottom = 26.0
+	if pause_badge != null:
+		pause_badge.offset_left = size.x - 116.0
+		pause_badge.offset_top = 14.0
+		pause_badge.offset_right = size.x - 76.0
+		pause_badge.offset_bottom = 54.0
+
+func _layout_menu_strip(size: Vector2, portrait: bool) -> void:
+	if menu_strip == null:
+		return
+	var strip_width := 202.0
+	var strip_height := 420.0
+	var left := size.x - strip_width - 12.0
+	var top := 250.0 if portrait else 66.0
+	menu_strip.offset_left = left
+	menu_strip.offset_top = top
+	menu_strip.offset_right = left + strip_width
+	menu_strip.offset_bottom = top + strip_height
+	var titles := ["角色", "武器", "遗物", "成就", "图鉴", "设置"]
+	var row_height := strip_height / float(titles.size())
+	for index in range(min(menu_strip_labels.size(), titles.size())):
+		var label := menu_strip_labels[index]
+		label.text = titles[index]
+		label.offset_left = 54.0
+		label.offset_right = strip_width - 12.0
+		label.offset_top = float(index) * row_height + 6.0
+		label.offset_bottom = float(index + 1) * row_height - 6.0
 
 func _layout_contract_card(size: Vector2, portrait: bool) -> void:
 	if contract_card == null:

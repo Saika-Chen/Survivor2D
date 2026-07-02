@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bdwuhbs3t0f30"
-path="res://.godot/imported/icon_f3_autarchsgift.png-5a14cb04b74247fdf5582b7dc4373c96.ctex"
+path="res://.godot/imported/icon_f3_autarchsgift.png-030d037c4d648db1b530be07d1e218dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f3_autarchsgift.png"
-dest_files=["res://.godot/imported/icon_f3_autarchsgift.png-5a14cb04b74247fdf5582b7dc4373c96.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f3_autarchsgift.png"
+dest_files=["res://.godot/imported/icon_f3_autarchsgift.png-030d037c4d648db1b530be07d1e218dc.ctex"]
 
 [params]
 

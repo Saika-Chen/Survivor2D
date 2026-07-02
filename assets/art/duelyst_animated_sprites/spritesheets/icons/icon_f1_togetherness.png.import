@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dj2nph5yxmay"
-path="res://.godot/imported/icon_f1_togetherness.png-05d52775fba7f8466f9ab92fa044b9a5.ctex"
+path="res://.godot/imported/icon_f1_togetherness.png-07e85efb3a9c67518d76ec85dd0918a5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f1_togetherness.png"
-dest_files=["res://.godot/imported/icon_f1_togetherness.png-05d52775fba7f8466f9ab92fa044b9a5.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f1_togetherness.png"
+dest_files=["res://.godot/imported/icon_f1_togetherness.png-07e85efb3a9c67518d76ec85dd0918a5.ctex"]
 
 [params]
 

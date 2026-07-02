@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dxhqgd1ysqybp"
-path="res://.godot/imported/fx_ringswirl.png-0a22fee0bcb3222001584d1421c1f149.ctex"
+path="res://.godot/imported/fx_ringswirl.png-c19edbec3a26ba789b93845b2ab9623b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/fx/fx_ringswirl.png"
-dest_files=["res://.godot/imported/fx_ringswirl.png-0a22fee0bcb3222001584d1421c1f149.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/fx/fx_ringswirl.png"
+dest_files=["res://.godot/imported/fx_ringswirl.png-c19edbec3a26ba789b93845b2ab9623b.ctex"]
 
 [params]
 

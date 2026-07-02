@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://e31y4520620j"
-path="res://.godot/imported/icon_f6_gravitywell.png-65245a61c15fbef7632a0cff16ab7606.ctex"
+path="res://.godot/imported/icon_f6_gravitywell.png-1b12ba9b7569c1346faa4731b541fab2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f6_gravitywell.png"
-dest_files=["res://.godot/imported/icon_f6_gravitywell.png-65245a61c15fbef7632a0cff16ab7606.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f6_gravitywell.png"
+dest_files=["res://.godot/imported/icon_f6_gravitywell.png-1b12ba9b7569c1346faa4731b541fab2.ctex"]
 
 [params]
 

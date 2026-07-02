@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bto8e6dx7wk0q"
-path="res://.godot/imported/boss_legion.png-254e031c623e4a7ecb437d88ec9d519c.ctex"
+path="res://.godot/imported/boss_legion.png-3bf8eaf6dd863b5a1bdfce50f6c8f907.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/units/boss_legion.png"
-dest_files=["res://.godot/imported/boss_legion.png-254e031c623e4a7ecb437d88ec9d519c.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/units/boss_legion.png"
+dest_files=["res://.godot/imported/boss_legion.png-3bf8eaf6dd863b5a1bdfce50f6c8f907.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://jin5wr65jpmu"
-path="res://.godot/imported/icon_f5_dampeningwave.png-ab864431de2f0809b443028340f9f4e7.ctex"
+path="res://.godot/imported/icon_f5_dampeningwave.png-2d48993c79cfc54ed3909562986d28c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f5_dampeningwave.png"
-dest_files=["res://.godot/imported/icon_f5_dampeningwave.png-ab864431de2f0809b443028340f9f4e7.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f5_dampeningwave.png"
+dest_files=["res://.godot/imported/icon_f5_dampeningwave.png-2d48993c79cfc54ed3909562986d28c3.ctex"]
 
 [params]
 

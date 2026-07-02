@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ctoc2lhg5ltay"
-path="res://.godot/imported/fx_searingchasm.png-a862b8546a7bc1a6a99eb319ff92040f.ctex"
+path="res://.godot/imported/fx_searingchasm.png-87b435a9f4bf2d17a52512207d6dd471.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/fx/fx_searingchasm.png"
-dest_files=["res://.godot/imported/fx_searingchasm.png-a862b8546a7bc1a6a99eb319ff92040f.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/fx/fx_searingchasm.png"
+dest_files=["res://.godot/imported/fx_searingchasm.png-87b435a9f4bf2d17a52512207d6dd471.ctex"]
 
 [params]
 

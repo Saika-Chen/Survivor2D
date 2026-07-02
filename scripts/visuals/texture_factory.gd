@@ -3,6 +3,24 @@ extends RefCounted
 static var _cache := {}
 
 const ICON_BASE := "res://assets/art/duelyst_animated_sprites/spriteframes/icons/"
+const PIXEL_UI_BASE := "res://ui/"
+const PIXEL_UI_MAP := {
+	"hp_bar": "slice_0037",
+	"xp_bar": "slice_0036",
+	"currency_gold": "slice_0003",
+	"currency_gem": "slice_0007",
+	"hud_panel_left": "slice_0037",
+	"hud_panel_right": "slice_0038",
+	"portrait_frame": "slice_0001",
+	"mini_map": "slice_0008",
+	"menu_frame": "slice_0004",
+	"menu_strip": "slice_0015",
+	"talent_frame": "slice_0048",
+	"option_card": "slice_0041",
+	"slot_frame": "slice_0039",
+	"pause_badge": "slice_0016",
+	"warning_banner": "slice_0027"
+}
 const ITEM_ICON_IDS := {
 	"blood_bolt": "icon_f2_phoenixfire02",
 	"ghost_blades": "icon_f2_killingedge",
@@ -59,62 +77,14 @@ static func item_icon_frames(item_id: String) -> SpriteFrames:
 	)
 
 static func pixel_ui_asset(asset_id: String) -> Texture2D:
-	return _fetch("pixel_ui_%s" % asset_id, func() -> Texture2D:
-		var texture := _load_png_texture("res://assets/art/generated/ui/%s.png" % asset_id)
+	var mapped_id := str(PIXEL_UI_MAP.get(asset_id, asset_id))
+	return _fetch("pixel_ui_%s" % mapped_id, func() -> Texture2D:
+		var texture := _load_png_texture("%s%s.png" % [PIXEL_UI_BASE, mapped_id])
 		return texture if texture != null else warning_banner()
 	)
 
 static func pixel_slot_frame() -> Texture2D:
-	return _fetch("pixel_slot_frame_v2", func() -> Texture2D:
-		var image := Image.create(512, 340, false, Image.FORMAT_RGBA8)
-		image.fill(Color(0, 0, 0, 0))
-		# Outer dark frame with decorative border
-		_draw_rect(image, Rect2i(4, 4, 504, 332), Color(0.06, 0.02, 0.10, 0.98))
-		# Gold outer border
-		_draw_rect_outline(image, Rect2i(4, 4, 504, 332), 6, Color(0.88, 0.68, 0.15, 0.98))
-		# Inner dark panel
-		_draw_rect(image, Rect2i(14, 14, 484, 312), Color(0.08, 0.03, 0.12, 0.97))
-		# Inner gold trim
-		_draw_rect_outline(image, Rect2i(14, 14, 484, 312), 3, Color(0.76, 0.58, 0.12, 0.9))
-		# Title bar
-		_draw_rect(image, Rect2i(30, 22, 452, 36), Color(0.12, 0.05, 0.18, 0.96))
-		_draw_rect_outline(image, Rect2i(30, 22, 452, 36), 2, Color(0.82, 0.64, 0.18, 0.85))
-		# Three reel windows with ornate borders
-		for reel in range(3):
-			var rx := 48 + reel * 148
-			var ry := 76
-			# Outer glow
-			_draw_rect(image, Rect2i(rx - 4, ry - 4, 116, 116), Color(0.72, 0.44, 0.08, 0.5))
-			# Dark window bg
-			_draw_rect(image, Rect2i(rx, ry, 108, 108), Color(0.03, 0.01, 0.06, 0.98))
-			# Red-gold border
-			_draw_rect_outline(image, Rect2i(rx, ry, 108, 108), 5, Color(0.92, 0.18, 0.32, 0.96))
-			# Inner highlight
-			_draw_rect_outline(image, Rect2i(rx + 6, ry + 6, 96, 96), 1, Color(0.88, 0.72, 0.22, 0.45))
-			# Corner diamonds
-			for cx in [rx + 2, rx + 104]:
-				for cy in [ry + 2, ry + 104]:
-					image.set_pixel(cx, cy, Color(0.95, 0.82, 0.25, 0.9))
-		# Lever bar (right side)
-		_draw_rect(image, Rect2i(400, 50, 20, 100), Color(0.6, 0.42, 0.10, 0.95))
-		_draw_rect_outline(image, Rect2i(400, 50, 20, 100), 2, Color(0.9, 0.72, 0.18, 0.9))
-		# Lever knob
-		_draw_disc(image, Vector2(410, 56), 16.0, Color(0.95, 0.18, 0.22, 0.96))
-		_draw_disc(image, Vector2(410, 56), 10.0, Color(1.0, 0.3, 0.35, 0.9))
-		# Lever handle highlight
-		for y in range(74, 130, 4):
-			image.set_pixel(410, y, Color(1.0, 0.85, 0.3, 0.7))
-		# Bottom decorative bar
-		_draw_rect(image, Rect2i(30, 298, 452, 3), Color(0.8, 0.6, 0.15, 0.8))
-		_draw_rect(image, Rect2i(30, 304, 452, 2), Color(0.5, 0.35, 0.08, 0.6))
-		# Top title text area accents
-		for x in range(40, 470, 28):
-			image.set_pixel(x, 28, Color(1.0, 0.8, 0.25, 0.6))
-			image.set_pixel(x + 1, 28, Color(1.0, 0.8, 0.25, 0.6))
-			image.set_pixel(x, 50, Color(1.0, 0.8, 0.25, 0.6))
-			image.set_pixel(x + 1, 50, Color(1.0, 0.8, 0.25, 0.6))
-		return ImageTexture.create_from_image(image)
-	)
+	return pixel_ui_asset("slot_frame")
 
 static func _load_png_texture(path: String) -> Texture2D:
 	if not ResourceLoader.exists(path):
@@ -377,13 +347,7 @@ static func health_bar_bg() -> Texture2D:
 
 static func warning_banner() -> Texture2D:
 	return _fetch("warning_banner", func() -> Texture2D:
-		var image := Image.create(720, 96, false, Image.FORMAT_RGBA8)
-		image.fill(Color(0, 0, 0, 0))
-		_fill_polygon(image, PackedVector2Array([
-			Vector2(38, 48), Vector2(92, 8), Vector2(628, 8), Vector2(682, 48), Vector2(628, 88), Vector2(92, 88)
-		]), Color(0.16, 0.03, 0.06, 0.92))
-		_draw_rect_outline(image, Rect2i(96, 10, 528, 76), 4, Color(0.96, 0.72, 0.24, 0.96))
-		return ImageTexture.create_from_image(image)
+		return _load_png_texture("%s%s.png" % [PIXEL_UI_BASE, str(PIXEL_UI_MAP["warning_banner"])])
 	)
 
 static func wingman_body(evolved: bool) -> Texture2D:

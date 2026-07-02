@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dxyedpfljqhqh"
-path="res://.godot/imported/icon_f1_chargeintobattle.png-0ecb86bd37f36a8ea537468093300626.ctex"
+path="res://.godot/imported/icon_f1_chargeintobattle.png-be42a04d73a7e1641edd9cd26fafb5c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f1_chargeintobattle.png"
-dest_files=["res://.godot/imported/icon_f1_chargeintobattle.png-0ecb86bd37f36a8ea537468093300626.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f1_chargeintobattle.png"
+dest_files=["res://.godot/imported/icon_f1_chargeintobattle.png-be42a04d73a7e1641edd9cd26fafb5c7.ctex"]
 
 [params]
 

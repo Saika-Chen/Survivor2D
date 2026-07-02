@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c6b7m75n2griq"
-path="res://.godot/imported/icon_f6_winterwave.png-65d19dab922c599dd2f234f2cfe8d742.ctex"
+path="res://.godot/imported/icon_f6_winterwave.png-6b7599d4a6b52e496e5724785bd5597f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f6_winterwave.png"
-dest_files=["res://.godot/imported/icon_f6_winterwave.png-65d19dab922c599dd2f234f2cfe8d742.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f6_winterwave.png"
+dest_files=["res://.godot/imported/icon_f6_winterwave.png-6b7599d4a6b52e496e5724785bd5597f.ctex"]
 
 [params]
 

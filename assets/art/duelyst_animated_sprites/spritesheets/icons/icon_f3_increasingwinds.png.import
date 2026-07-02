@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bbmvai72nx7pj"
-path="res://.godot/imported/icon_f3_increasingwinds.png-6ee1c7e21f6d0a5af807f7722971dfc8.ctex"
+path="res://.godot/imported/icon_f3_increasingwinds.png-500df4708abadd5288c1e16aff4030a5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f3_increasingwinds.png"
-dest_files=["res://.godot/imported/icon_f3_increasingwinds.png-6ee1c7e21f6d0a5af807f7722971dfc8.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f3_increasingwinds.png"
+dest_files=["res://.godot/imported/icon_f3_increasingwinds.png-500df4708abadd5288c1e16aff4030a5.ctex"]
 
 [params]
 

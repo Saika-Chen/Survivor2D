@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://35c8ffuq1sbt"
-path="res://.godot/imported/fx_f4_shadownova.png-49e3f3932b28840a64be3fb8578ffdd7.ctex"
+path="res://.godot/imported/fx_f4_shadownova.png-44dda408b81dd4db2cad4253c31a4bc8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/fx/fx_f4_shadownova.png"
-dest_files=["res://.godot/imported/fx_f4_shadownova.png-49e3f3932b28840a64be3fb8578ffdd7.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/fx/fx_f4_shadownova.png"
+dest_files=["res://.godot/imported/fx_f4_shadownova.png-44dda408b81dd4db2cad4253c31a4bc8.ctex"]
 
 [params]
 

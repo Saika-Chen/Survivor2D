@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6jgsipkbq5hn"
-path="res://.godot/imported/icon_f6_ambush.png-d1951eabad632c5200a450b203060348.ctex"
+path="res://.godot/imported/icon_f6_ambush.png-81e54f47e5a4ebc60114c486f63804b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f6_ambush.png"
-dest_files=["res://.godot/imported/icon_f6_ambush.png-d1951eabad632c5200a450b203060348.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f6_ambush.png"
+dest_files=["res://.godot/imported/icon_f6_ambush.png-81e54f47e5a4ebc60114c486f63804b9.ctex"]
 
 [params]
 

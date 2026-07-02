@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bqh2r5jiap8qf"
-path="res://.godot/imported/icon_f1_magnetize.png-44b27c633290d9c3b765fcb02f861c1b.ctex"
+path="res://.godot/imported/icon_f1_magnetize.png-972fd630b21a2fb1e4443b7852839566.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f1_magnetize.png"
-dest_files=["res://.godot/imported/icon_f1_magnetize.png-44b27c633290d9c3b765fcb02f861c1b.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f1_magnetize.png"
+dest_files=["res://.godot/imported/icon_f1_magnetize.png-972fd630b21a2fb1e4443b7852839566.ctex"]
 
 [params]
 

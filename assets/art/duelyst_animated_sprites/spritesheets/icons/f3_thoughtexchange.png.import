@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://crvgn2d1tcvhv"
-path="res://.godot/imported/f3_thoughtexchange.png-2c08382e8ea5d0b13f1381c97ca134a8.ctex"
+path="res://.godot/imported/f3_thoughtexchange.png-4618a5ffff9a7108e61e9669f7d0931c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/f3_thoughtexchange.png"
-dest_files=["res://.godot/imported/f3_thoughtexchange.png-2c08382e8ea5d0b13f1381c97ca134a8.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/f3_thoughtexchange.png"
+dest_files=["res://.godot/imported/f3_thoughtexchange.png-4618a5ffff9a7108e61e9669f7d0931c.ctex"]
 
 [params]
 

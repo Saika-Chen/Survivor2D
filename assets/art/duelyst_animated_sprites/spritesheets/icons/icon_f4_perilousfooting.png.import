@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://gsfi63y4s881"
-path="res://.godot/imported/icon_f4_perilousfooting.png-ebc2480ab4761312a93529bef0a86cc2.ctex"
+path="res://.godot/imported/icon_f4_perilousfooting.png-2e5feaf4fb34a76ca644dde83238dd27.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f4_perilousfooting.png"
-dest_files=["res://.godot/imported/icon_f4_perilousfooting.png-ebc2480ab4761312a93529bef0a86cc2.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f4_perilousfooting.png"
+dest_files=["res://.godot/imported/icon_f4_perilousfooting.png-2e5feaf4fb34a76ca644dde83238dd27.ctex"]
 
 [params]
 

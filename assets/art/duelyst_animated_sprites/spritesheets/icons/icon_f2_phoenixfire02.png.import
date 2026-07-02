@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cnyls04fm3g47"
-path="res://.godot/imported/icon_f2_phoenixfire02.png-bde362c205f524739859fd58a7b9f0fa.ctex"
+path="res://.godot/imported/icon_f2_phoenixfire02.png-61af07e9c790b019a1bc508924901081.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f2_phoenixfire02.png"
-dest_files=["res://.godot/imported/icon_f2_phoenixfire02.png-bde362c205f524739859fd58a7b9f0fa.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f2_phoenixfire02.png"
+dest_files=["res://.godot/imported/icon_f2_phoenixfire02.png-61af07e9c790b019a1bc508924901081.ctex"]
 
 [params]
 

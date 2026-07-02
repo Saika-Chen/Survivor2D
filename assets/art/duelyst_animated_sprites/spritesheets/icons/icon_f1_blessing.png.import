@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d21ui4t35gsj0"
-path="res://.godot/imported/icon_f1_blessing.png-b976b09ed8d86b026d2d0ee830a68429.ctex"
+path="res://.godot/imported/icon_f1_blessing.png-9ee4426ba5cc1f392f89e14189dc6660.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f1_blessing.png"
-dest_files=["res://.godot/imported/icon_f1_blessing.png-b976b09ed8d86b026d2d0ee830a68429.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f1_blessing.png"
+dest_files=["res://.godot/imported/icon_f1_blessing.png-9ee4426ba5cc1f392f89e14189dc6660.ctex"]
 
 [params]
 

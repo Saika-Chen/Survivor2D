@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cgact8jeimqjd"
-path="res://.godot/imported/icon_f4_sphereofdarkness.png-12cb39faff8bb7a63728d77de7acd24c.ctex"
+path="res://.godot/imported/icon_f4_sphereofdarkness.png-1b311d0313b8a9a1d0208013dd6786a4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f4_sphereofdarkness.png"
-dest_files=["res://.godot/imported/icon_f4_sphereofdarkness.png-12cb39faff8bb7a63728d77de7acd24c.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f4_sphereofdarkness.png"
+dest_files=["res://.godot/imported/icon_f4_sphereofdarkness.png-1b311d0313b8a9a1d0208013dd6786a4.ctex"]
 
 [params]
 

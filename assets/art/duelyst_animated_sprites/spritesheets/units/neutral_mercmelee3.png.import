@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bovwyfbng11t8"
-path="res://.godot/imported/neutral_mercmelee3.png-c3aa83091601c304900c614ed520a04f.ctex"
+path="res://.godot/imported/neutral_mercmelee3.png-f69085bf5ceb59780c69f41e73b4d3e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/units/neutral_mercmelee3.png"
-dest_files=["res://.godot/imported/neutral_mercmelee3.png-c3aa83091601c304900c614ed520a04f.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/units/neutral_mercmelee3.png"
+dest_files=["res://.godot/imported/neutral_mercmelee3.png-f69085bf5ceb59780c69f41e73b4d3e9.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dn76uewpntw1r"
-path="res://.godot/imported/generalspell_f1_tesmpest.png-54968088c57f6983fdb8d5fafdae7d2f.ctex"
+path="res://.godot/imported/generalspell_f1_tesmpest.png-3923cd2f14041083fb1400b2fcc8caa9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/generalspell_f1_tesmpest.png"
-dest_files=["res://.godot/imported/generalspell_f1_tesmpest.png-54968088c57f6983fdb8d5fafdae7d2f.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/generalspell_f1_tesmpest.png"
+dest_files=["res://.godot/imported/generalspell_f1_tesmpest.png-3923cd2f14041083fb1400b2fcc8caa9.ctex"]
 
 [params]
 

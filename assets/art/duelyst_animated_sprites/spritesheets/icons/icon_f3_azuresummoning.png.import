@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cu8uccxf6g4sm"
-path="res://.godot/imported/icon_f3_azuresummoning.png-787f8848f88878f24d341a14f2dc1c6e.ctex"
+path="res://.godot/imported/icon_f3_azuresummoning.png-46274a6faa9591444bd70a1c9236b429.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f3_azuresummoning.png"
-dest_files=["res://.godot/imported/icon_f3_azuresummoning.png-787f8848f88878f24d341a14f2dc1c6e.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f3_azuresummoning.png"
+dest_files=["res://.godot/imported/icon_f3_azuresummoning.png-46274a6faa9591444bd70a1c9236b429.ctex"]
 
 [params]
 

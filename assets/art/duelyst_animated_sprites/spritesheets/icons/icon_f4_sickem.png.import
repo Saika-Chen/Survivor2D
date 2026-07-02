@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bpcok8dp4tjec"
-path="res://.godot/imported/icon_f4_sickem.png-0a2217d045893deb2a1524d3c5b492cc.ctex"
+path="res://.godot/imported/icon_f4_sickem.png-3541cf61ddd71aea56a80e5dff8e9775.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f4_sickem.png"
-dest_files=["res://.godot/imported/icon_f4_sickem.png-0a2217d045893deb2a1524d3c5b492cc.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f4_sickem.png"
+dest_files=["res://.godot/imported/icon_f4_sickem.png-3541cf61ddd71aea56a80e5dff8e9775.ctex"]
 
 [params]
 
