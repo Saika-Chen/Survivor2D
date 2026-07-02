@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bnyv3x60deef3"
-path="res://.godot/imported/icon_f4_darkfiresacrifice.png-2023ee92a787141b7fb00f1fa1956bf6.ctex"
+path="res://.godot/imported/icon_f4_darkfiresacrifice.png-c611c148c7556849000e3c2001f55b21.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f4_darkfiresacrifice.png"
-dest_files=["res://.godot/imported/icon_f4_darkfiresacrifice.png-2023ee92a787141b7fb00f1fa1956bf6.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f4_darkfiresacrifice.png"
+dest_files=["res://.godot/imported/icon_f4_darkfiresacrifice.png-c611c148c7556849000e3c2001f55b21.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://3kmjx1tx45i"
-path="res://.godot/imported/icon_f2_ninjutsumagics.png-720d898fc1f95c2949459190d62429fd.ctex"
+path="res://.godot/imported/icon_f2_ninjutsumagics.png-2370623c679f7c1cda1ff703b5f766ad.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f2_ninjutsumagics.png"
-dest_files=["res://.godot/imported/icon_f2_ninjutsumagics.png-720d898fc1f95c2949459190d62429fd.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f2_ninjutsumagics.png"
+dest_files=["res://.godot/imported/icon_f2_ninjutsumagics.png-2370623c679f7c1cda1ff703b5f766ad.ctex"]
 
 [params]
 

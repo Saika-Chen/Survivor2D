@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://coi0t5cbul34h"
-path="res://.godot/imported/icon_f3_boneswarm.png-2ae2524eb431ccab7982f349875b04db.ctex"
+path="res://.godot/imported/icon_f3_boneswarm.png-eab39df92174ce4ee1c31d2e96257e81.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f3_boneswarm.png"
-dest_files=["res://.godot/imported/icon_f3_boneswarm.png-2ae2524eb431ccab7982f349875b04db.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f3_boneswarm.png"
+dest_files=["res://.godot/imported/icon_f3_boneswarm.png-eab39df92174ce4ee1c31d2e96257e81.ctex"]
 
 [params]
 

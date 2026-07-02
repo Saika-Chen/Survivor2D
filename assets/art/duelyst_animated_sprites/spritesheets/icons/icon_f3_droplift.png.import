@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6mc17ty834vb"
-path="res://.godot/imported/icon_f3_droplift.png-d5e2896129703bb0052f394668c00733.ctex"
+path="res://.godot/imported/icon_f3_droplift.png-38ec816703b1e5422b34c3a193d57ab7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f3_droplift.png"
-dest_files=["res://.godot/imported/icon_f3_droplift.png-d5e2896129703bb0052f394668c00733.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f3_droplift.png"
+dest_files=["res://.godot/imported/icon_f3_droplift.png-38ec816703b1e5422b34c3a193d57ab7.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c3ioelaqquefw"
-path="res://.godot/imported/icon_neutral_brilliantplume.png-d3a1567748e0b58550fb64cad58f838a.ctex"
+path="res://.godot/imported/icon_neutral_brilliantplume.png-680549ffd3883032104265a50ee8e4cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_neutral_brilliantplume.png"
-dest_files=["res://.godot/imported/icon_neutral_brilliantplume.png-d3a1567748e0b58550fb64cad58f838a.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_neutral_brilliantplume.png"
+dest_files=["res://.godot/imported/icon_neutral_brilliantplume.png-680549ffd3883032104265a50ee8e4cb.ctex"]
 
 [params]
 

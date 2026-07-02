@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://qqpa62j6c54"
-path="res://.godot/imported/icon_f6_entericedome.png-e5b79035f23dd512083a9f88e6bd7614.ctex"
+path="res://.godot/imported/icon_f6_entericedome.png-03bbb14cdc033b9e9d12070268daf20b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f6_entericedome.png"
-dest_files=["res://.godot/imported/icon_f6_entericedome.png-e5b79035f23dd512083a9f88e6bd7614.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f6_entericedome.png"
+dest_files=["res://.godot/imported/icon_f6_entericedome.png-03bbb14cdc033b9e9d12070268daf20b.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c7y6w3urhghvp"
-path="res://.godot/imported/icon_f3_scionssecondwish.png-b3af8aedc0440f0fdd1096b1798b48ae.ctex"
+path="res://.godot/imported/icon_f3_scionssecondwish.png-63bfe9a5f1f15b4b2b17841439ac417b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f3_scionssecondwish.png"
-dest_files=["res://.godot/imported/icon_f3_scionssecondwish.png-b3af8aedc0440f0fdd1096b1798b48ae.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f3_scionssecondwish.png"
+dest_files=["res://.godot/imported/icon_f3_scionssecondwish.png-63bfe9a5f1f15b4b2b17841439ac417b.ctex"]
 
 [params]
 

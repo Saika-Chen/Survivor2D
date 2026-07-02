@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://defn0s8k7it82"
-path="res://.godot/imported/icon_f4_voidpulse.png-0d5343e9992147b7246feae0e5c75cff.ctex"
+path="res://.godot/imported/icon_f4_voidpulse.png-e43528e7ea05c8b3da991c87ad9a3ea5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f4_voidpulse.png"
-dest_files=["res://.godot/imported/icon_f4_voidpulse.png-0d5343e9992147b7246feae0e5c75cff.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f4_voidpulse.png"
+dest_files=["res://.godot/imported/icon_f4_voidpulse.png-e43528e7ea05c8b3da991c87ad9a3ea5.ctex"]
 
 [params]
 

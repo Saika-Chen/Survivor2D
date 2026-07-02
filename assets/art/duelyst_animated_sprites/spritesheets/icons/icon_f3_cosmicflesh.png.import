@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://1yfcpvomcvxv"
-path="res://.godot/imported/icon_f3_cosmicflesh.png-ff431717d56d432e133eea098b81acf5.ctex"
+path="res://.godot/imported/icon_f3_cosmicflesh.png-1941a9b04a3dbc59dbf9da99acce20f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f3_cosmicflesh.png"
-dest_files=["res://.godot/imported/icon_f3_cosmicflesh.png-ff431717d56d432e133eea098b81acf5.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f3_cosmicflesh.png"
+dest_files=["res://.godot/imported/icon_f3_cosmicflesh.png-1941a9b04a3dbc59dbf9da99acce20f6.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cjwuwagdi618v"
-path="res://.godot/imported/icon_f4_creepingtendrils.png-97e54fc0cbde84b57b35a1b981cf28dc.ctex"
+path="res://.godot/imported/icon_f4_creepingtendrils.png-60cbfd988ad335ba6fdb00d10a648c71.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f4_creepingtendrils.png"
-dest_files=["res://.godot/imported/icon_f4_creepingtendrils.png-97e54fc0cbde84b57b35a1b981cf28dc.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f4_creepingtendrils.png"
+dest_files=["res://.godot/imported/icon_f4_creepingtendrils.png-60cbfd988ad335ba6fdb00d10a648c71.ctex"]
 
 [params]
 

@@ -2,8 +2,10 @@ extends RefCounted
 class_name RunEventSystem
 
 const EnemyScene := preload("res://scenes/enemy/Enemy.tscn")
+const EncounterDirectorScript := preload("res://scripts/game/EncounterDirector.gd")
 
 var game: Node
+var encounter_director
 var pending_event := {}
 var active_blessings := {}
 var bounty_target_id := -1
@@ -11,13 +13,14 @@ var bounty_expires_wave := -1
 
 func setup(owner: Node) -> void:
 	game = owner
+	encounter_director = EncounterDirectorScript.new()
 
 func maybe_offer_wave_event(wave: int, is_major: bool) -> void:
 	if is_major or wave >= 30 or wave % 4 != 0:
 		return
 	if game.level_up_pending or game.victory_pending:
 		return
-	pending_event = build_wave_event()
+	pending_event = encounter_director.build_event(wave, is_major) if encounter_director != null else {}
 	if pending_event.is_empty():
 		return
 	game.level_up_pending = true
@@ -28,37 +31,6 @@ func maybe_offer_wave_event(wave: int, is_major: bool) -> void:
 		str(pending_event.get("prompt", "做出你的选择。")),
 		false
 	)
-
-func build_wave_event() -> Dictionary:
-	var event_roll := randi() % 3
-	if event_roll == 0:
-		return {
-			"title": "临时祝福",
-			"prompt": "选择一份仅持续 1 波的祝福。",
-			"options": [
-				{"id": "event:blessing_damage", "title": "血潮祝福", "description": "本波伤害 +25%。", "category": "事件", "rarity": "稀有"},
-				{"id": "event:blessing_cooldown", "title": "疾咒祝福", "description": "本波冷却缩短 20%。", "category": "事件", "rarity": "稀有"},
-				{"id": "event:blessing_haste", "title": "迅影祝福", "description": "本波移速 +50，弹速 +20%。", "category": "事件", "rarity": "稀有"}
-			]
-		}
-	if event_roll == 1:
-		return {
-			"title": "精英悬赏",
-			"prompt": "接受悬赏，击杀目标精英即可获得额外升级。",
-			"options": [
-				{"id": "event:bounty_accept", "title": "接受悬赏", "description": "刷出一只悬赏精英，击杀后获得 1 次额外升级。", "category": "事件", "rarity": "史诗"},
-				{"id": "event:bounty_skip", "title": "放弃悬赏", "description": "跳过本次高风险机会。", "category": "事件", "rarity": "普通"}
-			]
-		}
-	return {
-		"title": "恶魔交易",
-		"prompt": "付出代价，换取立刻爆发的力量。",
-		"options": [
-			{"id": "event:bargain_blood", "title": "血契", "description": "失去 25% 最大生命，永久伤害 +30%。", "category": "事件", "rarity": "史诗"},
-			{"id": "event:bargain_level", "title": "邪馈", "description": "失去 15% 最大生命，立刻获得一次额外升级。", "category": "事件", "rarity": "传说"},
-			{"id": "event:bargain_refuse", "title": "拒绝", "description": "保持现状，不接受恶魔提议。", "category": "事件", "rarity": "普通"}
-		]
-	}
 
 func resolve_event_choice(event_id: String) -> void:
 	match event_id:
@@ -87,6 +59,26 @@ func resolve_event_choice(event_id: String) -> void:
 			return
 		"event:bargain_refuse":
 			game.hud.hint.text = "你拒绝了恶魔的交易。"
+		"event:altar_heal":
+			game.player.heal_percent(0.45)
+			game.global_magnet_timer = max(game.global_magnet_timer, 2.0)
+			game.hud.hint.text = "祭坛回响：恢复大量生命，灵魂短暂靠近。"
+		"event:altar_power":
+			game.player_damage_multiplier *= 1.12
+			game.hud.hint.text = "祭坛契约：攻击永久提升。"
+		"event:altar_leave":
+			game.hud.hint.text = "你离开了祭坛，没有做出交换。"
+		"event:shop_damage":
+			sacrifice_health(0.10)
+			game.player_damage_multiplier *= 1.18
+			game.hud.hint.text = "黑市药剂：短时间内更凶猛。"
+		"event:shop_cooldown":
+			if game.run_magic_crystals > 0:
+				game.run_magic_crystals -= 1
+			game.weapon_manager.set_temporary_bonus("cooldown", 0.88)
+			game.hud.hint.text = "冷却卷轴：短时间内更频繁输出。"
+		"event:shop_leave":
+			game.hud.hint.text = "你离开了流浪商店。"
 	pending_event.clear()
 	game.level_up_pending = false
 	game.hud.hide_level_up()

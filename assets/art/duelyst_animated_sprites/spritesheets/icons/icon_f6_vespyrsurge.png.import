@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bqeei43hi7v6c"
-path="res://.godot/imported/icon_f6_vespyrsurge.png-8393de19a49b08c3cc8a79d4bb76cb3d.ctex"
+path="res://.godot/imported/icon_f6_vespyrsurge.png-4b3f4a9464aabc45781c942ac49b245e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f6_vespyrsurge.png"
-dest_files=["res://.godot/imported/icon_f6_vespyrsurge.png-8393de19a49b08c3cc8a79d4bb76cb3d.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f6_vespyrsurge.png"
+dest_files=["res://.godot/imported/icon_f6_vespyrsurge.png-4b3f4a9464aabc45781c942ac49b245e.ctex"]
 
 [params]
 

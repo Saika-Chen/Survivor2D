@@ -8,6 +8,7 @@ const PickupItemScene := preload("res://scenes/pickups/PickupItem.tscn")
 const WeaponZoneScene := preload("res://scenes/effects/WeaponZone.tscn")
 const ParticleBurstScene := preload("res://scenes/effects/ParticleBurst.tscn")
 const CombatEffectScript := preload("res://scripts/effects/combat_effect.gd")
+const CombatFeedbackScript := preload("res://scripts/combat/CombatFeedback.gd")
 const SFXManagerScript := preload("res://scripts/audio/sfx_manager.gd")
 const EnemyBatchRendererScript := preload("res://scripts/visuals/enemy_batch_renderer.gd")
 const XPBatchRendererScript := preload("res://scripts/visuals/xp_batch_renderer.gd")
@@ -410,7 +411,8 @@ func _damage_enemy(enemy: Node2D, amount: float, source: Node = null) -> void:
 		_try_spawn_pickup(enemy.global_position)
 		_spawn_death_effect(enemy.global_position, enemy.radius, enemy.archetype)
 		_spawn_particle_burst(enemy.global_position, "death")
-		_add_shake(0.12, 7.0)
+		var death_shake: Dictionary = CombatFeedbackScript.death_shake(enemy.archetype)
+		_add_shake(float(death_shake.get("duration", 0.12)), float(death_shake.get("strength", 7.0)))
 		sfx_manager.play_enemy_death(enemy.archetype)
 		if enemy.archetype == "splitter":
 			for index in range(2):
@@ -884,7 +886,11 @@ func _vibrate_jackpot() -> void:
 	Input.vibrate_handheld(90, 0.9)
 
 func _spawn_hit_effect(position: Vector2, amount: float, critical := false) -> void:
-	var text := "%d" % int(round(amount))
+	var feedback: Dictionary = CombatFeedbackScript.damage_popup(amount, critical)
+	var shake_profile: Dictionary = CombatFeedbackScript.shake_for_hit(critical)
+	if critical:
+		_add_shake(float(shake_profile.get("duration", 0.12)), float(shake_profile.get("strength", 7.0)))
+	var text := str(feedback.get("text", "%d" % int(round(amount))))
 	if hud != null and hud.has_method("show_damage_number"):
 		hud.show_damage_number(_world_to_hud_position(position + Vector2(0, -enemy_text_offset())), text, critical)
 		return
@@ -892,10 +898,10 @@ func _spawn_hit_effect(position: Vector2, amount: float, critical := false) -> v
 	var number := _take_effect_from_pool()
 	number.global_position = position + Vector2(0, -enemy_text_offset())
 	number.z_index = 1000
-	number.duration = 0.92 if critical else 0.72
+	number.duration = float(feedback.get("duration", 0.72))
 	number.label = text
-	number.velocity = Vector2(0, -76.0 if critical else -52.0)
-	number.color = Color(1.0, 0.16, 0.08, 1.0) if critical else Color(1.0, 0.98, 0.46, 1.0)
+	number.velocity = feedback.get("velocity", Vector2.ZERO)
+	number.color = feedback.get("color", Color.WHITE)
 	effects.add_child(number)
 	if number.has_method("reset_for_pool"):
 		number.reset_for_pool()
@@ -908,14 +914,12 @@ func _world_to_hud_position(world_position: Vector2) -> Vector2:
 func _spawn_death_effect(position: Vector2, radius: float, archetype: String) -> void:
 	_trim_effects(1)
 	var effect := _take_effect_from_pool()
+	var style: Dictionary = CombatFeedbackScript.death_style(archetype, radius)
 	effect.global_position = position
-	effect.duration = 0.46
-	effect.radius = max(42.0, radius * 2.4)
-	effect.color = Color(1.0, 0.15, 0.10, 0.82)
+	effect.duration = float(style.get("duration", 0.46))
+	effect.radius = float(style.get("radius", max(42.0, radius * 2.4)))
+	effect.color = style.get("color", Color(1.0, 0.15, 0.10, 0.82))
 	effect.effect_kind = "death"
-	if archetype == "bomber":
-		effect.color = Color(0.72, 1.0, 0.18, 0.86)
-		effect.radius *= 1.35
 	effects.add_child(effect)
 	if effect.has_method("reset_for_pool"):
 		effect.reset_for_pool()

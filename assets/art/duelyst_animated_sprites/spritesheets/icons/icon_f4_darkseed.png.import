@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dgc1eow313gfg"
-path="res://.godot/imported/icon_f4_darkseed.png-1f63c45d5d15084154e5bdbf008b9f77.ctex"
+path="res://.godot/imported/icon_f4_darkseed.png-b09988f442e1f6df26ac30d484545bba.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f4_darkseed.png"
-dest_files=["res://.godot/imported/icon_f4_darkseed.png-1f63c45d5d15084154e5bdbf008b9f77.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f4_darkseed.png"
+dest_files=["res://.godot/imported/icon_f4_darkseed.png-b09988f442e1f6df26ac30d484545bba.ctex"]
 
 [params]
 

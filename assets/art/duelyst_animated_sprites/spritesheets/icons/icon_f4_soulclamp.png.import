@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgjrlmcwu6rqi"
-path="res://.godot/imported/icon_f4_soulclamp.png-f9b0c6aee265a57b2ad24e6d91ecc7d8.ctex"
+path="res://.godot/imported/icon_f4_soulclamp.png-12a8650d26ce6d284a82c68806eae6bf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f4_soulclamp.png"
-dest_files=["res://.godot/imported/icon_f4_soulclamp.png-f9b0c6aee265a57b2ad24e6d91ecc7d8.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f4_soulclamp.png"
+dest_files=["res://.godot/imported/icon_f4_soulclamp.png-12a8650d26ce6d284a82c68806eae6bf.ctex"]
 
 [params]
 

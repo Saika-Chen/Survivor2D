@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cvwxegg328vmd"
-path="res://.godot/imported/icon_f4_veilofunraveling.png-76562dcb1d41d004527eddbd878fdf3f.ctex"
+path="res://.godot/imported/icon_f4_veilofunraveling.png-89071b74140eaacab8278ee7cdf68adf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f4_veilofunraveling.png"
-dest_files=["res://.godot/imported/icon_f4_veilofunraveling.png-76562dcb1d41d004527eddbd878fdf3f.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f4_veilofunraveling.png"
+dest_files=["res://.godot/imported/icon_f4_veilofunraveling.png-89071b74140eaacab8278ee7cdf68adf.ctex"]
 
 [params]
 

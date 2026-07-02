@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bxpxm4doeir4i"
-path="res://.godot/imported/fx_f2_saberspineseal.png-72ebf2c44ace71ea604e9613feea65ee.ctex"
+path="res://.godot/imported/fx_f2_saberspineseal.png-0ed4ed0490e6b3d1eae6a47ff3c8aed5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/fx/fx_f2_saberspineseal.png"
-dest_files=["res://.godot/imported/fx_f2_saberspineseal.png-72ebf2c44ace71ea604e9613feea65ee.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/fx/fx_f2_saberspineseal.png"
+dest_files=["res://.godot/imported/fx_f2_saberspineseal.png-0ed4ed0490e6b3d1eae6a47ff3c8aed5.ctex"]
 
 [params]
 

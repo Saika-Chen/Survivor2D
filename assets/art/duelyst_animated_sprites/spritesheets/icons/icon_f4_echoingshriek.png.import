@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cd1sr7h0x4qvx"
-path="res://.godot/imported/icon_f4_echoingshriek.png-8c048ce320b56eff806cca8182c16c85.ctex"
+path="res://.godot/imported/icon_f4_echoingshriek.png-3dd31f4342aa262d0ba9f3b45ae61038.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f4_echoingshriek.png"
-dest_files=["res://.godot/imported/icon_f4_echoingshriek.png-8c048ce320b56eff806cca8182c16c85.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f4_echoingshriek.png"
+dest_files=["res://.godot/imported/icon_f4_echoingshriek.png-3dd31f4342aa262d0ba9f3b45ae61038.ctex"]
 
 [params]
 

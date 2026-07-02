@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://uwewgyfudofd"
-path="res://.godot/imported/icon_f6_lightningblitz.png-b031ad8ad26730dac906dc0f6af0c75b.ctex"
+path="res://.godot/imported/icon_f6_lightningblitz.png-1cbfce07a2a3c3f7107b0b5f8c9adba1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f6_lightningblitz.png"
-dest_files=["res://.godot/imported/icon_f6_lightningblitz.png-b031ad8ad26730dac906dc0f6af0c75b.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f6_lightningblitz.png"
+dest_files=["res://.godot/imported/icon_f6_lightningblitz.png-1cbfce07a2a3c3f7107b0b5f8c9adba1.ctex"]
 
 [params]
 

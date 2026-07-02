@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ciyy0r4mcccj5"
-path="res://.godot/imported/icon_f5_chrysalisburn.png-24edb7314a4ce611435662808bb26023.ctex"
+path="res://.godot/imported/icon_f5_chrysalisburn.png-d2cdb8be9e5fab3bfa37bd9bbdea3a44.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f5_chrysalisburn.png"
-dest_files=["res://.godot/imported/icon_f5_chrysalisburn.png-24edb7314a4ce611435662808bb26023.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f5_chrysalisburn.png"
+dest_files=["res://.godot/imported/icon_f5_chrysalisburn.png-d2cdb8be9e5fab3bfa37bd9bbdea3a44.ctex"]
 
 [params]
 

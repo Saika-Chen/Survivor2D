@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://q2vvwwueq01"
-path="res://.godot/imported/icon_f5_earthsphere.png-a5d84f8af232b190bd85644fe58ab72e.ctex"
+path="res://.godot/imported/icon_f5_earthsphere.png-cb8c2ae3cba91616dd545a993c8fddd1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f5_earthsphere.png"
-dest_files=["res://.godot/imported/icon_f5_earthsphere.png-a5d84f8af232b190bd85644fe58ab72e.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f5_earthsphere.png"
+dest_files=["res://.godot/imported/icon_f5_earthsphere.png-cb8c2ae3cba91616dd545a993c8fddd1.ctex"]
 
 [params]
 

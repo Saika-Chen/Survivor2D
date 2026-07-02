@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://coyml8hfskfh3"
-path="res://.godot/imported/icon_f4_lurkingfear.png-13a7ea234b5d88fbb4770e576730608b.ctex"
+path="res://.godot/imported/icon_f4_lurkingfear.png-11a78b938e02445f570368bc8bd67ce5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f4_lurkingfear.png"
-dest_files=["res://.godot/imported/icon_f4_lurkingfear.png-13a7ea234b5d88fbb4770e576730608b.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f4_lurkingfear.png"
+dest_files=["res://.godot/imported/icon_f4_lurkingfear.png-11a78b938e02445f570368bc8bd67ce5.ctex"]
 
 [params]
 

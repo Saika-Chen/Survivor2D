@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://thfsp621ihq3"
-path="res://.godot/imported/icon_f1_holyimmolation.png-b6dc08ea74b8034ae54d2c9bb3a8632c.ctex"
+path="res://.godot/imported/icon_f1_holyimmolation.png-b450fcb64b13ba30229cbfc8cce877cb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f1_holyimmolation.png"
-dest_files=["res://.godot/imported/icon_f1_holyimmolation.png-b6dc08ea74b8034ae54d2c9bb3a8632c.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f1_holyimmolation.png"
+dest_files=["res://.godot/imported/icon_f1_holyimmolation.png-b450fcb64b13ba30229cbfc8cce877cb.ctex"]
 
 [params]
 

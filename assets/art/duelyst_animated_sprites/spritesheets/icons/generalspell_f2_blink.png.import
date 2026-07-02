@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bma1rc5didwb8"
-path="res://.godot/imported/generalspell_f2_blink.png-016c8dfc16d54740fa27340943eff66e.ctex"
+path="res://.godot/imported/generalspell_f2_blink.png-a7b3a3a9931e076bd1e3e95db5f8ddd9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/generalspell_f2_blink.png"
-dest_files=["res://.godot/imported/generalspell_f2_blink.png-016c8dfc16d54740fa27340943eff66e.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/generalspell_f2_blink.png"
+dest_files=["res://.godot/imported/generalspell_f2_blink.png-a7b3a3a9931e076bd1e3e95db5f8ddd9.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bv33i8acrxrmj"
-path="res://.godot/imported/icon_f6_icesculpture.png-692bd30db622a93f4f9b2c025fc74e42.ctex"
+path="res://.godot/imported/icon_f6_icesculpture.png-af2e30c31f99a95b2a9af487cea789ac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f6_icesculpture.png"
-dest_files=["res://.godot/imported/icon_f6_icesculpture.png-692bd30db622a93f4f9b2c025fc74e42.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f6_icesculpture.png"
+dest_files=["res://.godot/imported/icon_f6_icesculpture.png-af2e30c31f99a95b2a9af487cea789ac.ctex"]
 
 [params]
 

@@ -1,0 +1,55 @@
+{
+  "weights": {
+    "blessing": 4,
+    "bounty": 3,
+    "trade": 3,
+    "altar": 2,
+    "shop": 2
+  },
+  "encounters": {
+    "blessing": {
+      "title": "临时祝福",
+      "prompt": "选择一份仅持续 1 波的祝福。",
+      "options": [
+        {"id": "event:blessing_damage", "title": "血潮祝福", "description": "本波伤害 +25%。", "category": "事件", "rarity": "稀有"},
+        {"id": "event:blessing_cooldown", "title": "疾咒祝福", "description": "本波冷却缩短 20%。", "category": "事件", "rarity": "稀有"},
+        {"id": "event:blessing_haste", "title": "迅影祝福", "description": "本波移速 +50，弹速 +20%。", "category": "事件", "rarity": "稀有"}
+      ]
+    },
+    "bounty": {
+      "title": "精英悬赏",
+      "prompt": "接受悬赏，击杀目标精英即可获得额外升级。",
+      "options": [
+        {"id": "event:bounty_accept", "title": "接受悬赏", "description": "刷出一只悬赏精英，击杀后获得 1 次额外升级。", "category": "事件", "rarity": "史诗"},
+        {"id": "event:bounty_skip", "title": "放弃悬赏", "description": "跳过本次高风险机会。", "category": "事件", "rarity": "普通"}
+      ]
+    },
+    "trade": {
+      "title": "恶魔交易",
+      "prompt": "付出代价，换取立刻爆发的力量。",
+      "options": [
+        {"id": "event:bargain_blood", "title": "血契", "description": "失去 25% 最大生命，永久伤害 +30%。", "category": "事件", "rarity": "史诗"},
+        {"id": "event:bargain_level", "title": "邪馈", "description": "失去 15% 最大生命，立刻获得一次额外升级。", "category": "事件", "rarity": "传说"},
+        {"id": "event:bargain_refuse", "title": "拒绝", "description": "保持现状，不接受恶魔提议。", "category": "事件", "rarity": "普通"}
+      ]
+    },
+    "altar": {
+      "title": "古老祭坛",
+      "prompt": "以鲜血喂养祭坛，换取短暂庇护。",
+      "options": [
+        {"id": "event:altar_heal", "title": "献上生命", "description": "损失少量生命，立刻恢复大额生命并获得短暂加成。", "category": "事件", "rarity": "稀有"},
+        {"id": "event:altar_power", "title": "献上力量", "description": "永久攻击提升，但本波敌人更凶残。", "category": "事件", "rarity": "史诗"},
+        {"id": "event:altar_leave", "title": "离开祭坛", "description": "不做交换，保持现状。", "category": "事件", "rarity": "普通"}
+      ]
+    },
+    "shop": {
+      "title": "流浪商店",
+      "prompt": "花掉一点资源，换来短暂强势窗口。",
+      "options": [
+        {"id": "event:shop_damage", "title": "黑市药剂", "description": "短时间内伤害提升，代价是失去部分生命。", "category": "事件", "rarity": "稀有"},
+        {"id": "event:shop_cooldown", "title": "冷却卷轴", "description": "短时间内冷却缩短，代价是消耗魔晶。", "category": "事件", "rarity": "稀有"},
+        {"id": "event:shop_leave", "title": "转身离开", "description": "不花钱，继续生存。", "category": "事件", "rarity": "普通"}
+      ]
+    }
+  }
+}

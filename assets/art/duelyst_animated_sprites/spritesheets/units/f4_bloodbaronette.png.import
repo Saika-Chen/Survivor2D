@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dftle0cjwkmj5"
-path="res://.godot/imported/f4_bloodbaronette.png-0c66558cae3676f8a6a994d343e42fd4.ctex"
+path="res://.godot/imported/f4_bloodbaronette.png-c433c99c0bef1acf71e3d3938991aae0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/units/f4_bloodbaronette.png"
-dest_files=["res://.godot/imported/f4_bloodbaronette.png-0c66558cae3676f8a6a994d343e42fd4.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/units/f4_bloodbaronette.png"
+dest_files=["res://.godot/imported/f4_bloodbaronette.png-c433c99c0bef1acf71e3d3938991aae0.ctex"]
 
 [params]
 

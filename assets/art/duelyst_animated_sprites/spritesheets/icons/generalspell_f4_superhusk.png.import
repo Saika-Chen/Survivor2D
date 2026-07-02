@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cqxrb5fme8iho"
-path="res://.godot/imported/generalspell_f4_superhusk.png-36f4b853048a97b0e237f49f793284ec.ctex"
+path="res://.godot/imported/generalspell_f4_superhusk.png-2dfed5b8a8cb39331a513f6d35175160.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/generalspell_f4_superhusk.png"
-dest_files=["res://.godot/imported/generalspell_f4_superhusk.png-36f4b853048a97b0e237f49f793284ec.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/generalspell_f4_superhusk.png"
+dest_files=["res://.godot/imported/generalspell_f4_superhusk.png-2dfed5b8a8cb39331a513f6d35175160.ctex"]
 
 [params]
 

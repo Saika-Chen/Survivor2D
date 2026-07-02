@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjkf3vwxxkvft"
-path="res://.godot/imported/artifact_f5_godhammer.png-e67906813a7ce4e895f46937fa17d048.ctex"
+path="res://.godot/imported/artifact_f5_godhammer.png-9e7fed86e2e262349a729af1e35e265b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/artifact_f5_godhammer.png"
-dest_files=["res://.godot/imported/artifact_f5_godhammer.png-e67906813a7ce4e895f46937fa17d048.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/artifact_f5_godhammer.png"
+dest_files=["res://.godot/imported/artifact_f5_godhammer.png-9e7fed86e2e262349a729af1e35e265b.ctex"]
 
 [params]
 

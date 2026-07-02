@@ -353,16 +353,16 @@ func show_damage_number(screen_position: Vector2, text: String, critical := fals
 	label.z_index = 1000
 	label.visible = true
 	label.modulate = Color.WHITE
-	label.scale = Vector2.ONE * (1.18 if critical else 1.0)
+	label.scale = Vector2.ONE * (1.28 if critical else 1.0)
 	label.position = screen_position - label.size * 0.5
-	label.add_theme_font_size_override("font_size", 21 if critical else 16)
+	label.add_theme_font_size_override("font_size", 23 if critical else 16)
 	label.add_theme_color_override("font_color", Color(1.0, 0.14, 0.06, 1.0) if critical else Color(1.0, 0.96, 0.34, 1.0))
-	var rise: float = 46.0 if critical else 33.0
+	var rise: float = 58.0 if critical else 33.0
 	var tween := DOTween.sequence(label, "damage_number")
 	tween.set_parallel(true)
-	tween.tween_property(label, "position:y", label.position.y - rise, 0.78 if critical else 0.58).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	tween.tween_property(label, "scale", Vector2.ONE * (1.36 if critical else 1.10), 0.16).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
-	tween.tween_property(label, "modulate:a", 0.0, 0.78 if critical else 0.58).set_delay(0.12).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	tween.tween_property(label, "position:y", label.position.y - rise, 0.84 if critical else 0.58).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(label, "scale", Vector2.ONE * (1.42 if critical else 1.10), 0.16).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	tween.tween_property(label, "modulate:a", 0.0, 0.84 if critical else 0.58).set_delay(0.12).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 	tween.chain()
 	tween.tween_callback(_recycle_damage_label.bind(label))
 

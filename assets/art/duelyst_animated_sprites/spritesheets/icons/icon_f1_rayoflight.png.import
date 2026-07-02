@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c275kgdhml76c"
-path="res://.godot/imported/icon_f1_rayoflight.png-f17067f348110facafaa325e4cc36844.ctex"
+path="res://.godot/imported/icon_f1_rayoflight.png-047c36a469d3a38211e67282cc2373ca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f1_rayoflight.png"
-dest_files=["res://.godot/imported/icon_f1_rayoflight.png-f17067f348110facafaa325e4cc36844.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f1_rayoflight.png"
+dest_files=["res://.godot/imported/icon_f1_rayoflight.png-047c36a469d3a38211e67282cc2373ca.ctex"]
 
 [params]
 

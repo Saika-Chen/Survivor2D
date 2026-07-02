@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bprd7hixr8irq"
-path="res://.godot/imported/icon_f5_naturalselection.png-38e62c99850e4808fa53e1bced4d0776.ctex"
+path="res://.godot/imported/icon_f5_naturalselection.png-e516f63294e1d08910a46298d2ad0311.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f5_naturalselection.png"
-dest_files=["res://.godot/imported/icon_f5_naturalselection.png-38e62c99850e4808fa53e1bced4d0776.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f5_naturalselection.png"
+dest_files=["res://.godot/imported/icon_f5_naturalselection.png-e516f63294e1d08910a46298d2ad0311.ctex"]
 
 [params]
 

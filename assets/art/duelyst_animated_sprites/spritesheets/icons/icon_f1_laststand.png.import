@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d023q4j0biero"
-path="res://.godot/imported/icon_f1_laststand.png-07b718d73ccdc76a01ccf0dde7b1ee90.ctex"
+path="res://.godot/imported/icon_f1_laststand.png-ba631c7e364b7d7b951c12d60e702bdc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f1_laststand.png"
-dest_files=["res://.godot/imported/icon_f1_laststand.png-07b718d73ccdc76a01ccf0dde7b1ee90.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f1_laststand.png"
+dest_files=["res://.godot/imported/icon_f1_laststand.png-ba631c7e364b7d7b951c12d60e702bdc.ctex"]
 
 [params]
 

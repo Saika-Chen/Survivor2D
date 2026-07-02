@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgv4chwvjs3kh"
-path="res://.godot/imported/boss_christmas_jinglebells.png-9e12e7eb6a8686bde361d41a0ce3f252.ctex"
+path="res://.godot/imported/boss_christmas_jinglebells.png-5548c21962ccd4db0d3d0b0ab8770018.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/boss_christmas_jinglebells.png"
-dest_files=["res://.godot/imported/boss_christmas_jinglebells.png-9e12e7eb6a8686bde361d41a0ce3f252.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/boss_christmas_jinglebells.png"
+dest_files=["res://.godot/imported/boss_christmas_jinglebells.png-5548c21962ccd4db0d3d0b0ab8770018.ctex"]
 
 [params]
 

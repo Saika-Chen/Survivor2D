@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://crp51xlfnv86y"
-path="res://.godot/imported/boss_christmas_present.png-f18b4f60865d4bf7e318d8294dd09640.ctex"
+path="res://.godot/imported/boss_christmas_present.png-0ecc7afa0da8d41d15ebdb6648a25a99.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/boss_christmas_present.png"
-dest_files=["res://.godot/imported/boss_christmas_present.png-f18b4f60865d4bf7e318d8294dd09640.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/boss_christmas_present.png"
+dest_files=["res://.godot/imported/boss_christmas_present.png-0ecc7afa0da8d41d15ebdb6648a25a99.ctex"]
 
 [params]
 

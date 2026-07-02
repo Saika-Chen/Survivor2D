@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bl2hedacvfnst"
-path="res://.godot/imported/artifact_f3_thunderclap.png-6875c833f50d6de804a63eb554bc2de2.ctex"
+path="res://.godot/imported/artifact_f3_thunderclap.png-770277e1717b4551ab33b16b23ee3c90.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/artifact_f3_thunderclap.png"
-dest_files=["res://.godot/imported/artifact_f3_thunderclap.png-6875c833f50d6de804a63eb554bc2de2.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/artifact_f3_thunderclap.png"
+dest_files=["res://.godot/imported/artifact_f3_thunderclap.png-770277e1717b4551ab33b16b23ee3c90.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cfrihbolubxwc"
-path="res://.godot/imported/f4_mistressofcommands.png-76cdede8c3882004c820ff6cf98846bf.ctex"
+path="res://.godot/imported/f4_mistressofcommands.png-064ca708d8d4ba3c7cf701ecf79cb11d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/units/f4_mistressofcommands.png"
-dest_files=["res://.godot/imported/f4_mistressofcommands.png-76cdede8c3882004c820ff6cf98846bf.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/units/f4_mistressofcommands.png"
+dest_files=["res://.godot/imported/f4_mistressofcommands.png-064ca708d8d4ba3c7cf701ecf79cb11d.ctex"]
 
 [params]
 

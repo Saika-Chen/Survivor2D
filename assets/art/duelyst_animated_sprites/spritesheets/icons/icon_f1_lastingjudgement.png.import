@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bb2j2c4iyxcqh"
-path="res://.godot/imported/icon_f1_lastingjudgement.png-a6156e500f14dc6ca226e81585d4bb51.ctex"
+path="res://.godot/imported/icon_f1_lastingjudgement.png-2af607bf76c8923705ec316cf9d5c00e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f1_lastingjudgement.png"
-dest_files=["res://.godot/imported/icon_f1_lastingjudgement.png-a6156e500f14dc6ca226e81585d4bb51.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f1_lastingjudgement.png"
+dest_files=["res://.godot/imported/icon_f1_lastingjudgement.png-2af607bf76c8923705ec316cf9d5c00e.ctex"]
 
 [params]
 

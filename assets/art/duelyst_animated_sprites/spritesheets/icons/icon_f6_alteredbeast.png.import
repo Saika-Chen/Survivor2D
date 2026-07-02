@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ctaep78iobv4h"
-path="res://.godot/imported/icon_f6_alteredbeast.png-b4995e02e555be5ad0cc710957b18b35.ctex"
+path="res://.godot/imported/icon_f6_alteredbeast.png-a08ef91824653a0f5939e456f7f72c3f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f6_alteredbeast.png"
-dest_files=["res://.godot/imported/icon_f6_alteredbeast.png-b4995e02e555be5ad0cc710957b18b35.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f6_alteredbeast.png"
+dest_files=["res://.godot/imported/icon_f6_alteredbeast.png-a08ef91824653a0f5939e456f7f72c3f.ctex"]
 
 [params]
 
