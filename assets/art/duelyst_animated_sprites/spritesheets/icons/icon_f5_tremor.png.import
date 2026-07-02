@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhl85nlcku8kd"
-path="res://.godot/imported/icon_f5_tremor.png-68f1b5f484a910f6d56d94b4cfac9e90.ctex"
+path="res://.godot/imported/icon_f5_tremor.png-43f8fd859ab67d0f42f9a7f2dc8895f5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f5_tremor.png"
-dest_files=["res://.godot/imported/icon_f5_tremor.png-68f1b5f484a910f6d56d94b4cfac9e90.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f5_tremor.png"
+dest_files=["res://.godot/imported/icon_f5_tremor.png-43f8fd859ab67d0f42f9a7f2dc8895f5.ctex"]
 
 [params]
 

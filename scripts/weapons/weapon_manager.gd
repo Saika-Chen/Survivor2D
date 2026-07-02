@@ -465,7 +465,7 @@ func _spawn_zone(position: Vector2, damage: float, radius: float, duration: floa
 	var zone: Node2D = _new_zone()
 	zone.global_position = position
 	zone.damage = damage
-	zone.radius = radius * SIZE_SCALE
+	zone.radius = radius * SIZE_SCALE * _fusion_scale_for_weapon(weapon_id)
 	var zwid: String = weapon_id
 	if zwid in ["blood_bolt", "crimson_judgment", "frost_orb", "glacial_comet"]:
 		zone.radius *= 0.5
@@ -492,36 +492,39 @@ func _trim_weapon_zones(incoming_count := 1) -> void:
 		_recycle_zone(weapon_zones.get_child(index))
 
 func _add_projectile(projectile: Node2D) -> void:
-		_trim_projectiles(1)
-		projectile.traits = _traits_for_weapon(projectile.weapon_id)
-		projectile.radius *= SIZE_SCALE
-		var pid: String = projectile.weapon_id
-		if pid in ["blood_bolt", "crimson_judgment", "frost_orb", "glacial_comet"]:
-			projectile.radius *= 0.5
-		# B+D: Set ricochet + hit explosion per weapon type
-		var wid: String = projectile.weapon_id
-		match wid:
-			"blood_bolt", "crimson_judgment":
-				projectile.ricochet_count = 3; projectile.ricochet_range = 220.0
-				projectile.explosion_radius = 60.0; projectile.explosion_damage = projectile.damage * 0.5
-			"frost_orb", "glacial_comet":
-				projectile.ricochet_count = 2; projectile.ricochet_range = 200.0
-				projectile.explosion_radius = 50.0; projectile.explosion_damage = projectile.damage * 0.4
-			"reaping_scythe", "death_carousel":
-				projectile.ricochet_count = 3; projectile.ricochet_range = 240.0
-				projectile.explosion_radius = 55.0; projectile.explosion_damage = projectile.damage * 0.45
-			"grave_familiar", "seraph_swarm":
-				projectile.ricochet_count = 1; projectile.ricochet_range = 180.0
-				projectile.explosion_radius = 40.0; projectile.explosion_damage = projectile.damage * 0.35
-			_:
-				projectile.ricochet_count = 0; projectile.explosion_radius = 0.0
-		if projectile.has_method("_update_visual"):
-			projectile._update_visual()
-		projectiles.add_child(projectile)
-		if projectile.has_method("reset_for_pool"):
-			projectile.reset_for_pool()
-		if projectile.has_signal("despawn_requested") and not projectile.despawn_requested.is_connected(_on_projectile_despawn_requested):
-			projectile.despawn_requested.connect(_on_projectile_despawn_requested)
+	_trim_projectiles(1)
+	projectile.traits = _traits_for_weapon(projectile.weapon_id)
+	var fusion_scale := _fusion_scale_for_weapon(str(projectile.weapon_id))
+	projectile.radius *= SIZE_SCALE * fusion_scale
+	var pid: String = projectile.weapon_id
+	if pid in ["blood_bolt", "crimson_judgment", "frost_orb", "glacial_comet"]:
+		projectile.radius *= 0.5
+	# B+D: Set ricochet + hit explosion per weapon type
+	var wid: String = projectile.weapon_id
+	match wid:
+		"blood_bolt", "crimson_judgment":
+			projectile.ricochet_count = 3; projectile.ricochet_range = 220.0
+			projectile.explosion_radius = 60.0; projectile.explosion_damage = projectile.damage * 0.5
+		"frost_orb", "glacial_comet":
+			projectile.ricochet_count = 2; projectile.ricochet_range = 200.0
+			projectile.explosion_radius = 50.0; projectile.explosion_damage = projectile.damage * 0.4
+		"reaping_scythe", "death_carousel":
+			projectile.ricochet_count = 3; projectile.ricochet_range = 240.0
+			projectile.explosion_radius = 55.0; projectile.explosion_damage = projectile.damage * 0.45
+		"grave_familiar", "seraph_swarm":
+			projectile.ricochet_count = 1; projectile.ricochet_range = 180.0
+			projectile.explosion_radius = 40.0; projectile.explosion_damage = projectile.damage * 0.35
+		_:
+			projectile.ricochet_count = 0; projectile.explosion_radius = 0.0
+	projectile.ricochet_range *= fusion_scale
+	projectile.explosion_radius *= fusion_scale
+	if projectile.has_method("_update_visual"):
+		projectile._update_visual()
+	projectiles.add_child(projectile)
+	if projectile.has_method("reset_for_pool"):
+		projectile.reset_for_pool()
+	if projectile.has_signal("despawn_requested") and not projectile.despawn_requested.is_connected(_on_projectile_despawn_requested):
+		projectile.despawn_requested.connect(_on_projectile_despawn_requested)
 
 func _trim_projectiles(incoming_count := 1) -> void:
 	var overflow: int = projectiles.get_child_count() + incoming_count - max_projectiles
@@ -691,6 +694,16 @@ func _has_super(weapon_id: String) -> bool:
 func _is_fusion(weapon_id: String) -> bool:
 	return fusion_recipes.has(weapon_id)
 
+func _fusion_scale_for_weapon(weapon_id: String) -> float:
+	for fusion_id in fusion_recipes.keys():
+		if not weapons.has(fusion_id):
+			continue
+		var recipe: Dictionary = fusion_recipes[fusion_id]
+		var component_weapons: Array = recipe.get("weapons", [])
+		if component_weapons.has(weapon_id):
+			return 2.0
+	return 1.0
+
 func _pick_options(options: Array, desired_count: int) -> Array:
 	var picked: Array = []
 	var pool := options.duplicate()
@@ -855,9 +868,10 @@ func _sync_wingmen(force_refresh := false) -> void:
 	for wingman in wingmen:
 		if is_instance_valid(wingman):
 			wingman.configure_style(evolved.has("grave_familiar"))
-	var orbit_radius := (82.0 + level * 10.0) * SIZE_SCALE
+	var orbit_radius := 82.0 + level * 10.0
 	if evolved.has("grave_familiar"):
 		orbit_radius += 26.0 * SIZE_SCALE
+	orbit_radius *= SIZE_SCALE * _fusion_scale_for_weapon("grave_familiar")
 	for index in range(wingmen.size()):
 		var angle := orbit_angle * 0.55 + TAU * float(index) / float(max(1, wingmen.size()))
 		wingmen[index].set_orbit_pose(player.global_position, angle, orbit_radius)

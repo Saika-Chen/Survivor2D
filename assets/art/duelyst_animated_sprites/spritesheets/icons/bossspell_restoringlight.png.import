@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bchbrim7ygntd"
-path="res://.godot/imported/bossspell_restoringlight.png-6be827b877a70f16558cf7bf664eb41a.ctex"
+path="res://.godot/imported/bossspell_restoringlight.png-1c36d7fe0ff5ebcb642a1e49a2d1f40a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/bossspell_restoringlight.png"
-dest_files=["res://.godot/imported/bossspell_restoringlight.png-6be827b877a70f16558cf7bf664eb41a.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/bossspell_restoringlight.png"
+dest_files=["res://.godot/imported/bossspell_restoringlight.png-1c36d7fe0ff5ebcb642a1e49a2d1f40a.ctex"]
 
 [params]
 

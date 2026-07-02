@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dw2fwdgydo8w6"
-path="res://.godot/imported/icon_f3_summoningstones.png-fdb2d7c25c6996e5e0de05b28ca5d0f9.ctex"
+path="res://.godot/imported/icon_f3_summoningstones.png-e9afe049a6ebdf9f8d0ef6b187ff4579.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f3_summoningstones.png"
-dest_files=["res://.godot/imported/icon_f3_summoningstones.png-fdb2d7c25c6996e5e0de05b28ca5d0f9.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f3_summoningstones.png"
+dest_files=["res://.godot/imported/icon_f3_summoningstones.png-e9afe049a6ebdf9f8d0ef6b187ff4579.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cotcdglly11rn"
-path="res://.godot/imported/f4_plaguedr.png-b84b4d43f52b12166298d4c07ed3625c.ctex"
+path="res://.godot/imported/f4_plaguedr.png-66df606c5ec8d8746d52ccbdd4bf1612.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/units/f4_plaguedr.png"
-dest_files=["res://.godot/imported/f4_plaguedr.png-b84b4d43f52b12166298d4c07ed3625c.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/units/f4_plaguedr.png"
+dest_files=["res://.godot/imported/f4_plaguedr.png-66df606c5ec8d8746d52ccbdd4bf1612.ctex"]
 
 [params]
 

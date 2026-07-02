@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://do656u2d11pn7"
-path="res://.godot/imported/artifact_f2_spellfan.png-2aace7d1668596edb2f6b25a3bf8f439.ctex"
+path="res://.godot/imported/artifact_f2_spellfan.png-da8058002baa8525961257ad89f399c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/artifact_f2_spellfan.png"
-dest_files=["res://.godot/imported/artifact_f2_spellfan.png-2aace7d1668596edb2f6b25a3bf8f439.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/artifact_f2_spellfan.png"
+dest_files=["res://.godot/imported/artifact_f2_spellfan.png-da8058002baa8525961257ad89f399c7.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c5a2ud2ackh2j"
-path="res://.godot/imported/icon_f2_mechprogress.png-bf16470f34a12ecd3d4cdf5bc825ec2e.ctex"
+path="res://.godot/imported/icon_f2_mechprogress.png-30083406fa6f2fd39462b0e591fd763b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f2_mechprogress.png"
-dest_files=["res://.godot/imported/icon_f2_mechprogress.png-bf16470f34a12ecd3d4cdf5bc825ec2e.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f2_mechprogress.png"
+dest_files=["res://.godot/imported/icon_f2_mechprogress.png-30083406fa6f2fd39462b0e591fd763b.ctex"]
 
 [params]
 

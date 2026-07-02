@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ddxqor6ycbaf4"
-path="res://.godot/imported/generalspell_f6_waterball.png-867d8a7bcbf9b79b0072d1c19cb516b3.ctex"
+path="res://.godot/imported/generalspell_f6_waterball.png-f2f551a8404694b1957f5c2db0563a60.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/generalspell_f6_waterball.png"
-dest_files=["res://.godot/imported/generalspell_f6_waterball.png-867d8a7bcbf9b79b0072d1c19cb516b3.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/generalspell_f6_waterball.png"
+dest_files=["res://.godot/imported/generalspell_f6_waterball.png-f2f551a8404694b1957f5c2db0563a60.ctex"]
 
 [params]
 

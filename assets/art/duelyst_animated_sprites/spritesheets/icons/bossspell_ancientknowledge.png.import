@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://tjgumid6xebl"
-path="res://.godot/imported/bossspell_ancientknowledge.png-77e4d3d2a97c243c36ea9b88a02d143b.ctex"
+path="res://.godot/imported/bossspell_ancientknowledge.png-0a766caf3de9f667d2689af14d53ac17.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/bossspell_ancientknowledge.png"
-dest_files=["res://.godot/imported/bossspell_ancientknowledge.png-77e4d3d2a97c243c36ea9b88a02d143b.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/bossspell_ancientknowledge.png"
+dest_files=["res://.godot/imported/bossspell_ancientknowledge.png-0a766caf3de9f667d2689af14d53ac17.ctex"]
 
 [params]
 

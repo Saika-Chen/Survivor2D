@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cx7k7jowkmcgr"
-path="res://.godot/imported/icon_f5_cascadingrebirth.png-f668a09871be5da4c48afb695de1f813.ctex"
+path="res://.godot/imported/icon_f5_cascadingrebirth.png-bdf7ae7b8551b459ec013479c81e20ff.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f5_cascadingrebirth.png"
-dest_files=["res://.godot/imported/icon_f5_cascadingrebirth.png-f668a09871be5da4c48afb695de1f813.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f5_cascadingrebirth.png"
+dest_files=["res://.godot/imported/icon_f5_cascadingrebirth.png-bdf7ae7b8551b459ec013479c81e20ff.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b70vc5gl314yy"
-path="res://.godot/imported/icon_f6_illusoryice.png-eae2e940368dbe30ab6b553b85713aac.ctex"
+path="res://.godot/imported/icon_f6_illusoryice.png-6a1622d6d7d5be471a7e1090c4f57188.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f6_illusoryice.png"
-dest_files=["res://.godot/imported/icon_f6_illusoryice.png-eae2e940368dbe30ab6b553b85713aac.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f6_illusoryice.png"
+dest_files=["res://.godot/imported/icon_f6_illusoryice.png-6a1622d6d7d5be471a7e1090c4f57188.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ddhq0e4ptcsfy"
-path="res://.godot/imported/icon_f5_boundedlifeforce.png-a08605077adb8baeb2964fd9a2d3ce52.ctex"
+path="res://.godot/imported/icon_f5_boundedlifeforce.png-c38025ee3af436a61c403112cf9b2833.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f5_boundedlifeforce.png"
-dest_files=["res://.godot/imported/icon_f5_boundedlifeforce.png-a08605077adb8baeb2964fd9a2d3ce52.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f5_boundedlifeforce.png"
+dest_files=["res://.godot/imported/icon_f5_boundedlifeforce.png-c38025ee3af436a61c403112cf9b2833.ctex"]
 
 [params]
 

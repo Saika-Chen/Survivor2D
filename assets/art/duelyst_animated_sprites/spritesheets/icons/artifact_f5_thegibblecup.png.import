@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ba5dyahhqj70n"
-path="res://.godot/imported/artifact_f5_thegibblecup.png-cb4af018aa1ca869f5f966cb1f172917.ctex"
+path="res://.godot/imported/artifact_f5_thegibblecup.png-d64e9aad7a465ed748acc30f463cd164.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/artifact_f5_thegibblecup.png"
-dest_files=["res://.godot/imported/artifact_f5_thegibblecup.png-cb4af018aa1ca869f5f966cb1f172917.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/artifact_f5_thegibblecup.png"
+dest_files=["res://.godot/imported/artifact_f5_thegibblecup.png-d64e9aad7a465ed748acc30f463cd164.ctex"]
 
 [params]
 

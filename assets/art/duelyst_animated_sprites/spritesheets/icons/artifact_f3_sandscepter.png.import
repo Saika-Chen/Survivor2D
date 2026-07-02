@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://2to04nq1ueac"
-path="res://.godot/imported/artifact_f3_sandscepter.png-935a99d92c283b8afcc27472dde35fd1.ctex"
+path="res://.godot/imported/artifact_f3_sandscepter.png-a7e7dd9edb32f54346ae9177ae88e766.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/artifact_f3_sandscepter.png"
-dest_files=["res://.godot/imported/artifact_f3_sandscepter.png-935a99d92c283b8afcc27472dde35fd1.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/artifact_f3_sandscepter.png"
+dest_files=["res://.godot/imported/artifact_f3_sandscepter.png-a7e7dd9edb32f54346ae9177ae88e766.ctex"]
 
 [params]
 

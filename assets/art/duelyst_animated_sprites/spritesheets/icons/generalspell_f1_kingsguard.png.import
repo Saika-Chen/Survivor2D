@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://xgyfmtovi5fx"
-path="res://.godot/imported/generalspell_f1_kingsguard.png-3741359a3346fbb8182263ee77c03f1f.ctex"
+path="res://.godot/imported/generalspell_f1_kingsguard.png-2b5311deb321600faef2759d06241b34.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/generalspell_f1_kingsguard.png"
-dest_files=["res://.godot/imported/generalspell_f1_kingsguard.png-3741359a3346fbb8182263ee77c03f1f.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/generalspell_f1_kingsguard.png"
+dest_files=["res://.godot/imported/generalspell_f1_kingsguard.png-2b5311deb321600faef2759d06241b34.ctex"]
 
 [params]
 

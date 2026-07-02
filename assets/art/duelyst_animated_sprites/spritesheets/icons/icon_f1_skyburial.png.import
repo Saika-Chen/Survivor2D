@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cstr4vidfs4s5"
-path="res://.godot/imported/icon_f1_skyburial.png-5a8110e48f0edab42d00643ebe32046b.ctex"
+path="res://.godot/imported/icon_f1_skyburial.png-acfd6a7aeacec0487b0d66544db70090.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f1_skyburial.png"
-dest_files=["res://.godot/imported/icon_f1_skyburial.png-5a8110e48f0edab42d00643ebe32046b.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f1_skyburial.png"
+dest_files=["res://.godot/imported/icon_f1_skyburial.png-acfd6a7aeacec0487b0d66544db70090.ctex"]
 
 [params]
 

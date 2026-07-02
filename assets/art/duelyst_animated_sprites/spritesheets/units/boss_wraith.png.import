@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccp6cokvr06g"
-path="res://.godot/imported/boss_wraith.png-5cb06cda4317ed201f29f56be6ce72cd.ctex"
+path="res://.godot/imported/boss_wraith.png-1b98a5a6756eaa27bf35d03ebfd12e0b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/units/boss_wraith.png"
-dest_files=["res://.godot/imported/boss_wraith.png-5cb06cda4317ed201f29f56be6ce72cd.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/units/boss_wraith.png"
+dest_files=["res://.godot/imported/boss_wraith.png-1b98a5a6756eaa27bf35d03ebfd12e0b.ctex"]
 
 [params]
 

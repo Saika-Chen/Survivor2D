@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://sna4vgbeyd1i"
-path="res://.godot/imported/icon_f6_winterswake.png-4e356836abd7bd083a1169fcb48720e9.ctex"
+path="res://.godot/imported/icon_f6_winterswake.png-646c5275adbc2ede044f08fc0c1bb98c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f6_winterswake.png"
-dest_files=["res://.godot/imported/icon_f6_winterswake.png-4e356836abd7bd083a1169fcb48720e9.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f6_winterswake.png"
+dest_files=["res://.godot/imported/icon_f6_winterswake.png-646c5275adbc2ede044f08fc0c1bb98c.ctex"]
 
 [params]
 

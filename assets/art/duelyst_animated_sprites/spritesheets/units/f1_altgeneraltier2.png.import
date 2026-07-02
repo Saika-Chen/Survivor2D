@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://4l7yp2wawpov"
-path="res://.godot/imported/f1_altgeneraltier2.png-9e8f396e466c90722dec6f58229e1444.ctex"
+path="res://.godot/imported/f1_altgeneraltier2.png-03da3eb92522994c1eb40b289b0789a4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/units/f1_altgeneraltier2.png"
-dest_files=["res://.godot/imported/f1_altgeneraltier2.png-9e8f396e466c90722dec6f58229e1444.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/units/f1_altgeneraltier2.png"
+dest_files=["res://.godot/imported/f1_altgeneraltier2.png-03da3eb92522994c1eb40b289b0789a4.ctex"]
 
 [params]
 

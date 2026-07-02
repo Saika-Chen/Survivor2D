@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c2ocrk0bmpoj2"
-path="res://.godot/imported/fx_f2_backstab.png-61865fb37a18a3cf3117254d151d9b9e.ctex"
+path="res://.godot/imported/fx_f2_backstab.png-b52c82d7f85b3fc2d392a64234e91177.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/fx/fx_f2_backstab.png"
-dest_files=["res://.godot/imported/fx_f2_backstab.png-61865fb37a18a3cf3117254d151d9b9e.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/fx/fx_f2_backstab.png"
+dest_files=["res://.godot/imported/fx_f2_backstab.png-b52c82d7f85b3fc2d392a64234e91177.ctex"]
 
 [params]
 

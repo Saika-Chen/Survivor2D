@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c6egljar6pnbf"
-path="res://.godot/imported/icon_f3_bloodofair.png-99cdea20d648b7a9cba47bc261c1564a.ctex"
+path="res://.godot/imported/icon_f3_bloodofair.png-483e464333a325372d44133518f93a47.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f3_bloodofair.png"
-dest_files=["res://.godot/imported/icon_f3_bloodofair.png-99cdea20d648b7a9cba47bc261c1564a.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f3_bloodofair.png"
+dest_files=["res://.godot/imported/icon_f3_bloodofair.png-483e464333a325372d44133518f93a47.ctex"]
 
 [params]
 

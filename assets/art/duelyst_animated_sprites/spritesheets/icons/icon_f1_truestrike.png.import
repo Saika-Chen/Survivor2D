@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://drbblwaoq2v0d"
-path="res://.godot/imported/icon_f1_truestrike.png-f16a0f755191f8d9678bb8a8f3fcd1d8.ctex"
+path="res://.godot/imported/icon_f1_truestrike.png-6c9e25e3c196ab6b65c72cf0ae82742c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f1_truestrike.png"
-dest_files=["res://.godot/imported/icon_f1_truestrike.png-f16a0f755191f8d9678bb8a8f3fcd1d8.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f1_truestrike.png"
+dest_files=["res://.godot/imported/icon_f1_truestrike.png-6c9e25e3c196ab6b65c72cf0ae82742c.ctex"]
 
 [params]
 

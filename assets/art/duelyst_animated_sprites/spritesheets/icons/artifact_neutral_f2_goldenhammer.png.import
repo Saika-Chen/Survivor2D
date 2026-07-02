@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dod6jju6e1y5m"
-path="res://.godot/imported/artifact_neutral_f2_goldenhammer.png-8f2c3ecf77098bff135fe7f4750a28eb.ctex"
+path="res://.godot/imported/artifact_neutral_f2_goldenhammer.png-b6f5123fc818c7f71f3a45fd575215ca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/artifact_neutral_f2_goldenhammer.png"
-dest_files=["res://.godot/imported/artifact_neutral_f2_goldenhammer.png-8f2c3ecf77098bff135fe7f4750a28eb.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/artifact_neutral_f2_goldenhammer.png"
+dest_files=["res://.godot/imported/artifact_neutral_f2_goldenhammer.png-b6f5123fc818c7f71f3a45fd575215ca.ctex"]
 
 [params]
 

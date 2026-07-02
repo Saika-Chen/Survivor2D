@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ivu40fns2826"
-path="res://.godot/imported/artifact_f6_winterblade.png-d6bfadc5ebac96f672cb88b174443cf3.ctex"
+path="res://.godot/imported/artifact_f6_winterblade.png-a0884d38f9c7be3a955fced119f00e63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/artifact_f6_winterblade.png"
-dest_files=["res://.godot/imported/artifact_f6_winterblade.png-d6bfadc5ebac96f672cb88b174443cf3.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/artifact_f6_winterblade.png"
+dest_files=["res://.godot/imported/artifact_f6_winterblade.png-a0884d38f9c7be3a955fced119f00e63.ctex"]
 
 [params]
 

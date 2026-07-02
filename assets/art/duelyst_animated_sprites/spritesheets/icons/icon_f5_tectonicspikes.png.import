@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bjq5a7yy0r24j"
-path="res://.godot/imported/icon_f5_tectonicspikes.png-4b30d6e0dfa56986d10bb0093ebad550.ctex"
+path="res://.godot/imported/icon_f5_tectonicspikes.png-a460ca7441702ad21140040196698534.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f5_tectonicspikes.png"
-dest_files=["res://.godot/imported/icon_f5_tectonicspikes.png-4b30d6e0dfa56986d10bb0093ebad550.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f5_tectonicspikes.png"
+dest_files=["res://.godot/imported/icon_f5_tectonicspikes.png-a460ca7441702ad21140040196698534.ctex"]
 
 [params]
 

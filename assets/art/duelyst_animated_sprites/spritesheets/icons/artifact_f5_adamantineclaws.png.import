@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cvdeaywg4l6n6"
-path="res://.godot/imported/artifact_f5_adamantineclaws.png-5d51f28bb02de0345fd778a72b630483.ctex"
+path="res://.godot/imported/artifact_f5_adamantineclaws.png-1e332089081807fd3fecb4a2defcb8b6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/artifact_f5_adamantineclaws.png"
-dest_files=["res://.godot/imported/artifact_f5_adamantineclaws.png-5d51f28bb02de0345fd778a72b630483.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/artifact_f5_adamantineclaws.png"
+dest_files=["res://.godot/imported/artifact_f5_adamantineclaws.png-1e332089081807fd3fecb4a2defcb8b6.ctex"]
 
 [params]
 

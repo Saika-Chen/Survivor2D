@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dmmnesywl25ht"
-path="res://.godot/imported/artifact_f4_hornofforsaken.png-85e9bd87fb00dc5189e6d6a5c57b0bd6.ctex"
+path="res://.godot/imported/artifact_f4_hornofforsaken.png-d75182f13b0ffce2b93a07bfb863e41c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/artifact_f4_hornofforsaken.png"
-dest_files=["res://.godot/imported/artifact_f4_hornofforsaken.png-85e9bd87fb00dc5189e6d6a5c57b0bd6.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/artifact_f4_hornofforsaken.png"
+dest_files=["res://.godot/imported/artifact_f4_hornofforsaken.png-d75182f13b0ffce2b93a07bfb863e41c.ctex"]
 
 [params]
 

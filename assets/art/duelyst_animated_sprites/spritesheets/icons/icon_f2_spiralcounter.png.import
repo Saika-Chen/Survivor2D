@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://baehh0jyj0rmh"
-path="res://.godot/imported/icon_f2_spiralcounter.png-713d16362bfb526d01293ff21748cce2.ctex"
+path="res://.godot/imported/icon_f2_spiralcounter.png-206f854a55b4cab808b2ce853ca8b7a9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f2_spiralcounter.png"
-dest_files=["res://.godot/imported/icon_f2_spiralcounter.png-713d16362bfb526d01293ff21748cce2.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f2_spiralcounter.png"
+dest_files=["res://.godot/imported/icon_f2_spiralcounter.png-206f854a55b4cab808b2ce853ca8b7a9.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://colalmd3vhe7n"
-path="res://.godot/imported/icon_f6_avalanche.png-7897b4a8e33c09c835ef4f4b4078ce16.ctex"
+path="res://.godot/imported/icon_f6_avalanche.png-31fe757e6f262be82761c477c1379b0c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f6_avalanche.png"
-dest_files=["res://.godot/imported/icon_f6_avalanche.png-7897b4a8e33c09c835ef4f4b4078ce16.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f6_avalanche.png"
+dest_files=["res://.godot/imported/icon_f6_avalanche.png-31fe757e6f262be82761c477c1379b0c.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://vo5xhfy8d80h"
-path="res://.godot/imported/icon_neutral_precisionboulder.png-579106195562c8c7c9939130a9562353.ctex"
+path="res://.godot/imported/icon_neutral_precisionboulder.png-0475e690559856d780f1fd5239b0f298.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_neutral_precisionboulder.png"
-dest_files=["res://.godot/imported/icon_neutral_precisionboulder.png-579106195562c8c7c9939130a9562353.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_neutral_precisionboulder.png"
+dest_files=["res://.godot/imported/icon_neutral_precisionboulder.png-0475e690559856d780f1fd5239b0f298.ctex"]
 
 [params]
 

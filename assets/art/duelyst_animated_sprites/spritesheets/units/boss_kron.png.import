@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://db1hw1fiv7axr"
-path="res://.godot/imported/boss_kron.png-ba8d8854a14626c7072445c08a47e8ed.ctex"
+path="res://.godot/imported/boss_kron.png-a48594455a26671ec223a9f1427f72eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/units/boss_kron.png"
-dest_files=["res://.godot/imported/boss_kron.png-ba8d8854a14626c7072445c08a47e8ed.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/units/boss_kron.png"
+dest_files=["res://.godot/imported/boss_kron.png-a48594455a26671ec223a9f1427f72eb.ctex"]
 
 [params]
 

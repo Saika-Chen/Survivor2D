@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cc0m0glgyw5ma"
-path="res://.godot/imported/icon_f2_killingedge.png-2a9662662e7fea48697f8b00ddca8547.ctex"
+path="res://.godot/imported/icon_f2_killingedge.png-f0ef9c4d0dbbe66dbdce52bec9722c38.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f2_killingedge.png"
-dest_files=["res://.godot/imported/icon_f2_killingedge.png-2a9662662e7fea48697f8b00ddca8547.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f2_killingedge.png"
+dest_files=["res://.godot/imported/icon_f2_killingedge.png-f0ef9c4d0dbbe66dbdce52bec9722c38.ctex"]
 
 [params]
 

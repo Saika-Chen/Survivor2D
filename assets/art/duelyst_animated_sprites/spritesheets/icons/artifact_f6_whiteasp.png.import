@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cyoe7ceq0cybp"
-path="res://.godot/imported/artifact_f6_whiteasp.png-76d2ffe3a3a354e6b5e7a814df272f71.ctex"
+path="res://.godot/imported/artifact_f6_whiteasp.png-3636043e0ce50581a9835afc60f6b2c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/artifact_f6_whiteasp.png"
-dest_files=["res://.godot/imported/artifact_f6_whiteasp.png-76d2ffe3a3a354e6b5e7a814df272f71.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/artifact_f6_whiteasp.png"
+dest_files=["res://.godot/imported/artifact_f6_whiteasp.png-3636043e0ce50581a9835afc60f6b2c0.ctex"]
 
 [params]
 
