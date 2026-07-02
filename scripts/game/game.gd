@@ -439,7 +439,10 @@ func _damage_enemy(enemy: Node2D, amount: float, source: Node = null) -> void:
 		elif enemy.archetype == "bullet_boss":
 			_spawn_pickup(enemy.global_position, "slot")
 		elif run_event_system != null and enemy.get_instance_id() == run_event_system.bounty_target_id:
+			run_event_system.record_enemy_defeated(enemy.archetype, str(enemy.get("elite_variant")))
 			run_event_system.bounty_completed()
+		elif run_event_system != null:
+			run_event_system.record_enemy_defeated(enemy.archetype, str(enemy.get("elite_variant")))
 		elif enemy_affix == "splinter":
 			_spawn_enemy("chaser", enemy.global_position + Vector2.RIGHT.rotated(randf() * TAU) * 24.0)
 
@@ -624,6 +627,8 @@ func _gain_experience(amount: int) -> void:
 	if level_system == null:
 		return
 	var gained_levels := level_system.gain_experience(amount)
+	if run_event_system != null:
+		run_event_system.record_xp_gained(amount)
 	level = level_system.level
 	experience = level_system.experience
 	experience_to_next = level_system.experience_to_next
@@ -705,7 +710,10 @@ func _update_hud() -> void:
 	var display_level := level_system.level if level_system != null else level
 	var display_experience := level_system.experience if level_system != null else experience
 	var display_experience_to_next := level_system.experience_to_next if level_system != null else experience_to_next
-	hud.set_stats(player.health, player.max_health, score, elapsed, enemies.get_child_count(), display_level, display_experience, display_experience_to_next, current_wave, max_wave, wave_time_left, weapon_manager.get_summary(), weapon_manager.get_passive_summary(), player_damage_multiplier * weapon_manager.current_attack_power(), weapon_manager.crit_chance, weapon_manager.crit_damage_multiplier, weapon_manager.lifesteal_chance, weapon_manager.lifesteal_amount, run_magic_crystals)
+	var contract_summary := ""
+	if run_event_system != null and run_event_system.has_method("contract_status_text"):
+		contract_summary = run_event_system.contract_status_text()
+	hud.set_stats(player.health, player.max_health, score, elapsed, enemies.get_child_count(), display_level, display_experience, display_experience_to_next, current_wave, max_wave, wave_time_left, weapon_manager.get_summary(), weapon_manager.get_passive_summary(), player_damage_multiplier * weapon_manager.current_attack_power(), weapon_manager.crit_chance, weapon_manager.crit_damage_multiplier, weapon_manager.lifesteal_chance, weapon_manager.lifesteal_amount, run_magic_crystals, contract_summary)
 	if hud.has_method("set_loadout_icons"):
 		hud.set_loadout_icons(weapon_manager.get_weapon_icon_ids(), weapon_manager.get_passive_icon_ids())
 	if hud.has_method("set_performance_stats"):
@@ -746,6 +754,7 @@ func _on_wave_changed(wave: int, new_max_wave: int, time_left: float) -> void:
 		sfx_manager.play_ui("boss_wave" if is_major else "wave")
 		_vibrate_wave(is_major)
 		run_event_system.maybe_offer_wave_event(wave, is_major)
+		run_event_system.maybe_offer_contract(wave, is_major)
 		run_event_system.maybe_apply_wave_mutation(wave, is_major)
 
 func _on_boss_wave_started() -> void:
@@ -786,6 +795,9 @@ func _on_boss_defeated() -> void:
 	hud.show_victory(elapsed)
 
 func _on_upgrade_selected(upgrade_id: String) -> void:
+	if str(upgrade_id).begins_with("contract:"):
+		run_event_system.resolve_contract_choice(upgrade_id)
+		return
 	if str(upgrade_id).begins_with("event:"):
 		run_event_system.resolve_event_choice(upgrade_id)
 		return

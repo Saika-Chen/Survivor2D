@@ -4,6 +4,7 @@ class_name RunEventSystem
 const EnemyScene := preload("res://scenes/enemy/Enemy.tscn")
 const EncounterDirectorScript := preload("res://scripts/game/EncounterDirector.gd")
 const WaveMutationDirectorScript := preload("res://scripts/game/WaveMutationDirector.gd")
+const ContractDirectorScript := preload("res://scripts/game/ContractDirector.gd")
 
 var game: Node
 var encounter_director
@@ -16,11 +17,18 @@ var active_mutation := {}
 var mutation_expires_wave := -1
 var mutation_base_spawn_density := 0.0
 var mutation_base_alive_cap := 0
+var contract_director
+var active_contract := {}
+var pending_contract_offer := {}
+var contract_progress := 0
+var contract_target := 0
+var contract_expires_wave := -1
 
 func setup(owner: Node) -> void:
 	game = owner
 	encounter_director = EncounterDirectorScript.new()
 	wave_mutation_director = WaveMutationDirectorScript.new()
+	contract_director = ContractDirectorScript.new()
 
 func maybe_offer_wave_event(wave: int, is_major: bool) -> void:
 	if is_major or wave >= 30 or wave % 4 != 0:
@@ -68,6 +76,75 @@ func maybe_apply_wave_mutation(wave: int, is_major: bool) -> void:
 	else:
 		game.hud.hint.text = "%s：%s" % [str(mutation.get("title", "波次词缀")), str(mutation.get("prompt", ""))]
 	game._update_hud()
+
+func maybe_offer_contract(wave: int, is_major: bool) -> void:
+	if game == null or contract_director == null:
+		return
+	if game.level_up_pending or game.victory_pending or not active_contract.is_empty() or not pending_contract_offer.is_empty():
+		return
+	var offer: Dictionary = contract_director.build_offer(wave, is_major)
+	if offer.is_empty():
+		return
+	pending_contract_offer = offer
+	game.level_up_pending = true
+	game.get_tree().paused = true
+	game.hud.show_level_up(
+		offer.get("options", []),
+		str(offer.get("title", "契约")),
+		str(offer.get("prompt", "")),
+		false
+	)
+
+func resolve_contract_choice(choice_id: String) -> void:
+	if pending_contract_offer.is_empty():
+		return
+	if choice_id == "contract:accept":
+		accept_contract(str(pending_contract_offer.get("id", "")), game.current_wave)
+	elif choice_id == "contract:decline":
+		game.hud.hint.text = "你拒绝了契约。"
+	_clear_contract_offer()
+	game.level_up_pending = false
+	game.hud.hide_level_up()
+	game.get_tree().paused = false
+	game._update_hud()
+
+func accept_contract(contract_id: String, wave: int) -> void:
+	if contract_director == null:
+		return
+	active_contract = contract_director.build_contract(contract_id, wave)
+	if active_contract.is_empty():
+		return
+	contract_progress = 0
+	contract_target = int(active_contract.get("target", 0))
+	contract_expires_wave = wave + max(1, int(active_contract.get("duration_waves", 2))) - 1
+	game.hud.hint.text = "契约生效：%s" % str(active_contract.get("title", "未知契约"))
+	game._update_hud()
+
+func record_enemy_defeated(archetype: String, elite_variant: String) -> void:
+	if active_contract.is_empty():
+		return
+	var contract_type := str(active_contract.get("type", ""))
+	if contract_type == "hunt" and archetype != "boss":
+		contract_progress += 1
+	elif contract_type == "elite_hunt" and (elite_variant != "" or archetype == "elite"):
+		contract_progress += 1
+	_check_contract_completion()
+
+func record_xp_gained(amount: int) -> void:
+	if active_contract.is_empty():
+		return
+	if str(active_contract.get("type", "")) == "scavenge":
+		contract_progress += amount
+	_check_contract_completion()
+
+func contract_status_text() -> String:
+	if active_contract.is_empty():
+		return ""
+	return "契约 %s %d/%d" % [
+		str(active_contract.get("title", "未知契约")),
+		min(contract_progress, contract_target),
+		max(1, contract_target)
+	]
 
 func resolve_event_choice(event_id: String) -> void:
 	match event_id:
@@ -143,6 +220,9 @@ func expire_wave_effects() -> void:
 		game.hud.hint.text = "悬赏过期，目标逃入黑暗。"
 	if mutation_expires_wave != -1 and game.current_wave > mutation_expires_wave:
 		_clear_wave_mutation()
+	if not active_contract.is_empty() and game.current_wave > contract_expires_wave:
+		game.hud.hint.text = "契约失效：%s" % str(active_contract.get("title", "未知契约"))
+		_clear_active_contract()
 	if active_blessings.has("damage") and int(active_blessings["damage"]) <= game.current_wave:
 		active_blessings.erase("damage")
 		game.player_damage_multiplier /= 1.25
@@ -164,6 +244,34 @@ func _clear_wave_mutation() -> void:
 			game.wave_director.max_alive_enemies = mutation_base_alive_cap
 	active_mutation.clear()
 	mutation_expires_wave = -1
+
+func _check_contract_completion() -> void:
+	if active_contract.is_empty() or contract_target <= 0 or contract_progress < contract_target:
+		return
+	var reward_type := str(active_contract.get("reward_type", ""))
+	var reward_amount: float = float(active_contract.get("reward_amount", 0.0))
+	match reward_type:
+		"damage":
+			game.player_damage_multiplier *= 1.0 + reward_amount
+		"reroll":
+			if game.level_system != null:
+				game.level_system.rerolls_left += int(reward_amount)
+				game.rerolls_left = game.level_system.rerolls_left
+		"crystal":
+			game.run_magic_crystals += int(reward_amount)
+	game.hud.hint.text = "契约完成：%s" % str(active_contract.get("title", "未知契约"))
+	_clear_active_contract()
+	game._update_hud()
+
+func _clear_active_contract() -> void:
+	active_contract.clear()
+	pending_contract_offer.clear()
+	contract_progress = 0
+	contract_target = 0
+	contract_expires_wave = -1
+
+func _clear_contract_offer() -> void:
+	pending_contract_offer.clear()
 
 func start_bounty_event() -> void:
 	var enemy: Node2D = game._take_from_pool("enemy", EnemyScene)

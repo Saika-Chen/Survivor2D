@@ -173,8 +173,8 @@ func _input(event: InputEvent) -> void:
 	elif event is InputEventMouseMotion and joystick_active and joystick_pointer_id == -2:
 		_update_joystick(event.position)
 
-func set_stats(health: float, max_health: float, score: int, elapsed: float, enemy_count: int, level: int, experience: int, experience_to_next: int, wave: int, max_wave: int, time_left: float, weapons_summary: String, relics_summary: String, attack_power := 1.0, crit_chance := 0.0, crit_damage := 1.0, lifesteal_chance := 0.0, lifesteal_amount := 0.0, run_magic_crystals := 0) -> void:
-	stats.text = HUDControllerScript.format_stats(health, max_health, score, elapsed, enemy_count, level, experience, experience_to_next, wave, max_wave, time_left, attack_power, crit_chance, crit_damage, lifesteal_chance, lifesteal_amount, run_magic_crystals)
+func set_stats(health: float, max_health: float, score: int, elapsed: float, enemy_count: int, level: int, experience: int, experience_to_next: int, wave: int, max_wave: int, time_left: float, weapons_summary: String, relics_summary: String, attack_power := 1.0, crit_chance := 0.0, crit_damage := 1.0, lifesteal_chance := 0.0, lifesteal_amount := 0.0, run_magic_crystals := 0, contract_summary := "") -> void:
+	stats.text = HUDControllerScript.format_stats(health, max_health, score, elapsed, enemy_count, level, experience, experience_to_next, wave, max_wave, time_left, attack_power, crit_chance, crit_damage, lifesteal_chance, lifesteal_amount, run_magic_crystals, contract_summary)
 	xp_bar.max_value = experience_to_next
 	xp_bar.value = experience
 	level_label.text = "Lv.%d" % level

@@ -1,0 +1,31 @@
+{
+  "contracts": {
+    "hunt": {
+      "title": "血猎契约",
+      "prompt": "连续清除敌潮，换取一份更直接的杀戮回报。",
+      "type": "hunt",
+      "target": 48,
+      "duration_waves": 2,
+      "reward_type": "damage",
+      "reward_amount": 0.12
+    },
+    "elite_hunt": {
+      "title": "精英狩猎",
+      "prompt": "追猎更危险的目标，契约会给你更高的回报。",
+      "type": "elite_hunt",
+      "target": 3,
+      "duration_waves": 3,
+      "reward_type": "reroll",
+      "reward_amount": 1
+    },
+    "scavenge": {
+      "title": "灰烬拾荒",
+      "prompt": "在战场上搜集灵魂碎屑，把残余能量变成资源。",
+      "type": "scavenge",
+      "target": 180,
+      "duration_waves": 2,
+      "reward_type": "crystal",
+      "reward_amount": 2
+    }
+  }
+}
