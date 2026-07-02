@@ -120,7 +120,7 @@ func accept_contract(contract_id: String, wave: int) -> void:
 	contract_target = int(active_contract.get("target", 0))
 	contract_accept_wave = wave
 	contract_damage_taken = false
-	var duration_waves := max(1, int(active_contract.get("duration_waves", 2)))
+	var duration_waves: int = max(1, int(active_contract.get("duration_waves", 2)))
 	if str(active_contract.get("type", "")) == "survival":
 		contract_expires_wave = wave + duration_waves
 	else:
@@ -182,9 +182,9 @@ func contract_card_data() -> Dictionary:
 	var contract_type := str(active_contract.get("type", ""))
 	var objective := _contract_objective_text(contract_type)
 	var reward_text := _reward_text()
-	var remaining_waves := max(0, contract_expires_wave - game.current_wave + 1)
-	var progress_value := min(contract_progress, max(1, contract_target))
-	var target_value := max(1, contract_target)
+	var remaining_waves: int = max(0, contract_expires_wave - game.current_wave + 1)
+	var progress_value: int = min(contract_progress, max(1, contract_target))
+	var target_value: int = max(1, contract_target)
 	var status_text := "剩余 %d 波" % remaining_waves
 	if contract_type == "survival":
 		status_text = "当前波次不受伤"

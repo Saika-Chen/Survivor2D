@@ -957,12 +957,12 @@ func _layout_contract_card(size: Vector2, portrait: bool) -> void:
 		contract_card.offset_left = 18.0
 		contract_card.offset_right = size.x - 18.0
 		contract_card.offset_top = max(352.0, size.y - 352.0)
-		contract_card.offset_bottom = min(size.y - 248.0, contract_card.offset_top + 100.0)
+		contract_card.offset_bottom = max(contract_card.offset_top + 88.0, min(size.y - 248.0, contract_card.offset_top + 100.0))
 	else:
 		contract_card.offset_left = 24.0
 		contract_card.offset_right = size.x - 24.0
 		contract_card.offset_top = max(534.0, size.y - 176.0)
-		contract_card.offset_bottom = min(size.y - 112.0, contract_card.offset_top + 92.0)
+		contract_card.offset_bottom = max(contract_card.offset_top + 84.0, min(size.y - 112.0, contract_card.offset_top + 92.0))
 
 	var card_width := contract_card.offset_right - contract_card.offset_left
 	var card_height := contract_card.offset_bottom - contract_card.offset_top

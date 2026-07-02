@@ -787,9 +787,9 @@ func _on_enemy_projectile_requested(spawn_position: Vector2, direction: Vector2,
 func _on_enemy_summon_requested(archetype: String, spawn_position: Vector2) -> void:
 	_spawn_enemy(archetype, spawn_position)
 
-func _on_player_damaged(_health: float) -> void:
+func _on_player_damaged(health: float) -> void:
 	if run_event_system != null:
-		run_event_system.record_player_damaged(player.max_health - player.health)
+		run_event_system.record_player_damaged(player.max_health - health)
 	_update_hud()
 
 func _on_player_died() -> void:
