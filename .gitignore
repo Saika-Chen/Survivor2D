@@ -1,0 +1,12 @@
+.godot/
+.import/
+*.translation
+export/*.apk
+export/*.aab
+export/*.ipa
+export/*.exe
+export/*.dmg
+export/*.zip
+export/web-build/
+.DS_Store
+.vscode/.ropeproject/
