@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dtdtmnab7f6g7"
-path="res://.godot/imported/generalspell_f5_seekingeye.png-f10ebdb3adeae7dae403dbf4a626f21f.ctex"
+path="res://.godot/imported/generalspell_f5_seekingeye.png-0db87c4191293c77493d101678e5dfd2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/generalspell_f5_seekingeye.png"
-dest_files=["res://.godot/imported/generalspell_f5_seekingeye.png-f10ebdb3adeae7dae403dbf4a626f21f.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/generalspell_f5_seekingeye.png"
+dest_files=["res://.godot/imported/generalspell_f5_seekingeye.png-0db87c4191293c77493d101678e5dfd2.ctex"]
 
 [params]
 

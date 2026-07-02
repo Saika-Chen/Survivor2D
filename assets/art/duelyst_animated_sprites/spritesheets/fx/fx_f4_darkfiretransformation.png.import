@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dodvtl1pv1hmd"
-path="res://.godot/imported/fx_f4_darkfiretransformation.png-9e67ab482004c91660dffb3d18742bf9.ctex"
+path="res://.godot/imported/fx_f4_darkfiretransformation.png-3ce5321d8bc6df0f28d0162da1a5df62.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/fx/fx_f4_darkfiretransformation.png"
-dest_files=["res://.godot/imported/fx_f4_darkfiretransformation.png-9e67ab482004c91660dffb3d18742bf9.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/fx/fx_f4_darkfiretransformation.png"
+dest_files=["res://.godot/imported/fx_f4_darkfiretransformation.png-3ce5321d8bc6df0f28d0162da1a5df62.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cyt4yqdgwpfoh"
-path="res://.godot/imported/fx_vortexswirl.png-e0bd3f89a4f681943b973139d127aba7.ctex"
+path="res://.godot/imported/fx_vortexswirl.png-dc16af5eb60fba6a32a3f3cb028b7917.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/fx/fx_vortexswirl.png"
-dest_files=["res://.godot/imported/fx_vortexswirl.png-e0bd3f89a4f681943b973139d127aba7.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/fx/fx_vortexswirl.png"
+dest_files=["res://.godot/imported/fx_vortexswirl.png-dc16af5eb60fba6a32a3f3cb028b7917.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://das6s6hcyr2fa"
-path="res://.godot/imported/icon_f3_maelstrom.png-a7b80bbaef533d389602f2cd1dcaf98b.ctex"
+path="res://.godot/imported/icon_f3_maelstrom.png-02c4e9b38727f61240faad8cf2be19f3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f3_maelstrom.png"
-dest_files=["res://.godot/imported/icon_f3_maelstrom.png-a7b80bbaef533d389602f2cd1dcaf98b.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f3_maelstrom.png"
+dest_files=["res://.godot/imported/icon_f3_maelstrom.png-02c4e9b38727f61240faad8cf2be19f3.ctex"]
 
 [params]
 

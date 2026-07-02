@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cc5jr7xa0kjrq"
-path="res://.godot/imported/f4_shadowblossom.png-3f947ae5ad40f157ce6201413607b739.ctex"
+path="res://.godot/imported/f4_shadowblossom.png-b4093b87112bb47ebab7e796b3092b0a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/f4_shadowblossom.png"
-dest_files=["res://.godot/imported/f4_shadowblossom.png-3f947ae5ad40f157ce6201413607b739.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/f4_shadowblossom.png"
+dest_files=["res://.godot/imported/f4_shadowblossom.png-b4093b87112bb47ebab7e796b3092b0a.ctex"]
 
 [params]
 

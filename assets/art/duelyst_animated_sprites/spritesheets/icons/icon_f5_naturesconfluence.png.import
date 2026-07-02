@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ca5xe3euh83ix"
-path="res://.godot/imported/icon_f5_naturesconfluence.png-553be0671d04d23227efb5dc250c3a7a.ctex"
+path="res://.godot/imported/icon_f5_naturesconfluence.png-6b0a9fad2439809552592ab7f94a3591.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f5_naturesconfluence.png"
-dest_files=["res://.godot/imported/icon_f5_naturesconfluence.png-553be0671d04d23227efb5dc250c3a7a.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f5_naturesconfluence.png"
+dest_files=["res://.godot/imported/icon_f5_naturesconfluence.png-6b0a9fad2439809552592ab7f94a3591.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://v2x0dqfs6xmx"
-path="res://.godot/imported/icon_f5_yellrealloud.png-9adec79bdb28a878aaee9ed750380696.ctex"
+path="res://.godot/imported/icon_f5_yellrealloud.png-b09a73759155768b489d4906abcd8620.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f5_yellrealloud.png"
-dest_files=["res://.godot/imported/icon_f5_yellrealloud.png-9adec79bdb28a878aaee9ed750380696.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f5_yellrealloud.png"
+dest_files=["res://.godot/imported/icon_f5_yellrealloud.png-b09a73759155768b489d4906abcd8620.ctex"]
 
 [params]
 

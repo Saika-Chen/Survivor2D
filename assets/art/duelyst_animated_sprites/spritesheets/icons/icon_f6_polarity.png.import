@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d1qssiq21ytjg"
-path="res://.godot/imported/icon_f6_polarity.png-a4556291e218099485ddf5ce3350b79c.ctex"
+path="res://.godot/imported/icon_f6_polarity.png-f47251066027dddd325d4fc05b8c0d9a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f6_polarity.png"
-dest_files=["res://.godot/imported/icon_f6_polarity.png-a4556291e218099485ddf5ce3350b79c.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f6_polarity.png"
+dest_files=["res://.godot/imported/icon_f6_polarity.png-f47251066027dddd325d4fc05b8c0d9a.ctex"]
 
 [params]
 

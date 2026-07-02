@@ -714,6 +714,11 @@ func _update_hud() -> void:
 	if run_event_system != null and run_event_system.has_method("contract_status_text"):
 		contract_summary = run_event_system.contract_status_text()
 	hud.set_stats(player.health, player.max_health, score, elapsed, enemies.get_child_count(), display_level, display_experience, display_experience_to_next, current_wave, max_wave, wave_time_left, weapon_manager.get_summary(), weapon_manager.get_passive_summary(), player_damage_multiplier * weapon_manager.current_attack_power(), weapon_manager.crit_chance, weapon_manager.crit_damage_multiplier, weapon_manager.lifesteal_chance, weapon_manager.lifesteal_amount, run_magic_crystals, contract_summary)
+	if hud.has_method("set_contract_card"):
+		var contract_card_data: Dictionary = {}
+		if run_event_system != null and run_event_system.has_method("contract_card_data"):
+			contract_card_data = run_event_system.contract_card_data()
+		hud.set_contract_card(contract_card_data)
 	if hud.has_method("set_loadout_icons"):
 		hud.set_loadout_icons(weapon_manager.get_weapon_icon_ids(), weapon_manager.get_passive_icon_ids())
 	if hud.has_method("set_performance_stats"):
@@ -783,6 +788,8 @@ func _on_enemy_summon_requested(archetype: String, spawn_position: Vector2) -> v
 	_spawn_enemy(archetype, spawn_position)
 
 func _on_player_damaged(_health: float) -> void:
+	if run_event_system != null:
+		run_event_system.record_player_damaged(player.max_health - player.health)
 	_update_hud()
 
 func _on_player_died() -> void:

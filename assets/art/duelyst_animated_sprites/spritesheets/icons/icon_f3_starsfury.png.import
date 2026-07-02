@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c53jsgx0hj64c"
-path="res://.godot/imported/icon_f3_starsfury.png-0ee121fe29df1b1fac161fde0fe0fe9b.ctex"
+path="res://.godot/imported/icon_f3_starsfury.png-1dd4bc26d939b8a22157a775b566ce48.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f3_starsfury.png"
-dest_files=["res://.godot/imported/icon_f3_starsfury.png-0ee121fe29df1b1fac161fde0fe0fe9b.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f3_starsfury.png"
+dest_files=["res://.godot/imported/icon_f3_starsfury.png-1dd4bc26d939b8a22157a775b566ce48.ctex"]
 
 [params]
 

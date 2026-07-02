@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4pbv6lp2kclq"
-path="res://.godot/imported/icon_f3_syphonenergy.png-52a673eac0d33f480eec267ca3b9774f.ctex"
+path="res://.godot/imported/icon_f3_syphonenergy.png-c3dfcb18f3244b9c1c64e43e41b6f331.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f3_syphonenergy.png"
-dest_files=["res://.godot/imported/icon_f3_syphonenergy.png-52a673eac0d33f480eec267ca3b9774f.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f3_syphonenergy.png"
+dest_files=["res://.godot/imported/icon_f3_syphonenergy.png-c3dfcb18f3244b9c1c64e43e41b6f331.ctex"]
 
 [params]
 

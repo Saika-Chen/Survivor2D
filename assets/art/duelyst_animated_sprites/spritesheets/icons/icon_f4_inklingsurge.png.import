@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://boj8f4y1q4v35"
-path="res://.godot/imported/icon_f4_inklingsurge.png-e7a21d8213135885a994f30cefc1f37d.ctex"
+path="res://.godot/imported/icon_f4_inklingsurge.png-1539bd3b720e9ffb139b46c2ed50fb0d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f4_inklingsurge.png"
-dest_files=["res://.godot/imported/icon_f4_inklingsurge.png-e7a21d8213135885a994f30cefc1f37d.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f4_inklingsurge.png"
+dest_files=["res://.godot/imported/icon_f4_inklingsurge.png-1539bd3b720e9ffb139b46c2ed50fb0d.ctex"]
 
 [params]
 

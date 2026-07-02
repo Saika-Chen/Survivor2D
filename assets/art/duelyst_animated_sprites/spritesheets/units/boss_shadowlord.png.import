@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dsejxoah3hrgw"
-path="res://.godot/imported/boss_shadowlord.png-c18bd9c5273e4e3d2ba9c4ca3e878cb5.ctex"
+path="res://.godot/imported/boss_shadowlord.png-4d1a8945cbb2e08c3e2890134c844d8e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/units/boss_shadowlord.png"
-dest_files=["res://.godot/imported/boss_shadowlord.png-c18bd9c5273e4e3d2ba9c4ca3e878cb5.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/units/boss_shadowlord.png"
+dest_files=["res://.godot/imported/boss_shadowlord.png-4d1a8945cbb2e08c3e2890134c844d8e.ctex"]
 
 [params]
 

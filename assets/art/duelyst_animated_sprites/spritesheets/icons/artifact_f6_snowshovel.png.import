@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://2lj1yfaq06ed"
-path="res://.godot/imported/artifact_f6_snowshovel.png-ba41af24035b9f4fe3e4bbdb1c14c510.ctex"
+path="res://.godot/imported/artifact_f6_snowshovel.png-c0835573b89cb46c43d2a8cc67e22702.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/artifact_f6_snowshovel.png"
-dest_files=["res://.godot/imported/artifact_f6_snowshovel.png-ba41af24035b9f4fe3e4bbdb1c14c510.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/artifact_f6_snowshovel.png"
+dest_files=["res://.godot/imported/artifact_f6_snowshovel.png-c0835573b89cb46c43d2a8cc67e22702.ctex"]
 
 [params]
 

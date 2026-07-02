@@ -23,6 +23,8 @@ var pending_contract_offer := {}
 var contract_progress := 0
 var contract_target := 0
 var contract_expires_wave := -1
+var contract_accept_wave := -1
+var contract_damage_taken := false
 
 func setup(owner: Node) -> void:
 	game = owner
@@ -116,7 +118,13 @@ func accept_contract(contract_id: String, wave: int) -> void:
 		return
 	contract_progress = 0
 	contract_target = int(active_contract.get("target", 0))
-	contract_expires_wave = wave + max(1, int(active_contract.get("duration_waves", 2))) - 1
+	contract_accept_wave = wave
+	contract_damage_taken = false
+	var duration_waves := max(1, int(active_contract.get("duration_waves", 2)))
+	if str(active_contract.get("type", "")) == "survival":
+		contract_expires_wave = wave + duration_waves
+	else:
+		contract_expires_wave = wave + duration_waves - 1
 	game.hud.hint.text = "契约生效：%s" % str(active_contract.get("title", "未知契约"))
 	game._update_hud()
 
@@ -129,6 +137,8 @@ func record_enemy_defeated(archetype: String, elite_variant: String) -> void:
 	elif contract_type == "elite_hunt" and (elite_variant != "" or archetype == "elite"):
 		contract_progress += 1
 	_check_contract_completion()
+	if not active_contract.is_empty():
+		game._update_hud()
 
 func record_xp_gained(amount: int) -> void:
 	if active_contract.is_empty():
@@ -136,15 +146,57 @@ func record_xp_gained(amount: int) -> void:
 	if str(active_contract.get("type", "")) == "scavenge":
 		contract_progress += amount
 	_check_contract_completion()
+	if not active_contract.is_empty():
+		game._update_hud()
+
+func record_player_damaged(amount: float) -> void:
+	if active_contract.is_empty() or amount <= 0.0:
+		return
+	if str(active_contract.get("type", "")) != "survival":
+		return
+	contract_damage_taken = true
+	game.hud.hint.text = "契约失败：%s 被打断了。" % str(active_contract.get("title", "未知契约"))
+	_clear_active_contract()
+	game._update_hud()
 
 func contract_status_text() -> String:
 	if active_contract.is_empty():
 		return ""
+	var contract_type := str(active_contract.get("type", ""))
+	if contract_type == "survival":
+		return "契约 %s %d/%d波" % [
+			str(active_contract.get("title", "未知契约")),
+			min(contract_progress, contract_target),
+			max(1, contract_target)
+		]
 	return "契约 %s %d/%d" % [
 		str(active_contract.get("title", "未知契约")),
 		min(contract_progress, contract_target),
 		max(1, contract_target)
 	]
+
+func contract_card_data() -> Dictionary:
+	if active_contract.is_empty():
+		return {}
+	var title := str(active_contract.get("title", "未知契约"))
+	var contract_type := str(active_contract.get("type", ""))
+	var objective := _contract_objective_text(contract_type)
+	var reward_text := _reward_text()
+	var remaining_waves := max(0, contract_expires_wave - game.current_wave + 1)
+	var progress_value := min(contract_progress, max(1, contract_target))
+	var target_value := max(1, contract_target)
+	var status_text := "剩余 %d 波" % remaining_waves
+	if contract_type == "survival":
+		status_text = "当前波次不受伤"
+	return {
+		"title": title,
+		"objective": objective,
+		"progress_text": "%d/%d" % [progress_value, target_value],
+		"status_text": status_text,
+		"reward_text": reward_text,
+		"accent": _reward_accent_color(),
+		"type": contract_type
+	}
 
 func resolve_event_choice(event_id: String) -> void:
 	match event_id:
@@ -220,9 +272,16 @@ func expire_wave_effects() -> void:
 		game.hud.hint.text = "悬赏过期，目标逃入黑暗。"
 	if mutation_expires_wave != -1 and game.current_wave > mutation_expires_wave:
 		_clear_wave_mutation()
-	if not active_contract.is_empty() and game.current_wave > contract_expires_wave:
-		game.hud.hint.text = "契约失效：%s" % str(active_contract.get("title", "未知契约"))
-		_clear_active_contract()
+	if not active_contract.is_empty():
+		if str(active_contract.get("type", "")) == "survival" and game.current_wave > contract_accept_wave and not contract_damage_taken:
+			contract_progress += 1
+			_check_contract_completion()
+			if not active_contract.is_empty():
+				game._update_hud()
+		if not active_contract.is_empty() and game.current_wave > contract_expires_wave:
+			game.hud.hint.text = "契约失效：%s" % str(active_contract.get("title", "未知契约"))
+			_clear_active_contract()
+			game._update_hud()
 	if active_blessings.has("damage") and int(active_blessings["damage"]) <= game.current_wave:
 		active_blessings.erase("damage")
 		game.player_damage_multiplier /= 1.25
@@ -269,9 +328,49 @@ func _clear_active_contract() -> void:
 	contract_progress = 0
 	contract_target = 0
 	contract_expires_wave = -1
+	contract_accept_wave = -1
+	contract_damage_taken = false
 
 func _clear_contract_offer() -> void:
 	pending_contract_offer.clear()
+
+func _contract_objective_text(contract_type: String) -> String:
+	match contract_type:
+		"hunt":
+			return "清除敌潮"
+		"elite_hunt":
+			return "狩猎精英"
+		"scavenge":
+			return "拾取经验"
+		"survival":
+			return "坚守不伤"
+		_:
+			return "契约目标"
+
+func _reward_text() -> String:
+	var reward_type := str(active_contract.get("reward_type", ""))
+	var reward_amount: float = float(active_contract.get("reward_amount", 0.0))
+	match reward_type:
+		"damage":
+			return "奖励：攻击 +%.0f%%" % round(reward_amount * 100.0)
+		"reroll":
+			return "奖励：%d 次重掷" % int(reward_amount)
+		"crystal":
+			return "奖励：魔晶 +%d" % int(reward_amount)
+		_:
+			return "奖励：未知"
+
+func _reward_accent_color() -> Color:
+	var reward_type := str(active_contract.get("reward_type", ""))
+	match reward_type:
+		"damage":
+			return Color(1.0, 0.62, 0.36, 1.0)
+		"reroll":
+			return Color(0.52, 0.88, 1.0, 1.0)
+		"crystal":
+			return Color(0.74, 0.62, 1.0, 1.0)
+		_:
+			return Color(0.95, 0.95, 0.95, 1.0)
 
 func start_bounty_event() -> void:
 	var enemy: Node2D = game._take_from_pool("enemy", EnemyScene)

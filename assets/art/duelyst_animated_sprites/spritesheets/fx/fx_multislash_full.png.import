@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dtkgf5sr312wl"
-path="res://.godot/imported/fx_multislash_full.png-3cc03e38935411730c34c7ea6c96eb93.ctex"
+path="res://.godot/imported/fx_multislash_full.png-90a3024f22c1a4a9996fe298a81a12ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/fx/fx_multislash_full.png"
-dest_files=["res://.godot/imported/fx_multislash_full.png-3cc03e38935411730c34c7ea6c96eb93.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/fx/fx_multislash_full.png"
+dest_files=["res://.godot/imported/fx_multislash_full.png-90a3024f22c1a4a9996fe298a81a12ab.ctex"]
 
 [params]
 

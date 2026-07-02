@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://wul0n5bpc3on"
-path="res://.godot/imported/icon_f2_obscuringblow.png-f95b1a45337a6a43de9af47da60544d9.ctex"
+path="res://.godot/imported/icon_f2_obscuringblow.png-cc5ffa2a6717b7b27cdef7115128a509.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f2_obscuringblow.png"
-dest_files=["res://.godot/imported/icon_f2_obscuringblow.png-f95b1a45337a6a43de9af47da60544d9.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f2_obscuringblow.png"
+dest_files=["res://.godot/imported/icon_f2_obscuringblow.png-cc5ffa2a6717b7b27cdef7115128a509.ctex"]
 
 [params]
 

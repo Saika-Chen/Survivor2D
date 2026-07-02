@@ -12,9 +12,9 @@ func _init() -> void:
 		_load_fallback_contracts()
 
 func build_offer(wave: int, is_major: bool) -> Dictionary:
-	if wave < 6 or is_major or contract_ids.is_empty() or wave % 6 != 0 or wave % 4 == 0:
+	if wave < 5 or is_major or contract_ids.is_empty() or wave % 5 != 0:
 		return {}
-	var contract_id := contract_ids[int(wave / 6) % contract_ids.size()]
+	var contract_id := contract_ids[int(wave / 5) % contract_ids.size()]
 	var contract: Dictionary = contracts.get(contract_id, {})
 	if contract.is_empty():
 		return {}
@@ -51,8 +51,14 @@ func _load_from_file(path: String) -> void:
 		return
 	var contract_data: Variant = parsed.get("contracts", {})
 	if contract_data is Dictionary:
-		var keys: Array = contract_data.keys()
-		keys.sort()
+		var keys: Array = []
+		var contract_order: Variant = parsed.get("contract_order", [])
+		if contract_order is Array and not contract_order.is_empty():
+			for item in contract_order:
+				keys.append(str(item))
+		else:
+			keys = contract_data.keys()
+			keys.sort()
 		for key in keys:
 			var contract_id := str(key)
 			var contract_value: Variant = contract_data.get(key, {})
@@ -62,15 +68,6 @@ func _load_from_file(path: String) -> void:
 
 func _load_fallback_contracts() -> void:
 	contracts = {
-		"elite_hunt": {
-			"title": "精英狩猎",
-			"prompt": "追猎更危险的目标，契约会给你更高的回报。",
-			"type": "elite_hunt",
-			"target": 3,
-			"duration_waves": 3,
-			"reward_type": "reroll",
-			"reward_amount": 1
-		},
 		"hunt": {
 			"title": "血猎契约",
 			"prompt": "连续清除敌潮，换取一份更直接的杀戮回报。",
@@ -80,6 +77,33 @@ func _load_fallback_contracts() -> void:
 			"reward_type": "damage",
 			"reward_amount": 0.12
 		},
+		"surge": {
+			"title": "狂潮推进",
+			"prompt": "战斗节奏会更急，你也会得到更高的回报。",
+			"type": "hunt",
+			"target": 84,
+			"duration_waves": 2,
+			"reward_type": "damage",
+			"reward_amount": 0.18
+		},
+		"elite_hunt": {
+			"title": "精英狩猎",
+			"prompt": "追猎更危险的目标，契约会给你更高的回报。",
+			"type": "elite_hunt",
+			"target": 3,
+			"duration_waves": 3,
+			"reward_type": "reroll",
+			"reward_amount": 1
+		},
+		"bulwark": {
+			"title": "壁垒清剿",
+			"prompt": "专门猎杀重装敌人，打断它们的推进。",
+			"type": "elite_hunt",
+			"target": 2,
+			"duration_waves": 3,
+			"reward_type": "crystal",
+			"reward_amount": 3
+		},
 		"scavenge": {
 			"title": "灰烬拾荒",
 			"prompt": "在战场上搜集灵魂碎屑，把残余能量变成资源。",
@@ -88,6 +112,24 @@ func _load_fallback_contracts() -> void:
 			"duration_waves": 2,
 			"reward_type": "crystal",
 			"reward_amount": 2
+		},
+		"harvest": {
+			"title": "溢流采收",
+			"prompt": "把更大规模的能量潮汐重新收割回来。",
+			"type": "scavenge",
+			"target": 260,
+			"duration_waves": 2,
+			"reward_type": "crystal",
+			"reward_amount": 3
+		},
+		"steadfast": {
+			"title": "坚守誓约",
+			"prompt": "在契约持续时间内不要受伤，活下来就是胜利。",
+			"type": "survival",
+			"target": 2,
+			"duration_waves": 2,
+			"reward_type": "damage",
+			"reward_amount": 0.15
 		}
 	}
-	contract_ids = ["elite_hunt", "hunt", "scavenge"]
+	contract_ids = ["hunt", "surge", "elite_hunt", "bulwark", "scavenge", "harvest", "steadfast"]

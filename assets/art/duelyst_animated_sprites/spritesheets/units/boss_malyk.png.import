@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d01y58ut0ea1u"
-path="res://.godot/imported/boss_malyk.png-83940c852d98ef03777111823e92f3ae.ctex"
+path="res://.godot/imported/boss_malyk.png-77f5814e58b5c3ecae0f4338031af1e0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/units/boss_malyk.png"
-dest_files=["res://.godot/imported/boss_malyk.png-83940c852d98ef03777111823e92f3ae.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/units/boss_malyk.png"
+dest_files=["res://.godot/imported/boss_malyk.png-77f5814e58b5c3ecae0f4338031af1e0.ctex"]
 
 [params]
 

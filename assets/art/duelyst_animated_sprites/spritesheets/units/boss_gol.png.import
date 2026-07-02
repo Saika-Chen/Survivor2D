@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bignjn08r00d3"
-path="res://.godot/imported/boss_gol.png-297170467277367fb29482b59659e424.ctex"
+path="res://.godot/imported/boss_gol.png-477d38c9fb2f631c28720b1747279292.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/units/boss_gol.png"
-dest_files=["res://.godot/imported/boss_gol.png-297170467277367fb29482b59659e424.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/units/boss_gol.png"
+dest_files=["res://.godot/imported/boss_gol.png-477d38c9fb2f631c28720b1747279292.ctex"]
 
 [params]
 

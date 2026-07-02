@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://r3iem4yd7i2u"
-path="res://.godot/imported/f4_remora.png-e160ecf5468b53517742f8d91f600135.ctex"
+path="res://.godot/imported/f4_remora.png-f1b45eff684fc83d9a7da24681f94a47.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/units/f4_remora.png"
-dest_files=["res://.godot/imported/f4_remora.png-e160ecf5468b53517742f8d91f600135.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/units/f4_remora.png"
+dest_files=["res://.godot/imported/f4_remora.png-f1b45eff684fc83d9a7da24681f94a47.ctex"]
 
 [params]
 

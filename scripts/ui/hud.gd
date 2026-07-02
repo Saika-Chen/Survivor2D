@@ -56,6 +56,12 @@ signal slot_tick_requested
 @onready var joystick_base: Control = $MobileJoystick/Base
 @onready var joystick_ring: ColorRect = $MobileJoystick/Base/Ring
 @onready var joystick_stick: Control = $MobileJoystick/Base/Stick
+var contract_card: Control
+var contract_card_frame: TextureRect
+var contract_card_title: Label
+var contract_card_objective: Label
+var contract_card_progress: Label
+var contract_card_reward: Label
 var performance_label: Label
 var stats_art: TextureRect
 var right_art: TextureRect
@@ -105,6 +111,7 @@ func _ready() -> void:
 	_build_pixel_ui_art()
 	_build_bottom_xp_bar()
 	_build_loadout_icon_rows()
+	_build_contract_card()
 	_build_damage_number_layer()
 	_build_exit_run_button()
 	_build_performance_hud()
@@ -221,6 +228,54 @@ func _build_performance_hud() -> void:
 	performance_label.text = "FPS --"
 	add_child(performance_label)
 	CJKFontTheme.apply_to(performance_label)
+
+func _build_contract_card() -> void:
+	contract_card = Control.new()
+	contract_card.name = "ContractCard"
+	contract_card.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	contract_card.z_index = 120
+	add_child(contract_card)
+
+	contract_card_frame = TextureRect.new()
+	contract_card_frame.name = "Frame"
+	contract_card_frame.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	contract_card_frame.stretch_mode = TextureRect.STRETCH_SCALE
+	contract_card_frame.texture = option_card_texture
+	contract_card_frame.modulate = Color(0.72, 0.92, 1.0, 0.92)
+	contract_card.add_child(contract_card_frame)
+
+	contract_card_title = Label.new()
+	contract_card_title.name = "Title"
+	contract_card_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+	contract_card_title.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	contract_card_title.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	contract_card.add_child(contract_card_title)
+	CJKFontTheme.apply_to(contract_card_title)
+
+	contract_card_objective = Label.new()
+	contract_card_objective.name = "Objective"
+	contract_card_objective.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+	contract_card_objective.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	contract_card_objective.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	contract_card.add_child(contract_card_objective)
+	CJKFontTheme.apply_to(contract_card_objective)
+
+	contract_card_progress = Label.new()
+	contract_card_progress.name = "Progress"
+	contract_card_progress.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+	contract_card_progress.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	contract_card_progress.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	contract_card.add_child(contract_card_progress)
+	CJKFontTheme.apply_to(contract_card_progress)
+
+	contract_card_reward = Label.new()
+	contract_card_reward.name = "Reward"
+	contract_card_reward.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+	contract_card_reward.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	contract_card_reward.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	contract_card.add_child(contract_card_reward)
+	CJKFontTheme.apply_to(contract_card_reward)
+	contract_card.hide()
 
 func _build_pixel_ui_art() -> void:
 	option_card_texture = TextureFactory.pixel_ui_asset("option_card")
@@ -414,7 +469,8 @@ func show_level_up(options: Array, title := "升级暂停：选择一项继续",
 	level_up_title.text = title
 	level_up_prompt.text = prompt_text
 	var event_mode := UpgradePanelScript.is_event_mode(options)
-	_apply_panel_style(event_mode, title)
+	var contract_mode := UpgradePanelScript.is_contract_mode(options)
+	_apply_panel_style(event_mode, title, contract_mode)
 	hint.text = UpgradePanelScript.level_up_hint_text(options, allow_reroll)
 	for option_index in range(upgrade_buttons.size()):
 		if option_index >= options.size():
@@ -728,6 +784,7 @@ func _layout_hud_for_orientation() -> void:
 		_apply_portrait_layout(size)
 	else:
 		_apply_landscape_layout()
+	_layout_contract_card(size, portrait)
 
 func _layout_art(rect: TextureRect, bounds: Rect2) -> void:
 	if rect == null:
@@ -893,6 +950,67 @@ func _layout_performance_hud(size: Vector2) -> void:
 	performance_label.offset_right = size.x - 12.0
 	performance_label.offset_bottom = size.y - 12.0
 
+func _layout_contract_card(size: Vector2, portrait: bool) -> void:
+	if contract_card == null:
+		return
+	if portrait:
+		contract_card.offset_left = 18.0
+		contract_card.offset_right = size.x - 18.0
+		contract_card.offset_top = max(352.0, size.y - 352.0)
+		contract_card.offset_bottom = min(size.y - 248.0, contract_card.offset_top + 100.0)
+	else:
+		contract_card.offset_left = 24.0
+		contract_card.offset_right = size.x - 24.0
+		contract_card.offset_top = max(534.0, size.y - 176.0)
+		contract_card.offset_bottom = min(size.y - 112.0, contract_card.offset_top + 92.0)
+
+	var card_width := contract_card.offset_right - contract_card.offset_left
+	var card_height := contract_card.offset_bottom - contract_card.offset_top
+	if contract_card_frame != null:
+		contract_card_frame.offset_left = 0.0
+		contract_card_frame.offset_top = 0.0
+		contract_card_frame.offset_right = card_width
+		contract_card_frame.offset_bottom = card_height
+	if contract_card_title != null:
+		contract_card_title.offset_left = 22.0
+		contract_card_title.offset_top = 8.0
+		contract_card_title.offset_right = card_width - 22.0
+		contract_card_title.offset_bottom = 34.0
+	if contract_card_objective != null:
+		contract_card_objective.offset_left = 22.0
+		contract_card_objective.offset_top = 34.0
+		contract_card_objective.offset_right = card_width - 22.0
+		contract_card_objective.offset_bottom = 58.0
+	if contract_card_progress != null:
+		contract_card_progress.offset_left = 22.0
+		contract_card_progress.offset_top = 58.0
+		contract_card_progress.offset_right = card_width * 0.56
+		contract_card_progress.offset_bottom = card_height - 12.0
+	if contract_card_reward != null:
+		contract_card_reward.offset_left = card_width * 0.56
+		contract_card_reward.offset_top = 58.0
+		contract_card_reward.offset_right = card_width - 22.0
+		contract_card_reward.offset_bottom = card_height - 12.0
+
+func set_contract_card(contract: Dictionary) -> void:
+	if contract_card == null:
+		return
+	if contract.is_empty():
+		contract_card.hide()
+		return
+	contract_card.show()
+	var title := str(contract.get("title", "契约"))
+	var objective := str(contract.get("objective", "契约目标"))
+	var progress_text := str(contract.get("progress_text", "0/0"))
+	var status_text := str(contract.get("status_text", ""))
+	var reward_text := str(contract.get("reward_text", ""))
+	var accent: Color = contract.get("accent", Color(0.72, 0.92, 1.0, 1.0))
+	contract_card_frame.modulate = accent
+	contract_card_title.text = title
+	contract_card_objective.text = objective
+	contract_card_progress.text = "进度 %s" % progress_text
+	contract_card_reward.text = reward_text if status_text == "" else "%s\n%s" % [reward_text, status_text]
+
 func _layout_icon_row(row: Control, bounds: Rect2) -> void:
 	if row == null:
 		return
@@ -991,7 +1109,7 @@ func _apply_bright_text_theme() -> void:
 	var cool := Color(0.90, 0.98, 1.0, 1.0)
 	var lavender := Color(0.96, 0.90, 1.0, 1.0)
 	var shadow := Color(0.0, 0.0, 0.0, 1.0)
-	var labels: Array[Label] = [stats, health_label, hint, wave_label, weapons_label, relics_label, wave_alert_label, level_up_title, event_badge, level_up_prompt, slot_jackpot_label]
+	var labels: Array[Label] = [stats, health_label, hint, wave_label, weapons_label, relics_label, wave_alert_label, level_up_title, event_badge, level_up_prompt, slot_jackpot_label, contract_card_title, contract_card_objective, contract_card_progress, contract_card_reward]
 	for label in labels:
 		label.add_theme_color_override("font_shadow_color", shadow)
 		label.add_theme_constant_override("shadow_offset_x", 2)
@@ -1013,6 +1131,14 @@ func _apply_bright_text_theme() -> void:
 	level_up_prompt.add_theme_font_size_override("font_size", 21)
 	event_badge.add_theme_font_size_override("font_size", 21)
 	slot_jackpot_label.add_theme_font_size_override("font_size", 21)
+	if contract_card_title != null:
+		contract_card_title.add_theme_font_size_override("font_size", 24)
+	if contract_card_objective != null:
+		contract_card_objective.add_theme_font_size_override("font_size", 17)
+	if contract_card_progress != null:
+		contract_card_progress.add_theme_font_size_override("font_size", 18)
+	if contract_card_reward != null:
+		contract_card_reward.add_theme_font_size_override("font_size", 17)
 	reroll_button.add_theme_font_size_override("font_size", 22)
 	restart_button.add_theme_font_size_override("font_size", 26)
 	main_menu_button.add_theme_font_size_override("font_size", 26)
@@ -1037,8 +1163,24 @@ func _apply_bright_text_theme() -> void:
 	level_up_prompt.add_theme_color_override("font_color", bright)
 	event_badge.add_theme_color_override("font_color", Color(1.0, 0.98, 0.82, 1.0))
 	slot_jackpot_label.add_theme_color_override("font_color", warm)
+	if contract_card_title != null:
+		contract_card_title.add_theme_color_override("font_color", Color(1.0, 0.98, 0.82, 1.0))
+	if contract_card_objective != null:
+		contract_card_objective.add_theme_color_override("font_color", Color(0.94, 0.98, 1.0, 1.0))
+	if contract_card_progress != null:
+		contract_card_progress.add_theme_color_override("font_color", Color(0.92, 1.0, 0.88, 1.0))
+	if contract_card_reward != null:
+		contract_card_reward.add_theme_color_override("font_color", Color(0.78, 0.88, 1.0, 1.0))
 
-func _apply_panel_style(event_mode: bool, title: String) -> void:
+func _apply_panel_style(event_mode: bool, title: String, contract_mode := false) -> void:
+	if contract_mode:
+		event_badge.show()
+		level_up_panel.modulate = Color(0.34, 0.42, 0.58, 1)
+		level_up_title.modulate = Color(0.94, 0.98, 1.0, 1)
+		level_up_prompt.modulate = Color(0.88, 0.94, 1.0, 1)
+		event_badge.text = "契约"
+		event_badge.modulate = Color(0.78, 0.88, 1.0, 1)
+		return
 	if event_mode:
 		event_badge.show()
 		level_up_panel.modulate = Color(0.74, 0.38, 0.36, 1)

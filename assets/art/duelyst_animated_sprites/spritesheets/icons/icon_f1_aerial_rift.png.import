@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c33un4w4ksd6b"
-path="res://.godot/imported/icon_f1_aerial_rift.png-6dec29f160d5333170fbc81e40a4e626.ctex"
+path="res://.godot/imported/icon_f1_aerial_rift.png-5c3f8866855dd8df21e90afb01fac049.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f1_aerial_rift.png"
-dest_files=["res://.godot/imported/icon_f1_aerial_rift.png-6dec29f160d5333170fbc81e40a4e626.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f1_aerial_rift.png"
+dest_files=["res://.godot/imported/icon_f1_aerial_rift.png-5c3f8866855dd8df21e90afb01fac049.ctex"]
 
 [params]
 

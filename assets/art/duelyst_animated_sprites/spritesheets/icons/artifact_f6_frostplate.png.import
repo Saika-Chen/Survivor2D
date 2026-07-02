@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4bqq077afwe5"
-path="res://.godot/imported/artifact_f6_frostplate.png-614e52b13c69e61d86a7ceeff4bda641.ctex"
+path="res://.godot/imported/artifact_f6_frostplate.png-3b14d1987fe3c75dbb4283a7369c4545.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/artifact_f6_frostplate.png"
-dest_files=["res://.godot/imported/artifact_f6_frostplate.png-614e52b13c69e61d86a7ceeff4bda641.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/artifact_f6_frostplate.png"
+dest_files=["res://.godot/imported/artifact_f6_frostplate.png-3b14d1987fe3c75dbb4283a7369c4545.ctex"]
 
 [params]
 

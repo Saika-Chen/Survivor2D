@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cj0e1plciuk13"
-path="res://.godot/imported/artifact_f2_markgorehorn.png-1574fa7106368a3c21e98580058d2973.ctex"
+path="res://.godot/imported/artifact_f2_markgorehorn.png-9ccb85b13e6194e59c4c529be2fa2b41.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/artifact_f2_markgorehorn.png"
-dest_files=["res://.godot/imported/artifact_f2_markgorehorn.png-1574fa7106368a3c21e98580058d2973.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/artifact_f2_markgorehorn.png"
+dest_files=["res://.godot/imported/artifact_f2_markgorehorn.png-9ccb85b13e6194e59c4c529be2fa2b41.ctex"]
 
 [params]
 

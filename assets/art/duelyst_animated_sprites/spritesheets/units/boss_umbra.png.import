@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://4iml7j3dqebr"
-path="res://.godot/imported/boss_umbra.png-6e48a80fd3b62126449a6695bc33b439.ctex"
+path="res://.godot/imported/boss_umbra.png-946c12e3e78c30f82565549ca858c9ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/art/duelyst_animated_sprites/spritesheets/units/boss_umbra.png"
-dest_files=["res://.godot/imported/boss_umbra.png-6e48a80fd3b62126449a6695bc33b439.ctex"]
+source_file="res://addons/duelyst_animated_sprites/spritesheets/units/boss_umbra.png"
+dest_files=["res://.godot/imported/boss_umbra.png-946c12e3e78c30f82565549ca858c9ef.ctex"]
 
 [params]
 

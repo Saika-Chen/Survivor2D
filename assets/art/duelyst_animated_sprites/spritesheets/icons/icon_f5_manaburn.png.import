@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cr1ye6m464jii"
-path="res://.godot/imported/icon_f5_manaburn.png-6f0d96fcf6e3ef4ba77395175356e727.ctex"
+path="res://.godot/imported/icon_f5_manaburn.png-39a03447fbbfb314f63c64ed2e98fd95.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f5_manaburn.png"
-dest_files=["res://.godot/imported/icon_f5_manaburn.png-6f0d96fcf6e3ef4ba77395175356e727.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f5_manaburn.png"
+dest_files=["res://.godot/imported/icon_f5_manaburn.png-39a03447fbbfb314f63c64ed2e98fd95.ctex"]
 
 [params]
 

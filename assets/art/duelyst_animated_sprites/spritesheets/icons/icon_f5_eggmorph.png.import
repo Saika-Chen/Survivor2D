@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://fjkmd6xmi5gp"
-path="res://.godot/imported/icon_f5_eggmorph.png-bf4911119642f1ad2efc34b9e5258c33.ctex"
+path="res://.godot/imported/icon_f5_eggmorph.png-06296266c7d30ba06c8c2a4c8be81aa5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f5_eggmorph.png"
-dest_files=["res://.godot/imported/icon_f5_eggmorph.png-bf4911119642f1ad2efc34b9e5258c33.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f5_eggmorph.png"
+dest_files=["res://.godot/imported/icon_f5_eggmorph.png-06296266c7d30ba06c8c2a4c8be81aa5.ctex"]
 
 [params]
 
