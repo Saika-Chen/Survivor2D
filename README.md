@@ -75,23 +75,6 @@ shaders/       GPU Shader
 "/Applications/Godot.app/Contents/MacOS/Godot" --headless --path /Users/mac/Documents/Codex/2026-06-28/wo/Survivor2D --script res://scripts/tests/enemy_stats_smoke.gd
 ```
 
-## 重构进度
 
-已经完成的方向：
 
-- 把对象池、经验系统、伤害系统、刷怪系统拆成独立模块
-- 把波次、敌人、武器和事件的关键配置数据化
-- 把 HUD 文案和升级面板文案收口到专门的辅助脚本
-- 保留原有玩法，同时减少 `game.gd` 的“上帝对象”味道
 
-仍然可以继续推进的方向：
-
-- 进一步拆分 `weapon_manager.gd` 的运行时职责
-- 把更多武器行为抽成 `WeaponRuntime` 或按家族拆模块
-- 增加更多敌人配置和波次表
-- 继续整理 UI 和数值平衡
-
-## 备注
-
-- 项目里仍有一个来自旧资源的无关 UID 警告，当前不影响运行。
-- 目前主入口仍然是 `scripts/game/game.gd`，`GameSession.gd` 处于预留状态。
