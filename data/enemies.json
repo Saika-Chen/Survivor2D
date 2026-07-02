@@ -1,0 +1,94 @@
+{
+  "defaults": {
+    "speed": 115.0,
+    "max_health": 24.0,
+    "radius": 16.0,
+    "contact_damage": 18.0,
+    "xp_reward": 6,
+    "fire_timer": 1.6,
+    "special_timer": 5.0,
+    "projectile_burst_count": 0,
+    "boss_variant": "",
+    "elite_scale_multiplier": 1.0
+  },
+  "archetypes": {
+    "chaser": {
+      "speed": 115.0,
+      "max_health": 24.0,
+      "radius": 16.0,
+      "contact_damage": 18.0,
+      "xp_reward": 6
+    },
+    "shooter": {
+      "speed": 82.0,
+      "max_health": 80.0,
+      "radius": 15.0,
+      "contact_damage": 12.0,
+      "xp_reward": 2,
+      "fire_timer": 1.1
+    },
+    "buffer": {
+      "speed": 68.0,
+      "max_health": 120.0,
+      "radius": 18.0,
+      "contact_damage": 10.0,
+      "xp_reward": 3
+    },
+    "elite": {
+      "speed": 92.0,
+      "max_health": 8000.0,
+      "radius": 28.0,
+      "contact_damage": 30.0,
+      "xp_reward": 15,
+      "elite_scale_multiplier": 2.0
+    },
+    "charger": {
+      "speed": 155.0,
+      "max_health": 90.0,
+      "radius": 14.0,
+      "contact_damage": 24.0,
+      "xp_reward": 2
+    },
+    "tank": {
+      "speed": 54.0,
+      "max_health": 500.0,
+      "radius": 34.0,
+      "contact_damage": 34.0,
+      "xp_reward": 5
+    },
+    "splitter": {
+      "speed": 104.0,
+      "max_health": 130.0,
+      "radius": 19.0,
+      "contact_damage": 17.0,
+      "xp_reward": 3
+    },
+    "bomber": {
+      "speed": 126.0,
+      "max_health": 110.0,
+      "radius": 17.0,
+      "contact_damage": 45.0,
+      "xp_reward": 3
+    },
+    "boss": {
+      "speed": 76.0,
+      "max_health": 60000.0,
+      "radius": 56.0,
+      "contact_damage": 46.0,
+      "xp_reward": 50,
+      "fire_timer": 0.9,
+      "special_timer": 3.2
+    },
+    "bullet_boss": {
+      "speed": 64.0,
+      "max_health": 80000.0,
+      "radius": 62.0,
+      "contact_damage": 42.0,
+      "xp_reward": 40,
+      "fire_timer": 0.34,
+      "special_timer": 1.65,
+      "projectile_burst_count": 24,
+      "boss_variant": "default"
+    }
+  }
+}

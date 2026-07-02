@@ -1,5 +1,7 @@
 extends Node
 
+const WAVE_CONFIG_PATH := "res://data/waves.json"
+
 signal spawn_requested(archetype: String, count: int)
 signal wave_changed(wave: int, max_wave: int, time_left: float)
 signal boss_wave_started
@@ -17,11 +19,15 @@ var boss_started := false
 var active := true
 var wave_spawned_total := 0
 var wave_target_total := 40
+var wave_config: WaveConfig = WaveConfig.new()
+
+func _ready() -> void:
+	_load_wave_config()
 
 func reset() -> void:
 	wave = 1
 	time_left = wave_duration
-	spawn_timer = 0.2
+	spawn_timer = wave_config.initial_spawn_timer
 	boss_started = false
 	active = true
 	wave_spawned_total = 0
@@ -49,9 +55,7 @@ func tick(delta: float, alive_enemies := 0) -> void:
 			var remaining_total := wave_target_total - wave_spawned_total
 			var pack_size := _spawn_wave_pack(min(remaining_total, alive_cap - alive_enemies))
 			wave_spawned_total += pack_size
-			var mobile_slowdown := 0.10 if OS.has_feature("mobile") else 0.02
-			var min_spawn_timer := 0.12 if OS.has_feature("mobile") else 0.07
-			spawn_timer = max(min_spawn_timer, (0.72 - float(wave) * 0.018) / spawn_density_multiplier + mobile_slowdown)
+			spawn_timer = wave_config.spawn_timer_for_wave(wave)
 
 	# Wave ends: all spawned AND all killed (or timer ran out with what's left)
 	if wave_spawned_total >= wave_target_total:
@@ -68,60 +72,34 @@ func _advance_wave() -> void:
 	wave_target_total = _total_for_wave(wave)
 	if wave % major_boss_interval == 0:
 		spawn_requested.emit("bullet_boss", 1)
-	if wave == 10 or wave == 20:
+	if wave_config.has_wave_bonus_elite(wave):
 		spawn_requested.emit("elite", 1)
 	wave_changed.emit(wave, max_wave, time_left)
 
 func _total_for_wave(w: int) -> int:
-	return 40 + w * 24
+	return wave_config.total_for_wave(w)
 
 func _spawn_wave_pack(max_to_spawn: int) -> int:
 	if max_to_spawn <= 0:
 		return 0
-	var horde_multiplier := 1.8 if wave % 3 == 0 else 1.0
-	var base_count := int(round(((3 if OS.has_feature("mobile") else 10) + wave) * spawn_density_multiplier * horde_multiplier))
-	var bonus_count := int(round(float(wave / 10) * spawn_density_multiplier))
-	var count: int = min(base_count + bonus_count, max_to_spawn)
-	spawn_requested.emit("chaser", count)
-	var spawned := count
-	max_to_spawn -= count
-
-	if max_to_spawn <= 0:
-		return spawned
-
-	if wave % 3 == 0:
-		var charger_count: int = int(min(max_to_spawn, (3 + wave / 6) * 2))
-		spawn_requested.emit("charger", charger_count)
-		spawned += charger_count
-		max_to_spawn -= charger_count
-		var splitter_count: int = int(min(max_to_spawn, (2 + wave / 8) * 2))
-		spawn_requested.emit("splitter", splitter_count)
-		spawned += splitter_count
-		return spawned
-
-	if max_to_spawn > 0 and wave >= 2 and randi() % 100 < 28 + wave / 2:
-		var c: int = int(min(max_to_spawn, (1 + wave / 14)) * 2)
-		spawn_requested.emit("shooter", c); spawned += c; max_to_spawn -= c
-	if max_to_spawn > 0 and wave >= 3 and randi() % 100 < 22 + wave / 2:
-		var c: int = int(min(max_to_spawn, (1 + wave / 16)) * 2)
-		spawn_requested.emit("charger", c); spawned += c; max_to_spawn -= c
-	if max_to_spawn > 0 and wave >= 5 and randi() % 100 < 18 + wave / 3:
-		var c: int = int(min(max_to_spawn, (1 + wave / 18)) * 2)
-		spawn_requested.emit("buffer", c); spawned += c; max_to_spawn -= c
-	if max_to_spawn > 0 and wave >= 6 and randi() % 100 < 16 + wave / 3:
-		var c: int = int(min(max_to_spawn, (1 + wave / 20)) * 2)
-		spawn_requested.emit("bomber", c); spawned += c; max_to_spawn -= c
-	if max_to_spawn > 0 and wave >= 8 and randi() % 100 < 14 + wave / 3:
-		var c: int = int(min(max_to_spawn, (1 + wave / 18)) * 2)
-		spawn_requested.emit("splitter", c); spawned += c; max_to_spawn -= c
-	if max_to_spawn > 0 and wave >= 11 and randi() % 100 < 12 + wave / 4:
-		var c: int = int(min(max_to_spawn, (1 + wave / 24)) * 2)
-		spawn_requested.emit("tank", c); spawned += c; max_to_spawn -= c
-	if max_to_spawn > 0 and wave >= 16 and randi() % 100 < 10 + wave / 5:
-		var c: int = int(min(max_to_spawn, (1 + wave / 26)) * 2)
-		spawn_requested.emit("elite", c); spawned += c
+	var requests := wave_config.spawn_requests_for_wave(wave, max_to_spawn)
+	var spawned := 0
+	for request in requests:
+		var archetype := str(request.get("archetype", ""))
+		var count := int(request.get("count", 0))
+		if archetype.is_empty() or count <= 0:
+			continue
+		spawn_requested.emit(archetype, count)
+		spawned += count
 	return spawned
 
 func _current_alive_cap() -> int:
-	var growth := int(round(float(wave * (5 if OS.has_feature("mobile") else 6)) * spawn_density_multiplier))
-	return min(800, max_alive_enemies + growth)
+	return wave_config.current_alive_cap(wave, max_alive_enemies)
+
+func _load_wave_config() -> void:
+	wave_config = WaveConfig.load_from_file(WAVE_CONFIG_PATH)
+	max_wave = wave_config.max_wave
+	wave_duration = wave_config.wave_duration
+	max_alive_enemies = wave_config.max_alive_enemies
+	major_boss_interval = wave_config.major_boss_interval
+	spawn_density_multiplier = wave_config.spawn_density_multiplier

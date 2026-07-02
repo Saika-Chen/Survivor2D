@@ -11,6 +11,12 @@ const CombatEffectScript := preload("res://scripts/effects/combat_effect.gd")
 const SFXManagerScript := preload("res://scripts/audio/sfx_manager.gd")
 const EnemyBatchRendererScript := preload("res://scripts/visuals/enemy_batch_renderer.gd")
 const XPBatchRendererScript := preload("res://scripts/visuals/xp_batch_renderer.gd")
+const ObjectPoolScript := preload("res://scripts/core/ObjectPool.gd")
+const LevelSystemScript := preload("res://scripts/progression/LevelSystem.gd")
+const UpgradeSystemScript := preload("res://scripts/progression/UpgradeSystem.gd")
+const DamageSystemScript := preload("res://scripts/combat/DamageSystem.gd")
+const EnemySpawnerScript := preload("res://scripts/enemy/EnemySpawner.gd")
+const RunEventSystemScript := preload("res://scripts/game/RunEventSystem.gd")
 
 @onready var player: Node2D = $Player
 @onready var enemies: Node2D = $Enemies
@@ -75,38 +81,39 @@ var xp_batch_renderer: Node2D
 var xp_spawn_queue: Array[Dictionary] = []
 var xp_spawn_per_tick := 24
 var sfx_manager
-var pending_event := {}
-var active_blessings := {}
-var bounty_target_id := -1
-var bounty_expires_wave := -1
 var selected_hero := {}
 var world_scale_multiplier := 1.0
-var pool_root: Node
-var object_pools := {
-	"enemy": [],
-	"projectile": [],
-	"enemy_projectile": [],
-	"xp_gem": [],
-	"pickup": [],
-	"effect": [],
-	"weapon_zone": [],
-	"particle_burst": [],
-	"ui_burst": []
-}
 var pool_limits := {
 		"enemy": 240,
-	"projectile": 160,
-	"enemy_projectile": 64,
+		"projectile": 160,
+		"enemy_projectile": 64,
 		"xp_gem": 180,
 	"pickup": 36,
 		"effect": 140,
 	"weapon_zone": 120,
 	"particle_burst": 42,
-	"ui_burst": 80
+		"ui_burst": 80
 }
+var object_pool: Node
+var level_system: LevelSystem
+var upgrade_system: UpgradeSystem
+var damage_system: DamageSystem
+var enemy_spawner: EnemySpawner
+var run_event_system: RunEventSystem
 
 func _ready() -> void:
 	get_tree().paused = false
+	level_system = LevelSystemScript.new()
+	upgrade_system = UpgradeSystemScript.new()
+	damage_system = DamageSystemScript.new()
+	enemy_spawner = EnemySpawnerScript.new()
+	run_event_system = RunEventSystemScript.new()
+	run_event_system.setup(self)
+	level_system.level = level
+	level_system.experience = experience
+	level_system.experience_to_next = experience_to_next
+	level_system.rerolls_left = rerolls_left
+	level_system.set_experience_gain_bonus(experience_gain_bonus)
 	_setup_object_pool()
 	_setup_enemy_batch_renderer()
 	_setup_xp_batch_renderer()
@@ -279,6 +286,8 @@ func _apply_selected_hero_weapon_mods() -> void:
 		experience_gain_bonus = runtime.talent_bonus("experience_gain")
 		luck = runtime.talent_bonus("luck")
 		weapon_manager.relic_luck_bonus = luck
+	if level_system != null:
+		level_system.set_experience_gain_bonus(experience_gain_bonus)
 
 func _physics_process(delta: float) -> void:
 	if level_up_pending or victory_pending:
@@ -320,23 +329,11 @@ func _on_hud_tick() -> void:
 func _spawn_enemy(archetype: String, spawn_position := Vector2.INF) -> void:
 	var enemy: Node2D = _take_from_pool("enemy", EnemyScene)
 	if spawn_position == Vector2.INF:
-		enemy.global_position = _random_spawn_position(archetype)
+		enemy.global_position = EnemySpawner.random_spawn_position(player.global_position, player.world_size, archetype)
 	else:
 		enemy.global_position = spawn_position
-	enemy.target = player
-	enemy.set("world_size", player.world_size)
 	enemies.add_child(enemy)
-	enemy.configure(archetype, current_wave)
-	_maybe_apply_enemy_affix(enemy, archetype)
-	_connect_enemy_pool_signals(enemy)
-
-func _random_spawn_position(archetype: String) -> Vector2:
-	var world_size: Vector2 = player.world_size
-	if archetype == "boss" or archetype == "bullet_boss":
-		return (player.global_position + Vector2(0, -420.0)).clamp(Vector2(96, 96), world_size - Vector2(96, 96))
-	var angle := randf() * TAU
-	var distance := randf_range(800.0, 1100.0)
-	return (player.global_position + Vector2.RIGHT.rotated(angle) * distance).clamp(Vector2(64, 64), world_size - Vector2(64, 64))
+	EnemySpawner.configure_enemy(enemy, player, archetype, current_wave, Callable(self, "_connect_enemy_pool_signals"), Callable(self, "_maybe_apply_enemy_affix"))
 
 func _check_projectile_hits() -> void:
 	for projectile in projectiles.get_children():
@@ -396,10 +393,13 @@ func _check_weapon_zone_hits() -> void:
 func _damage_enemy(enemy: Node2D, amount: float, source: Node = null) -> void:
 	if enemy.health <= 0.0:
 		return
-	var final_amount := amount
 	var critical := false
-	if weapon_manager.has_method("roll_critical") and weapon_manager.roll_critical():
+	if damage_system != null and damage_system.roll_critical(weapon_manager.crit_chance):
 		critical = true
+	var final_amount := amount
+	if damage_system != null:
+		final_amount = damage_system.compute_final_damage(amount, critical, weapon_manager.crit_damage_multiplier)
+	elif critical:
 		final_amount *= weapon_manager.crit_damage_multiplier
 	enemy.take_damage(final_amount)
 	_apply_weapon_traits(enemy, final_amount, source)
@@ -419,12 +419,12 @@ func _damage_enemy(enemy: Node2D, amount: float, source: Node = null) -> void:
 			for nearby in _nearby_enemies(enemy.global_position, 160.0):
 				if nearby != enemy and nearby.global_position.distance_to(enemy.global_position) <= 125.0:
 					_damage_enemy(nearby, 60.0)
-			if enemy.archetype == "boss":
-				_on_boss_defeated()
-			elif enemy.archetype == "bullet_boss":
-				_spawn_pickup(enemy.global_position, "slot")
-			elif enemy.get_instance_id() == bounty_target_id:
-				_on_bounty_completed()
+		if enemy.archetype == "boss":
+			_on_boss_defeated()
+		elif enemy.archetype == "bullet_boss":
+			_spawn_pickup(enemy.global_position, "slot")
+		elif run_event_system != null and enemy.get_instance_id() == run_event_system.bounty_target_id:
+			run_event_system.bounty_completed()
 		elif str(enemy.get("elite_affix")) == "splinter":
 			_spawn_enemy("chaser", enemy.global_position + Vector2.RIGHT.rotated(randf() * TAU) * 24.0)
 
@@ -586,8 +586,11 @@ func _apply_weapon_traits(enemy: Node2D, damage_amount: float, source: Node) -> 
 	if traits.is_empty():
 		return
 	if traits.has("lifesteal"):
-			if randf() < weapon_manager.lifesteal_chance:
+		if damage_system != null:
+			if damage_system.apply_lifesteal(weapon_manager.lifesteal_chance, weapon_manager.lifesteal_amount):
 				player.heal(weapon_manager.lifesteal_amount)
+		elif randf() < weapon_manager.lifesteal_chance:
+			player.heal(weapon_manager.lifesteal_amount)
 	if traits.has("slow") and enemy.has_method("apply_slow"):
 		enemy.apply_slow(float(traits["slow"]), 1.35)
 	if traits.has("knockback") and enemy.has_method("apply_knockback"):
@@ -603,19 +606,25 @@ func _start_slot_machine() -> void:
 	hud.show_slot_machine(bundle.get("reels", []), bundle.get("options", []), bool(bundle.get("jackpot", false)))
 
 func _gain_experience(amount: int) -> void:
-	amount = int(round(float(amount) * (1.0 + experience_gain_bonus)))
-	experience += amount
-	while experience >= experience_to_next:
-		experience -= experience_to_next
-		level += 1
-		experience_to_next = int(float(level * level) * 3.0)
+	if level_system == null:
+		return
+	var gained_levels := level_system.gain_experience(amount)
+	level = level_system.level
+	experience = level_system.experience
+	experience_to_next = level_system.experience_to_next
+	rerolls_left = level_system.rerolls_left
+	while gained_levels > 0:
+		gained_levels -= 1
 		_start_level_up()
 		if level_up_pending:
 			return
 
 func _start_level_up() -> void:
 	level_up_pending = true
-	rerolls_left = 1 + level / 8
+	if upgrade_system != null:
+		rerolls_left = upgrade_system.rerolls_for_level(level)
+	elif level_system != null:
+		rerolls_left = level_system.start_level_up()
 	get_tree().paused = true
 	_spawn_particle_burst(player.global_position, "level_up")
 	hud.show_level_up(weapon_manager.build_upgrade_options())
@@ -678,7 +687,10 @@ func _nearby_enemies(position: Vector2, radius: float) -> Array:
 	return result
 
 func _update_hud() -> void:
-	hud.set_stats(player.health, player.max_health, score, elapsed, enemies.get_child_count(), level, experience, experience_to_next, current_wave, max_wave, wave_time_left, weapon_manager.get_summary(), weapon_manager.get_passive_summary(), player_damage_multiplier * weapon_manager.current_attack_power(), weapon_manager.crit_chance, weapon_manager.crit_damage_multiplier, weapon_manager.lifesteal_chance, weapon_manager.lifesteal_amount, run_magic_crystals)
+	var display_level := level_system.level if level_system != null else level
+	var display_experience := level_system.experience if level_system != null else experience
+	var display_experience_to_next := level_system.experience_to_next if level_system != null else experience_to_next
+	hud.set_stats(player.health, player.max_health, score, elapsed, enemies.get_child_count(), display_level, display_experience, display_experience_to_next, current_wave, max_wave, wave_time_left, weapon_manager.get_summary(), weapon_manager.get_passive_summary(), player_damage_multiplier * weapon_manager.current_attack_power(), weapon_manager.crit_chance, weapon_manager.crit_damage_multiplier, weapon_manager.lifesteal_chance, weapon_manager.lifesteal_amount, run_magic_crystals)
 	if hud.has_method("set_loadout_icons"):
 		hud.set_loadout_icons(weapon_manager.get_weapon_icon_ids(), weapon_manager.get_passive_icon_ids())
 	if hud.has_method("set_performance_stats"):
@@ -703,7 +715,7 @@ func _on_wave_changed(wave: int, new_max_wave: int, time_left: float) -> void:
 	max_wave = new_max_wave
 	wave_time_left = time_left
 	if wave > 1 and wave != previous_wave:
-		_expire_wave_effects()
+		run_event_system.expire_wave_effects()
 		var alert_text := "第 %02d 波来袭" % wave
 		var is_major := false
 		if wave % 10 == 0 and wave < 30:
@@ -718,7 +730,7 @@ func _on_wave_changed(wave: int, new_max_wave: int, time_left: float) -> void:
 		hud.show_wave_alert(alert_text, is_major)
 		sfx_manager.play_ui("boss_wave" if is_major else "wave")
 		_vibrate_wave(is_major)
-		_maybe_offer_wave_event(wave, is_major)
+		run_event_system.maybe_offer_wave_event(wave, is_major)
 
 func _on_boss_wave_started() -> void:
 	hud.hint.text = "第30波：深渊君王降临。"
@@ -759,7 +771,7 @@ func _on_boss_defeated() -> void:
 
 func _on_upgrade_selected(upgrade_id: String) -> void:
 	if str(upgrade_id).begins_with("event:"):
-		_resolve_event_choice(upgrade_id)
+		run_event_system.resolve_event_choice(upgrade_id)
 		return
 	_resolve_upgrade(upgrade_id)
 	level_up_pending = false
@@ -792,11 +804,12 @@ func _apply_passive_side_effect(result: Dictionary) -> void:
 				player.invulnerability_duration += float(data.get("amount", 0.0))
 
 func _on_reroll_requested() -> void:
-	if not level_up_pending or rerolls_left <= 0:
+	if not level_up_pending or level_system == null or not level_system.consume_reroll():
 		return
-	rerolls_left -= 1
+	rerolls_left = level_system.rerolls_left
 	hud.show_level_up(weapon_manager.build_upgrade_options())
 	hud.set_rerolls_left(rerolls_left)
+
 
 func _resolve_upgrade(upgrade_id: String) -> void:
 	var result: Dictionary = weapon_manager.apply_upgrade(upgrade_id)
@@ -869,149 +882,6 @@ func _vibrate_jackpot() -> void:
 	if not mobile_profile_enabled:
 		return
 	Input.vibrate_handheld(90, 0.9)
-
-func _maybe_offer_wave_event(wave: int, is_major: bool) -> void:
-	if is_major or wave >= 30 or wave % 4 != 0:
-		return
-	if level_up_pending or victory_pending:
-		return
-	pending_event = _build_wave_event()
-	if pending_event.is_empty():
-		return
-	level_up_pending = true
-	get_tree().paused = true
-	hud.show_level_up(
-		pending_event.get("options", []),
-		str(pending_event.get("title", "命运事件")),
-		str(pending_event.get("prompt", "做出你的选择。")),
-		false
-	)
-
-func _build_wave_event() -> Dictionary:
-	var event_roll := randi() % 3
-	if event_roll == 0:
-		return {
-			"title": "临时祝福",
-			"prompt": "选择一份仅持续 1 波的祝福。",
-			"options": [
-				{"id": "event:blessing_damage", "title": "血潮祝福", "description": "本波伤害 +25%。", "category": "事件", "rarity": "稀有"},
-				{"id": "event:blessing_cooldown", "title": "疾咒祝福", "description": "本波冷却缩短 20%。", "category": "事件", "rarity": "稀有"},
-				{"id": "event:blessing_haste", "title": "迅影祝福", "description": "本波移速 +50，弹速 +20%。", "category": "事件", "rarity": "稀有"}
-			]
-		}
-	if event_roll == 1:
-		return {
-			"title": "精英悬赏",
-			"prompt": "接受悬赏，击杀目标精英即可获得额外升级。",
-			"options": [
-				{"id": "event:bounty_accept", "title": "接受悬赏", "description": "刷出一只悬赏精英，击杀后获得 1 次额外升级。", "category": "事件", "rarity": "史诗"},
-				{"id": "event:bounty_skip", "title": "放弃悬赏", "description": "跳过本次高风险机会。", "category": "事件", "rarity": "普通"}
-			]
-		}
-	return {
-		"title": "恶魔交易",
-		"prompt": "付出代价，换取立刻爆发的力量。",
-		"options": [
-			{"id": "event:bargain_blood", "title": "血契", "description": "失去 25% 最大生命，永久伤害 +30%。", "category": "事件", "rarity": "史诗"},
-			{"id": "event:bargain_level", "title": "邪馈", "description": "失去 15% 最大生命，立刻获得一次额外升级。", "category": "事件", "rarity": "传说"},
-			{"id": "event:bargain_refuse", "title": "拒绝", "description": "保持现状，不接受恶魔提议。", "category": "事件", "rarity": "普通"}
-		]
-	}
-
-func _resolve_event_choice(event_id: String) -> void:
-	match event_id:
-		"event:blessing_damage":
-			_apply_blessing("damage", current_wave + 1)
-		"event:blessing_cooldown":
-			_apply_blessing("cooldown", current_wave + 1)
-		"event:blessing_haste":
-			_apply_blessing("haste", current_wave + 1)
-		"event:bounty_accept":
-			_start_bounty_event()
-		"event:bounty_skip":
-			hud.hint.text = "你放弃了本轮悬赏。"
-		"event:bargain_blood":
-			_sacrifice_health(0.25)
-			player_damage_multiplier *= 1.30
-			hud.hint.text = "血契生效：永久伤害大幅提升。"
-		"event:bargain_level":
-			_sacrifice_health(0.15)
-			hud.hint.text = "邪馈生效：立刻赐予额外升级。"
-			pending_event.clear()
-			level_up_pending = false
-			hud.hide_level_up()
-			get_tree().paused = false
-			_start_level_up()
-			return
-		"event:bargain_refuse":
-			hud.hint.text = "你拒绝了恶魔的交易。"
-	pending_event.clear()
-	level_up_pending = false
-	hud.hide_level_up()
-	get_tree().paused = false
-	_update_hud()
-
-func _apply_blessing(blessing_id: String, expires_wave: int) -> void:
-	active_blessings[blessing_id] = expires_wave
-	match blessing_id:
-		"damage":
-			player_damage_multiplier *= 1.25
-			hud.hint.text = "血潮祝福：本波伤害暴涨。"
-		"cooldown":
-			weapon_manager.set_temporary_bonus("cooldown", 0.80)
-			hud.hint.text = "疾咒祝福：本波攻击更密集。"
-		"haste":
-			player.speed += 50.0
-			weapon_manager.set_temporary_bonus("projectile_speed", 1.20)
-			hud.hint.text = "迅影祝福：本波移动与弹速提升。"
-
-func _expire_wave_effects() -> void:
-	if bounty_target_id != -1 and current_wave > bounty_expires_wave:
-		bounty_target_id = -1
-		bounty_expires_wave = -1
-		hud.hint.text = "悬赏过期，目标逃入黑暗。"
-	if active_blessings.has("damage") and int(active_blessings["damage"]) <= current_wave:
-		active_blessings.erase("damage")
-		player_damage_multiplier /= 1.25
-	if active_blessings.has("cooldown") and int(active_blessings["cooldown"]) <= current_wave:
-		active_blessings.erase("cooldown")
-		weapon_manager.set_temporary_bonus("cooldown", 1.0)
-	if active_blessings.has("haste") and int(active_blessings["haste"]) <= current_wave:
-		active_blessings.erase("haste")
-		player.speed -= 50.0
-		weapon_manager.set_temporary_bonus("projectile_speed", 1.0)
-
-func _start_bounty_event() -> void:
-	var enemy: Node2D = _take_from_pool("enemy", EnemyScene)
-	enemy.global_position = _random_spawn_position("elite")
-	enemy.target = player
-	enemies.add_child(enemy)
-	enemy.configure("elite", current_wave + 2)
-	enemy.scale *= 1.22
-	enemy.health *= 1.35
-	enemy.max_health *= 1.35
-	enemy.xp_reward += 8
-	_connect_enemy_pool_signals(enemy)
-	bounty_target_id = enemy.get_instance_id()
-	bounty_expires_wave = current_wave + 1
-	hud.hint.text = "悬赏开启：击杀猩红精英，立即获得额外升级。"
-
-func _on_bounty_completed() -> void:
-	bounty_target_id = -1
-	bounty_expires_wave = -1
-	level_up_pending = true
-	get_tree().paused = true
-	hud.show_level_up(
-		weapon_manager.build_upgrade_options(4),
-		"悬赏完成",
-		"猩红悬赏已兑现，挑一项战利品。",
-		false
-	)
-	sfx_manager.play_ui("jackpot")
-
-func _sacrifice_health(percent: float) -> void:
-	player.health = max(1.0, player.health - player.max_health * percent)
-	player.damaged.emit(player.health)
 
 func _spawn_hit_effect(position: Vector2, amount: float, critical := false) -> void:
 	var text := "%d" % int(round(amount))
@@ -1122,91 +992,31 @@ func _calculate_early_exit_magic_crystals() -> int:
 	return max(1, wave_reward + time_reward + kill_reward)
 
 func _setup_object_pool() -> void:
-	pool_root = Node.new()
-	pool_root.name = "ObjectPool"
-	add_child(pool_root)
-	_prewarm_object_pools(20)
-
-func _prewarm_object_pools(count: int) -> void:
-	_prewarm_pool("enemy", EnemyScene, count)
-	_prewarm_pool("projectile", ProjectileScene, count)
-	_prewarm_pool("enemy_projectile", EnemyProjectileScene, count)
-	_prewarm_pool("xp_gem", XPGemScene, count)
-	_prewarm_pool("pickup", PickupItemScene, count)
-	_prewarm_pool("effect", null, count)
-	_prewarm_pool("weapon_zone", WeaponZoneScene, count)
-	_prewarm_pool("particle_burst", ParticleBurstScene, count)
-	_prewarm_ui_burst_pool(count)
-
-func _prewarm_pool(pool_id: String, scene: PackedScene, count: int) -> void:
-	var pool: Array = object_pools.get(pool_id, [])
-	while pool.size() < count:
-		var node: Node2D
-		if scene != null:
-			node = scene.instantiate()
-		else:
-			node = Node2D.new()
-			node.set_script(CombatEffectScript)
-			node.set_meta("pool_id", "effect")
-		node.hide()
-		node.process_mode = Node.PROCESS_MODE_DISABLED
-		node.set_process(false)
-		node.set_physics_process(false)
-		pool_root.add_child(node)
-		pool.append(node)
-	object_pools[pool_id] = pool
-
-func _prewarm_ui_burst_pool(count: int) -> void:
-	var pool: Array = object_pools.get("ui_burst", [])
-	while pool.size() < count:
-		var rect := ColorRect.new()
-		rect.color = Color.WHITE
-		rect.hide()
-		rect.process_mode = Node.PROCESS_MODE_DISABLED
-		rect.set_process(false)
-		rect.set_physics_process(false)
-		pool_root.add_child(rect)
-		pool.append(rect)
-	object_pools["ui_burst"] = pool
-
+	object_pool = Node.new()
+	object_pool.set_script(ObjectPoolScript)
+	add_child(object_pool)
+	if object_pool.has_method("setup"):
+		object_pool.setup(self, pool_limits, {
+			"enemy": EnemyScene,
+			"projectile": ProjectileScene,
+			"enemy_projectile": EnemyProjectileScene,
+			"xp_gem": XPGemScene,
+			"pickup": PickupItemScene,
+			"effect": null,
+			"weapon_zone": WeaponZoneScene,
+			"particle_burst": ParticleBurstScene
+		}, CombatEffectScript, 20)
+	if object_pool.has_method("_prewarm_ui_burst_pool"):
+		object_pool._prewarm_ui_burst_pool(20)
 func _take_from_pool(pool_id: String, scene: PackedScene) -> Node2D:
-	var pool: Array = object_pools.get(pool_id, [])
-	while not pool.is_empty():
-		var node: Node2D = pool.pop_back()
-		if is_instance_valid(node):
-			if node.get_parent() != null:
-				node.get_parent().remove_child(node)
-			node.process_mode = Node.PROCESS_MODE_INHERIT
-			node.show()
-			node.set_process(true)
-			node.set_physics_process(true)
-			object_pools[pool_id] = pool
-			return node
-	object_pools[pool_id] = pool
-	if scene == null:
-		return Node2D.new()
-	return scene.instantiate()
+	if object_pool != null and object_pool.has_method("take_from_pool"):
+		return object_pool.take_from_pool(pool_id, scene)
+	var fallback := Node2D.new()
+	return fallback
 
 func _return_to_pool(node: Node, pool_id: String) -> void:
-	if node == null or not is_instance_valid(node):
-		return
-	if node.get_parent() == pool_root:
-		return
-	var pool: Array = object_pools.get(pool_id, [])
-	if node.get_parent() != null:
-		node.get_parent().remove_child(node)
-	if pool_id == "enemy" and node.has_method("set_batched_visual_enabled"):
-		node.set_batched_visual_enabled(false)
-	if pool.size() >= int(pool_limits.get(pool_id, 32)):
-		node.queue_free()
-		return
-	node.hide()
-	node.process_mode = Node.PROCESS_MODE_DISABLED
-	node.set_process(false)
-	node.set_physics_process(false)
-	pool_root.add_child(node)
-	pool.append(node)
-	object_pools[pool_id] = pool
+	if object_pool != null and object_pool.has_method("return_to_pool"):
+		object_pool.return_to_pool(node, pool_id)
 
 func _take_projectile_from_pool() -> Node2D:
 	return _take_from_pool("projectile", ProjectileScene)
@@ -1222,22 +1032,8 @@ func _take_effect_from_pool() -> Node2D:
 	return effect
 
 func _take_ui_burst_from_pool() -> ColorRect:
-	var pool: Array = object_pools.get("ui_burst", [])
-	while not pool.is_empty():
-		var node: Node = pool.pop_back()
-		if is_instance_valid(node):
-			if node.get_parent() != null:
-				node.get_parent().remove_child(node)
-			node.process_mode = Node.PROCESS_MODE_INHERIT
-			node.show()
-			node.set_process(true)
-			node.set_physics_process(true)
-			object_pools["ui_burst"] = pool
-			var rect := node as ColorRect
-			rect.modulate = Color.WHITE
-			rect.rotation = 0.0
-			return rect
-	object_pools["ui_burst"] = pool
+	if object_pool != null and object_pool.has_method("take_ui_burst_from_pool"):
+		return object_pool.take_ui_burst_from_pool()
 	var replacement := ColorRect.new()
 	replacement.color = Color.WHITE
 	return replacement
@@ -1275,6 +1071,9 @@ func _on_particle_burst_despawn_requested(burst: GPUParticles2D) -> void:
 	_return_to_pool(burst, "particle_burst")
 
 func _return_effect_child(node: Node) -> void:
+	if object_pool != null and object_pool.has_method("return_effect_child"):
+		object_pool.return_effect_child(node)
+		return
 	if node is GPUParticles2D:
 		_return_to_pool(node, "particle_burst")
 	elif node.has_signal("despawn_requested"):

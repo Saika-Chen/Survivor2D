@@ -7,6 +7,7 @@ signal summon_requested(archetype: String, spawn_position: Vector2)
 const DOTween := preload("res://scripts/utils/dotween.gd")
 const TextureFactory := preload("res://scripts/visuals/texture_factory.gd")
 const DuelystTheme := preload("res://scripts/visuals/duelyst_theme.gd")
+const EnemyConfigScript := preload("res://scripts/enemy/EnemyConfig.gd")
 
 @export var speed := 115.0
 @export var max_health := 24.0
@@ -61,82 +62,17 @@ func configure(new_archetype: String, wave: int) -> void:
 	knockback_velocity = Vector2.ZERO
 	hit_flash_timer = 0.0
 	batched_visual_enabled = false
-	elite_scale_multiplier = 2.0 if archetype == "elite" else 1.0
-	fire_timer = 1.6
-	special_timer = 5.0
-	wave_power = 1.0 + float(max(0, wave - 1)) * 0.24 + float(max(0, wave - 1) * max(0, wave - 1)) * 0.006
-	var w := float(max(0, wave - 1))
-	var health_power := 1.0 + w * 0.25 + w * w * 0.01
-	match archetype:
-		"shooter":
-			speed = 82.0
-			max_health = 80.0 * health_power
-			radius = 15.0
-			contact_damage = 12.0 * wave_power
-			fire_timer = 1.1
-		"buffer":
-			speed = 68.0
-			max_health = 120.0 * health_power
-			radius = 18.0
-			contact_damage = 10.0 * wave_power
-		"elite":
-			speed = 92.0
-			max_health = 8000.0 * health_power
-			radius = 28.0
-			contact_damage = 30.0 * wave_power
-		"charger":
-			speed = 155.0 + wave * 2.2
-			max_health = 90.0 * health_power
-			radius = 14.0
-			contact_damage = 24.0 * wave_power
-		"tank":
-			speed = 54.0
-			max_health = 500.0 * health_power
-			radius = 34.0
-			contact_damage = 34.0 * wave_power
-		"splitter":
-			speed = 104.0
-			max_health = 130.0 * health_power
-			radius = 19.0
-			contact_damage = 17.0 * wave_power
-		"bomber":
-			speed = 126.0
-			max_health = 110.0 * health_power
-			radius = 17.0
-			contact_damage = 45.0 * wave_power
-		"boss":
-			speed = 76.0
-			max_health = 60000.0 * health_power
-			radius = 56.0
-			contact_damage = 46.0 + max(0, wave - 1) * 2.5
-			fire_timer = max(0.58, 0.9 - wave * 0.012)
-			special_timer = max(1.8, 3.2 - wave * 0.04)
-		"bullet_boss":
-			speed = 64.0
-			max_health = 80000.0 * health_power
-			radius = 62.0
-			contact_damage = 42.0 * wave_power
-			fire_timer = 0.34
-			special_timer = 1.65
-			projectile_burst_count = 24
-			boss_variant = _boss_variant_for_wave(wave)
-		_:
-			speed = 115.0 + wave * 2.0
-			max_health = 100.0 * health_power
-			radius = 16.0
-			contact_damage = 18.0 * wave_power
-	var base_xp := 1
-	match archetype:
-		"shooter": xp_reward = base_xp * 2
-		"buffer": xp_reward = base_xp * 3
-		"elite": xp_reward = base_xp * 15
-		"charger": xp_reward = base_xp * 2
-		"tank": xp_reward = base_xp * 5
-		"splitter": xp_reward = base_xp * 3
-		"bomber": xp_reward = base_xp * 3
-		"boss": xp_reward = base_xp * 50
-		"bullet_boss": xp_reward = base_xp * 40
-		_: xp_reward = base_xp
+	var stats: Dictionary = EnemyConfigScript.for_archetype(archetype, wave)
+	speed = float(stats.get("speed", speed))
+	max_health = float(stats.get("max_health", max_health))
+	radius = float(stats.get("radius", radius))
+	contact_damage = float(stats.get("contact_damage", contact_damage))
+	xp_reward = int(stats.get("xp_reward", xp_reward))
+	fire_timer = float(stats.get("fire_timer", fire_timer))
+	special_timer = float(stats.get("special_timer", special_timer))
+	projectile_burst_count = int(stats.get("projectile_burst_count", projectile_burst_count))
+	boss_variant = str(stats.get("boss_variant", boss_variant))
+	elite_scale_multiplier = float(stats.get("elite_scale_multiplier", 1.0))
 	radius *= collision_scale_multiplier * elite_scale_multiplier
 	health = max_health
 	if archetype == "elite":

@@ -1,0 +1,443 @@
+{
+  "weapons": {
+    "blood_bolt": {
+      "title": "血咒弹",
+      "description": "追踪最近敌人的暗红弹丸。",
+      "evolved_id": "crimson_judgment",
+      "passive": "blood_pact",
+      "evolved_title": "猩红审判",
+      "sfx": "projectile",
+      "tags": ["血系", "弹幕"],
+      "traits": {}
+    },
+    "ghost_blades": {
+      "title": "幽魂环刃",
+      "description": "在身边切割敌人的灵刃。",
+      "evolved_id": "wraith_storm",
+      "passive": "spirit_core",
+      "evolved_title": "亡魂风暴",
+      "sfx": "orbit",
+      "tags": ["灵能", "环绕"],
+      "traits": {}
+    },
+    "shadow_spikes": {
+      "title": "暗影地刺",
+      "description": "在敌人脚下爆发尖刺。",
+      "evolved_id": "abyss_scream",
+      "passive": "abyss_mark",
+      "evolved_title": "深渊尖啸",
+      "sfx": "summon",
+      "tags": ["深渊", "区域"],
+      "traits": {
+        "slow": 0.88
+      }
+    },
+    "soul_nova": {
+      "title": "灵火新星",
+      "description": "周期性释放范围爆炸。",
+      "evolved_id": "soul_eclipse",
+      "passive": "ember_crown",
+      "evolved_title": "灭魂日冕",
+      "sfx": "burst",
+      "tags": ["爆裂", "区域"],
+      "traits": {}
+    },
+    "doom_laser": {
+      "title": "毁灭激光",
+      "description": "贯穿直线的猩红光束，命中击退敌人。",
+      "evolved_id": "void_lance",
+      "passive": "lens_of_ruin",
+      "evolved_title": "虚空长枪",
+      "sfx": "laser",
+      "tags": ["灵能", "弹幕"],
+      "traits": {
+        "knockback": 2.2
+      }
+    },
+    "plague_bomb": {
+      "title": "瘟疫炸弹",
+      "description": "投向怪群并爆炸，减速敌人。",
+      "evolved_id": "grave_mortar",
+      "passive": "powder_heart",
+      "evolved_title": "坟场迫击炮",
+      "sfx": "burst",
+      "tags": ["爆裂", "弹幕"],
+      "traits": {
+        "slow": 0.78
+      }
+    },
+    "abyss_tentacle": {
+      "title": "深渊触手",
+      "description": "从脚下抽打附近敌人，减速敌人。",
+      "evolved_id": "old_one_grasp",
+      "passive": "eldritch_eye",
+      "evolved_title": "旧日之握",
+      "sfx": "summon",
+      "tags": ["深渊", "召唤"],
+      "traits": {
+        "slow": 0.82
+      }
+    },
+    "reaping_scythe": {
+      "title": "穿魂镰刃",
+      "description": "穿透敌群的镰刃，命中击退敌人。",
+      "evolved_id": "death_carousel",
+      "passive": "bone_wheel",
+      "evolved_title": "死神回廊",
+      "sfx": "orbit",
+      "tags": ["血系", "环绕"],
+      "traits": {
+        "knockback": 4.2
+      }
+    },
+    "grave_familiar": {
+      "title": "幽冥僚机",
+      "description": "环绕玩家并自动射击的灵能僚机。",
+      "evolved_id": "seraph_swarm",
+      "passive": "clockwork_heart",
+      "evolved_title": "炽天使蜂群",
+      "sfx": "summon",
+      "tags": ["召唤", "弹幕"],
+      "traits": {
+        "slow": 0.92
+      }
+    },
+    "frost_orb": {
+      "title": "寒星法球",
+      "description": "向敌群发射冰冷星弹，减速敌人。",
+      "evolved_id": "glacial_comet",
+      "passive": "frost_heart",
+      "evolved_title": "冰墓彗星",
+      "sfx": "projectile",
+      "tags": ["灵能", "弹幕"],
+      "traits": {
+        "slow": 0.68
+      }
+    },
+    "thunder_chain": {
+      "title": "雷链符文",
+      "description": "在敌群中落下连锁雷击。",
+      "evolved_id": "storm_crown",
+      "passive": "storm_totem",
+      "evolved_title": "风暴王冠",
+      "sfx": "laser",
+      "tags": ["灵能", "区域"],
+      "traits": {}
+    },
+    "void_mines": {
+      "title": "虚空地雷",
+      "description": "在身边布下吞噬减速的虚空陷阱。",
+      "evolved_id": "event_horizon",
+      "passive": "void_anchor",
+      "evolved_title": "事件视界",
+      "sfx": "burst",
+      "tags": ["深渊", "区域"],
+      "traits": {
+        "slow": 0.72
+      }
+    }
+  },
+  "passives": {
+    "blood_pact": {
+      "title": "鲜血契约",
+      "description": "攻击 +0.08，暴击率 +3%，吸血率 +2%。血咒弹满级后可合体。",
+      "tags": ["血系"]
+    },
+    "spirit_core": {
+      "title": "幽魂核心",
+      "description": "冷却 -4%，移速 +6。幽魂环刃满级后可合体。",
+      "tags": ["灵能"]
+    },
+    "abyss_mark": {
+      "title": "深渊印记",
+      "description": "范围 +4%，吸附 +10。暗影地刺满级后可合体。",
+      "tags": ["深渊"]
+    },
+    "ember_crown": {
+      "title": "余烬王冠",
+      "description": "攻击 +0.07，最大生命 +8。灵火新星满级后可合体。",
+      "tags": ["爆裂"]
+    },
+    "lens_of_ruin": {
+      "title": "毁灭透镜",
+      "description": "弹速 +6%，暴击伤害 +12%。毁灭激光满级后可合体。",
+      "tags": ["灵能"]
+    },
+    "powder_heart": {
+      "title": "火药心脏",
+      "description": "范围 +5%，最大生命 +8。瘟疫炸弹满级后可合体。",
+      "tags": ["爆裂"]
+    },
+    "eldritch_eye": {
+      "title": "邪神之眼",
+      "description": "冷却 -5%，受伤无敌 +0.08秒。深渊触手满级后可合体。",
+      "tags": ["深渊"]
+    },
+    "bone_wheel": {
+      "title": "骨质轮轴",
+      "description": "攻击 +0.06，暴击率 +4%，吸血量 +1。穿魂镰刃满级后可合体。",
+      "tags": ["血系"]
+    },
+    "clockwork_heart": {
+      "title": "机心圣核",
+      "description": "弹速 +10%，移速 +14。幽冥僚机满级后可合体。",
+      "tags": ["召唤"]
+    },
+    "frost_heart": {
+      "title": "霜心棱镜",
+      "description": "弹速 +5%，范围 +4%。寒星法球满级后可合体。",
+      "tags": ["灵能"]
+    },
+    "storm_totem": {
+      "title": "风暴图腾",
+      "description": "冷却 -4%，暴击率 +3%。雷链符文满级后可合体。",
+      "tags": ["灵能"]
+    },
+    "void_anchor": {
+      "title": "虚空锚点",
+      "description": "范围 +5%，吸附 +12，攻击 +0.05。虚空地雷满级后可合体。",
+      "tags": ["深渊"]
+    }
+  },
+  "passive_effects": {
+    "blood_pact": [
+      {
+        "stat": "damage",
+        "amount": 0.08
+      },
+      {
+        "stat": "crit_chance",
+        "amount": 0.03
+      },
+      {
+        "stat": "lifesteal_chance",
+        "amount": 0.02
+      }
+    ],
+    "spirit_core": [
+      {
+        "stat": "cooldown",
+        "amount": 0.04
+      },
+      {
+        "stat": "speed_flat",
+        "amount": 6.0
+      }
+    ],
+    "abyss_mark": [
+      {
+        "stat": "radius",
+        "amount": 0.04
+      },
+      {
+        "stat": "magnet_flat",
+        "amount": 10.0
+      }
+    ],
+    "ember_crown": [
+      {
+        "stat": "damage",
+        "amount": 0.07
+      },
+      {
+        "stat": "health_flat",
+        "amount": 8.0
+      }
+    ],
+    "lens_of_ruin": [
+      {
+        "stat": "projectile_speed",
+        "amount": 0.06
+      },
+      {
+        "stat": "crit_damage",
+        "amount": 0.12
+      }
+    ],
+    "powder_heart": [
+      {
+        "stat": "radius",
+        "amount": 0.05
+      },
+      {
+        "stat": "health_flat",
+        "amount": 8.0
+      }
+    ],
+    "eldritch_eye": [
+      {
+        "stat": "cooldown",
+        "amount": 0.05
+      },
+      {
+        "stat": "invulnerability_flat",
+        "amount": 0.08
+      }
+    ],
+    "bone_wheel": [
+      {
+        "stat": "damage",
+        "amount": 0.06
+      },
+      {
+        "stat": "crit_chance",
+        "amount": 0.04
+      },
+      {
+        "stat": "lifesteal_amount",
+        "amount": 1.0
+      }
+    ],
+    "clockwork_heart": [
+      {
+        "stat": "projectile_speed",
+        "amount": 0.05
+      },
+      {
+        "stat": "speed_flat",
+        "amount": 8.0
+      }
+    ],
+    "frost_heart": [
+      {
+        "stat": "projectile_speed",
+        "amount": 0.05
+      },
+      {
+        "stat": "radius",
+        "amount": 0.04
+      }
+    ],
+    "storm_totem": [
+      {
+        "stat": "cooldown",
+        "amount": 0.04
+      },
+      {
+        "stat": "crit_chance",
+        "amount": 0.03
+      }
+    ],
+    "void_anchor": [
+      {
+        "stat": "radius",
+        "amount": 0.05
+      },
+      {
+        "stat": "magnet_flat",
+        "amount": 12.0
+      },
+      {
+        "stat": "damage",
+        "amount": 0.05
+      }
+    ]
+  },
+  "fusion_recipes": {
+    "crimson_reaper": {
+      "weapons": ["blood_bolt", "reaping_scythe"],
+      "title": "血神之怒",
+      "description": "超大范围镰刃风暴 + 追踪血弹，吸血翻倍。",
+      "tags": ["血系", "环绕", "弹幕"]
+    },
+    "psychic_tempest": {
+      "weapons": ["ghost_blades", "doom_laser"],
+      "title": "灵能风暴",
+      "description": "环刃龙卷 + 多重贯穿激光，弹速暴增。",
+      "tags": ["灵能", "环绕", "弹幕"]
+    },
+    "abyss_lord": {
+      "weapons": ["shadow_spikes", "abyss_tentacle"],
+      "title": "深渊主宰",
+      "description": "触手抽打同时爆发地刺，冷却极短。",
+      "tags": ["深渊", "区域", "召唤"]
+    },
+    "ruin_nova": {
+      "weapons": ["soul_nova", "plague_bomb"],
+      "title": "毁灭新星",
+      "description": "灵火爆裂 + 连锁瘟疫爆炸，范围巨大。",
+      "tags": ["爆裂", "区域", "弹幕"]
+    },
+    "frost_legion": {
+      "weapons": ["grave_familiar", "frost_orb"],
+      "title": "冰墓军团",
+      "description": "冰星僚机群同时射击 + 冰弹减速，数量翻倍。",
+      "tags": ["召唤", "弹幕", "灵能"]
+    },
+    "void_thunder": {
+      "weapons": ["thunder_chain", "void_mines"],
+      "title": "虚空雷狱",
+      "description": "雷链 + 虚空地雷同时触发，范围覆盖全屏。",
+      "tags": ["区域", "灵能", "深渊"]
+    }
+  },
+  "synergy_definitions": {
+    "血系": {
+      "2": {
+        "title": "血系共鸣",
+        "description": "血系武器伤害提高 18%。",
+        "damage": 1.18
+      },
+      "3": {
+        "title": "血河狂潮",
+        "description": "血系与环绕伤害再提高，冷却缩短。",
+        "damage": 1.30,
+        "cooldown": 0.92
+      }
+    },
+    "灵能": {
+      "2": {
+        "title": "灵能回路",
+        "description": "弹丸速度提高 18%，冷却缩短。",
+        "projectile_speed": 1.18,
+        "cooldown": 0.94
+      },
+      "3": {
+        "title": "虚空矩阵",
+        "description": "灵能武器射程感更强，伤害提高。",
+        "projectile_speed": 1.28,
+        "damage": 1.16
+      }
+    },
+    "爆裂": {
+      "2": {
+        "title": "爆裂引信",
+        "description": "范围扩大 20%。",
+        "radius": 1.20
+      },
+      "3": {
+        "title": "余烬狂欢",
+        "description": "范围与伤害双提升。",
+        "radius": 1.32,
+        "damage": 1.18
+      }
+    },
+    "深渊": {
+      "2": {
+        "title": "深渊咒印",
+        "description": "范围扩大 16%，冷却缩短。",
+        "radius": 1.16,
+        "cooldown": 0.94
+      },
+      "3": {
+        "title": "旧神低语",
+        "description": "深渊技能大幅提速。",
+        "radius": 1.24,
+        "cooldown": 0.88
+      }
+    },
+    "召唤": {
+      "2": {
+        "title": "召唤协奏",
+        "description": "僚机与召唤物攻速提高。",
+        "cooldown": 0.90
+      },
+      "3": {
+        "title": "军团降临",
+        "description": "召唤伤害与弹速同步提高。",
+        "damage": 1.18,
+        "projectile_speed": 1.18
+      }
+    }
+  }
+}

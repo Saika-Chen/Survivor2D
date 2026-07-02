@@ -4,6 +4,8 @@ const DOTween := preload("res://scripts/utils/dotween.gd")
 const UITheme := preload("res://scripts/ui/ui_theme.gd")
 const TextureFactory := preload("res://scripts/visuals/texture_factory.gd")
 const CJKFontTheme := preload("res://scripts/ui/cjk_font_theme.gd")
+const HUDControllerScript := preload("res://scripts/ui/HUDController.gd")
+const UpgradePanelScript := preload("res://scripts/ui/UpgradePanel.gd")
 
 signal upgrade_selected(upgrade_id: String)
 signal restart_requested
@@ -172,20 +174,7 @@ func _input(event: InputEvent) -> void:
 		_update_joystick(event.position)
 
 func set_stats(health: float, max_health: float, score: int, elapsed: float, enemy_count: int, level: int, experience: int, experience_to_next: int, wave: int, max_wave: int, time_left: float, weapons_summary: String, relics_summary: String, attack_power := 1.0, crit_chance := 0.0, crit_damage := 1.0, lifesteal_chance := 0.0, lifesteal_amount := 0.0, run_magic_crystals := 0) -> void:
-	var seconds := int(elapsed) % 60
-	var minutes := int(elapsed) / 60
-	stats.text = "⚔ 攻击力 %.0f\n✦ 暴击 %.0f%%  爆伤 x%.2f\n🩸 吸血 %.0f%%  +%.0f\n◆ 本局魔晶 %d\n☠ 击杀 %d\n◷ %02d:%02d\n◆ 敌人 %d" % [
-		max(1.0, attack_power),
-		crit_chance * 100.0,
-		crit_damage,
-		lifesteal_chance * 100.0,
-		lifesteal_amount,
-		run_magic_crystals,
-		score,
-		minutes,
-		seconds,
-		enemy_count
-	]
+	stats.text = HUDControllerScript.format_stats(health, max_health, score, elapsed, enemy_count, level, experience, experience_to_next, wave, max_wave, time_left, attack_power, crit_chance, crit_damage, lifesteal_chance, lifesteal_amount, run_magic_crystals)
 	xp_bar.max_value = experience_to_next
 	xp_bar.value = experience
 	level_label.text = "Lv.%d" % level
@@ -215,15 +204,7 @@ func set_performance_stats(fps: float, enemy_count: int, projectile_count: int, 
 	]
 
 func _stack_summary(summary: String, separator: String, max_lines: int) -> String:
-	var pieces := summary.split(separator, false)
-	if pieces.size() <= 1:
-		return summary
-	var visible: Array[String] = []
-	for index in range(min(max_lines, pieces.size())):
-		visible.append(pieces[index])
-	if pieces.size() > max_lines:
-		visible.append("+%d" % (pieces.size() - max_lines))
-	return "\n".join(visible)
+	return HUDControllerScript.stack_summary(summary, separator, max_lines)
 
 func _build_performance_hud() -> void:
 	performance_label = Label.new()
@@ -432,13 +413,9 @@ func show_level_up(options: Array, title := "升级暂停：选择一项继续",
 	slot_machine.hide()
 	level_up_title.text = title
 	level_up_prompt.text = prompt_text
-	var event_mode := true
-	for option in options:
-		if not str(option.get("id", "")).begins_with("event:"):
-			event_mode = false
-			break
+	var event_mode := UpgradePanelScript.is_event_mode(options)
 	_apply_panel_style(event_mode, title)
-	hint.text = "选择 1 - 6" if options.size() > 3 else ("选择 1 / 2 / 3，或按 R 重新 Roll。" if allow_reroll else "选择 1 / 2 / 3")
+	hint.text = UpgradePanelScript.level_up_hint_text(options, allow_reroll)
 	for option_index in range(upgrade_buttons.size()):
 		if option_index >= options.size():
 			upgrade_buttons[option_index].hide()
@@ -446,12 +423,11 @@ func show_level_up(options: Array, title := "升级暂停：选择一项继续",
 			continue
 		var option: Dictionary = options[option_index]
 		var rarity := str(option.get("rarity", "普通"))
-		var category := str(option.get("category", "属性"))
 		current_upgrade_ids.append(option["id"])
 		upgrade_buttons[option_index].show()
 		upgrade_buttons[option_index].disabled = false
 		upgrade_buttons[option_index].alignment = HORIZONTAL_ALIGNMENT_LEFT
-		upgrade_buttons[option_index].text = "      [%s] %s\n      %s" % [rarity, option["title"], option["description"]]
+		upgrade_buttons[option_index].text = UpgradePanelScript.option_text(option)
 		_set_button_icon(upgrade_buttons[option_index], _option_icon_id(option), 46.0)
 		var option_font_color := Color(1.0, 0.98, 0.82, 1.0)
 		upgrade_buttons[option_index].add_theme_color_override("font_color", option_font_color)
@@ -567,19 +543,6 @@ func _option_icon_id(option: Dictionary) -> String:
 				return "stat:%s" % parts[1]
 	return str(option.get("icon_id", ""))
 
-func _category_icon(category: String) -> String:
-	match category:
-		"武器":
-			return "⚔"
-		"强化":
-			return "▲"
-		"遗物":
-			return "◆"
-		"合体":
-			return "★"
-		_:
-			return "✦"
-
 func _is_inside_joystick(position: Vector2) -> bool:
 	if fullscreen_joystick_enabled:
 		return mobile_controls_enabled and get_viewport().get_visible_rect().has_point(position)
@@ -674,9 +637,7 @@ func _show_jackpot_rewards() -> void:
 			upgrade_buttons[option_index].hide()
 			continue
 		var option: Dictionary = slot_reward_options[option_index]
-		var rarity := str(option.get("rarity", "普通"))
-		var category := str(option.get("category", "属性"))
-		var text := "%s\n[%s] %s\n%s" % [_category_icon(category), rarity, option["title"], option["description"]]
+		var text := UpgradePanelScript.jackpot_text(option)
 		jackpot_reward_ids.append(str(option["id"]))
 		upgrade_buttons[option_index].show()
 		upgrade_buttons[option_index].disabled = true

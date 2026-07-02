@@ -4,6 +4,8 @@ const MAX_WEAPON_LEVEL := 7
 const MAX_WEAPONS := 3
 const SIZE_SCALE := 1.0
 const WingmanScene := preload("res://scenes/weapons/Wingman.tscn")
+const WeaponDatabaseScript := preload("res://scripts/weapons/WeaponDatabase.gd")
+const WeaponConfigScript := preload("res://scripts/weapons/WeaponConfig.gd")
 
 signal weapon_fired(weapon_family: String)
 
@@ -18,14 +20,7 @@ var weapons := {"blood_bolt": 1}
 var evolved := {}
 var super_evolved := {}
 var passives := {}
-var fusion_recipes := {
-	"crimson_reaper": {"weapons": ["blood_bolt", "reaping_scythe"], "title": "血神之怒", "description": "超大范围镰刃风暴 + 追踪血弹，吸血翻倍。", "tags": ["血系", "环绕", "弹幕"]},
-	"psychic_tempest": {"weapons": ["ghost_blades", "doom_laser"], "title": "灵能风暴", "description": "环刃龙卷 + 多重贯穿激光，弹速暴增。", "tags": ["灵能", "环绕", "弹幕"]},
-	"abyss_lord": {"weapons": ["shadow_spikes", "abyss_tentacle"], "title": "深渊主宰", "description": "触手抽打同时爆发地刺，冷却极短。", "tags": ["深渊", "区域", "召唤"]},
-	"ruin_nova": {"weapons": ["soul_nova", "plague_bomb"], "title": "毁灭新星", "description": "灵火爆裂 + 连锁瘟疫爆炸，范围巨大。", "tags": ["爆裂", "区域", "弹幕"]},
-	"frost_legion": {"weapons": ["grave_familiar", "frost_orb"], "title": "冰墓军团", "description": "冰星僚机群同时射击 + 冰弹减速，数量翻倍。", "tags": ["召唤", "弹幕", "灵能"]},
-	"void_thunder": {"weapons": ["thunder_chain", "void_mines"], "title": "虚空雷狱", "description": "雷链 + 虚空地雷同时触发，范围覆盖全屏。", "tags": ["区域", "灵能", "深渊"]},
-}
+var fusion_recipes: Dictionary = {}
 var timers := {}
 var orbit_angle := 0.0
 var damage_multiplier := 1.0
@@ -59,158 +54,26 @@ var passive_health_bonus := 8.0
 var lifesteal_chance := 0.50
 var lifesteal_amount := 10.0
 
-var definitions := {
-	"blood_bolt": {
-		"title": "血咒弹",
-		"description": "追踪最近敌人的暗红弹丸。",
-		"evolved_id": "crimson_judgment",
-		"passive": "blood_pact",
-		"evolved_title": "猩红审判",
-		"sfx": "projectile",
-		"tags": ["血系", "弹幕"],
-		"traits": {}
-	},
-	"ghost_blades": {
-		"title": "幽魂环刃",
-		"description": "在身边切割敌人的灵刃。",
-		"evolved_id": "wraith_storm",
-		"passive": "spirit_core",
-		"evolved_title": "亡魂风暴",
-		"sfx": "orbit",
-		"tags": ["灵能", "环绕"],
-		"traits": {}
-	},
-	"shadow_spikes": {
-		"title": "暗影地刺",
-		"description": "在敌人脚下爆发尖刺。",
-		"evolved_id": "abyss_scream",
-		"passive": "abyss_mark",
-		"evolved_title": "深渊尖啸",
-		"sfx": "summon",
-		"tags": ["深渊", "区域"],
-		"traits": {"slow": 0.88}
-	},
-	"soul_nova": {
-		"title": "灵火新星",
-		"description": "周期性释放范围爆炸。",
-		"evolved_id": "soul_eclipse",
-		"passive": "ember_crown",
-		"evolved_title": "灭魂日冕",
-		"sfx": "burst",
-		"tags": ["爆裂", "区域"],
-		"traits": {}
-	},
-	"doom_laser": {
-		"title": "毁灭激光",
-		"description": "贯穿直线的猩红光束，命中击退敌人。",
-		"evolved_id": "void_lance",
-		"passive": "lens_of_ruin",
-		"evolved_title": "虚空长枪",
-		"sfx": "laser",
-		"tags": ["灵能", "弹幕"],
-		"traits": {"knockback": 2.2}
-	},
-	"plague_bomb": {
-		"title": "瘟疫炸弹",
-		"description": "投向怪群并爆炸，减速敌人。",
-		"evolved_id": "grave_mortar",
-		"passive": "powder_heart",
-		"evolved_title": "坟场迫击炮",
-		"sfx": "burst",
-		"tags": ["爆裂", "弹幕"],
-		"traits": {"slow": 0.78}
-	},
-	"abyss_tentacle": {
-		"title": "深渊触手",
-		"description": "从脚下抽打附近敌人，减速敌人。",
-		"evolved_id": "old_one_grasp",
-		"passive": "eldritch_eye",
-		"evolved_title": "旧日之握",
-		"sfx": "summon",
-		"tags": ["深渊", "召唤"],
-		"traits": {"slow": 0.82}
-	},
-	"reaping_scythe": {
-		"title": "穿魂镰刃",
-		"description": "穿透敌群的镰刃，命中击退敌人。",
-		"evolved_id": "death_carousel",
-		"passive": "bone_wheel",
-		"evolved_title": "死神回廊",
-		"sfx": "orbit",
-		"tags": ["血系", "环绕"],
-		"traits": {"knockback": 4.2}
-	},
-	"grave_familiar": {
-		"title": "幽冥僚机",
-		"description": "环绕玩家并自动射击的灵能僚机。",
-		"evolved_id": "seraph_swarm",
-		"passive": "clockwork_heart",
-		"evolved_title": "炽天使蜂群",
-		"sfx": "summon",
-		"tags": ["召唤", "弹幕"],
-		"traits": {"slow": 0.92}
-	},
-	"frost_orb": {
-		"title": "寒星法球",
-		"description": "向敌群发射冰冷星弹，减速敌人。",
-		"evolved_id": "glacial_comet",
-		"passive": "frost_heart",
-		"evolved_title": "冰墓彗星",
-		"sfx": "projectile",
-		"tags": ["灵能", "弹幕"],
-		"traits": {"slow": 0.68}
-	},
-	"thunder_chain": {
-		"title": "雷链符文",
-		"description": "在敌群中落下连锁雷击。",
-		"evolved_id": "storm_crown",
-		"passive": "storm_totem",
-		"evolved_title": "风暴王冠",
-		"sfx": "laser",
-		"tags": ["灵能", "区域"],
-		"traits": {}
-	},
-	"void_mines": {
-		"title": "虚空地雷",
-		"description": "在身边布下吞噬减速的虚空陷阱。",
-		"evolved_id": "event_horizon",
-		"passive": "void_anchor",
-		"evolved_title": "事件视界",
-		"sfx": "burst",
-		"tags": ["深渊", "区域"],
-		"traits": {"slow": 0.72}
-	}
-}
+var definitions: Dictionary = {}
+var passive_definitions: Dictionary = {}
+var passive_effects: Dictionary = {}
+var synergy_definitions: Dictionary = {}
 
-var passive_definitions := {
-		"blood_pact": {"title": "鲜血契约", "description": "攻击 +0.08，暴击率 +3%，吸血率 +2%。血咒弹满级后可合体。", "tags": ["血系"]},
-		"spirit_core": {"title": "幽魂核心", "description": "冷却 -4%，移速 +6。幽魂环刃满级后可合体。", "tags": ["灵能"]},
-		"abyss_mark": {"title": "深渊印记", "description": "范围 +4%，吸附 +10。暗影地刺满级后可合体。", "tags": ["深渊"]},
-		"ember_crown": {"title": "余烬王冠", "description": "攻击 +0.07，最大生命 +8。灵火新星满级后可合体。", "tags": ["爆裂"]},
-		"lens_of_ruin": {"title": "毁灭透镜", "description": "弹速 +6%，暴击伤害 +12%。毁灭激光满级后可合体。", "tags": ["灵能"]},
-		"powder_heart": {"title": "火药心脏", "description": "范围 +5%，最大生命 +8。瘟疫炸弹满级后可合体。", "tags": ["爆裂"]},
-		"eldritch_eye": {"title": "邪神之眼", "description": "冷却 -5%，受伤无敌 +0.08秒。深渊触手满级后可合体。", "tags": ["深渊"]},
-		"bone_wheel": {"title": "骨质轮轴", "description": "攻击 +0.06，暴击率 +4%，吸血量 +1。穿魂镰刃满级后可合体。", "tags": ["血系"]},
-	"clockwork_heart": {"title": "机心圣核", "description": "弹速 +10%，移速 +14。幽冥僚机满级后可合体。", "tags": ["召唤"]},
-		"frost_heart": {"title": "霜心棱镜", "description": "弹速 +5%，范围 +4%。寒星法球满级后可合体。", "tags": ["灵能"]},
-		"storm_totem": {"title": "风暴图腾", "description": "冷却 -4%，暴击率 +3%。雷链符文满级后可合体。", "tags": ["灵能"]},
-		"void_anchor": {"title": "虚空锚点", "description": "范围 +5%，吸附 +12，攻击 +0.05。虚空地雷满级后可合体。", "tags": ["深渊"]}
-	}
+var weapon_database: WeaponDatabase
+var weapon_config
 
-var passive_effects := {
-		"blood_pact": [{"stat": "damage", "amount": 0.08}, {"stat": "crit_chance", "amount": 0.03}, {"stat": "lifesteal_chance", "amount": 0.02}],
-		"spirit_core": [{"stat": "cooldown", "amount": 0.04}, {"stat": "speed_flat", "amount": 6.0}],
-		"abyss_mark": [{"stat": "radius", "amount": 0.04}, {"stat": "magnet_flat", "amount": 10.0}],
-		"ember_crown": [{"stat": "damage", "amount": 0.07}, {"stat": "health_flat", "amount": 8.0}],
-		"lens_of_ruin": [{"stat": "projectile_speed", "amount": 0.06}, {"stat": "crit_damage", "amount": 0.12}],
-		"powder_heart": [{"stat": "radius", "amount": 0.05}, {"stat": "health_flat", "amount": 8.0}],
-		"eldritch_eye": [{"stat": "cooldown", "amount": 0.05}, {"stat": "invulnerability_flat", "amount": 0.08}],
-		"bone_wheel": [{"stat": "damage", "amount": 0.06}, {"stat": "crit_chance", "amount": 0.04}, {"stat": "lifesteal_amount", "amount": 1.0}],
-		"clockwork_heart": [{"stat": "projectile_speed", "amount": 0.05}, {"stat": "speed_flat", "amount": 8.0}],
-		"frost_heart": [{"stat": "projectile_speed", "amount": 0.05}, {"stat": "radius", "amount": 0.04}],
-		"storm_totem": [{"stat": "cooldown", "amount": 0.04}, {"stat": "crit_chance", "amount": 0.03}],
-		"void_anchor": [{"stat": "radius", "amount": 0.05}, {"stat": "magnet_flat", "amount": 12.0}, {"stat": "damage", "amount": 0.05}]
-	}
+func _init() -> void:
+	weapon_database = WeaponDatabaseScript.new()
+	weapon_config = WeaponConfigScript.new()
+	weapon_config.load_from_database(weapon_database)
+	_load_weapon_database()
+
+func _load_weapon_database() -> void:
+	definitions = weapon_config.definitions.duplicate(true)
+	passive_definitions = weapon_config.passive_definitions.duplicate(true)
+	passive_effects = weapon_config.passive_effects.duplicate(true)
+	fusion_recipes = weapon_config.fusion_recipes.duplicate(true)
+	synergy_definitions = weapon_config.synergy_definitions.duplicate(true)
 
 func _ensure_passive_health_bonus() -> void:
 	for passive_id in passive_definitions.keys():
@@ -231,29 +94,6 @@ func _ensure_passive_health_bonus() -> void:
 			passive_data["description"] = description + " 生命 +8。"
 			passive_definitions[passive_id] = passive_data
 
-var synergy_definitions := {
-	"血系": {
-		"2": {"title": "血系共鸣", "description": "血系武器伤害提高 18%。", "damage": 1.18},
-		"3": {"title": "血河狂潮", "description": "血系与环绕伤害再提高，冷却缩短。", "damage": 1.30, "cooldown": 0.92}
-	},
-	"灵能": {
-		"2": {"title": "灵能回路", "description": "弹丸速度提高 18%，冷却缩短。", "projectile_speed": 1.18, "cooldown": 0.94},
-		"3": {"title": "虚空矩阵", "description": "灵能武器射程感更强，伤害提高。", "projectile_speed": 1.28, "damage": 1.16}
-	},
-	"爆裂": {
-		"2": {"title": "爆裂引信", "description": "范围扩大 20%。", "radius": 1.20},
-		"3": {"title": "余烬狂欢", "description": "范围与伤害双提升。", "radius": 1.32, "damage": 1.18}
-	},
-	"深渊": {
-		"2": {"title": "深渊咒印", "description": "范围扩大 16%，冷却缩短。", "radius": 1.16, "cooldown": 0.94},
-		"3": {"title": "旧神低语", "description": "深渊技能大幅提速。", "radius": 1.24, "cooldown": 0.88}
-	},
-	"召唤": {
-		"2": {"title": "召唤协奏", "description": "僚机与召唤物攻速提高。", "cooldown": 0.90},
-		"3": {"title": "军团降临", "description": "召唤伤害与弹速同步提高。", "damage": 1.18, "projectile_speed": 1.18}
-	}
-}
-
 func setup(new_player: Node2D, new_enemies: Node2D, new_projectiles: Node2D, new_weapon_zones: Node2D, new_projectile_scene: PackedScene, new_zone_scene: PackedScene, starting_weapon := "blood_bolt") -> void:
 	player = new_player
 	enemies = new_enemies
@@ -267,7 +107,6 @@ func setup(new_player: Node2D, new_enemies: Node2D, new_projectiles: Node2D, new
 	weapon_focus = {starting_weapon: 1}
 	evolved.clear()
 	passives.clear()
-	_ensure_passive_health_bonus()
 	timers.clear()
 	orbit_angle = 0.0
 	damage_multiplier = 1.0
@@ -316,192 +155,40 @@ func tick(delta: float) -> void:
 			timers[weapon_id] = _cooldown_for(weapon_id)
 
 func build_upgrade_options(count: int = 3) -> Array:
-	var options: Array = []
-	for weapon_id in weapons.keys():
-		if _can_evolve(weapon_id):
-			var definition: Dictionary = definitions[weapon_id]
-			if not evolved.has(weapon_id):
-				options.append({
-					"id": "evolve:%s" % weapon_id,
-					"title": "进化：%s" % definition["evolved_title"],
-					"description": "%s Lv5 → 进化终极武器。" % definition["title"],
-					"category": "进化",
-					"weight": 120
-				})
-			else:
-				options.append({
-					"id": "super_evolve:%s" % weapon_id,
-					"title": "超进化：%s·改" % definition["evolved_title"],
-					"description": "%s Lv7 → 二次进化，威力暴涨。" % definition["title"],
-					"category": "超进化",
-					"weight": 100
-				})
-
-	var fusion_id: String = _can_fuse()
-	if fusion_id != "":
-		var recipe: Dictionary = fusion_recipes[fusion_id]
-		options.append({
-			"id": "fusion:%s" % fusion_id,
-			"title": "融合：%s" % recipe["title"],
-			"description": "%s + %s → %s" % [definitions[recipe["weapons"][0]]["title"], definitions[recipe["weapons"][1]]["title"], recipe["title"]],
-			"category": "融合",
-			"weight": 200
-		})
-
-	for candidate_weapon_id in definitions.keys():
-		if not weapons.has(candidate_weapon_id):
-			if weapons.size() >= MAX_WEAPONS:
-				continue
-			var definition: Dictionary = definitions[candidate_weapon_id]
-			options.append({"id": "unlock:%s" % candidate_weapon_id, "title": "新武器：%s" % definition["title"], "description": definition["description"], "category": "武器", "weight": 48})
-		elif int(weapons[candidate_weapon_id]) < MAX_WEAPON_LEVEL:
-			var definition: Dictionary = definitions[candidate_weapon_id]
-			options.append({"id": "upgrade:%s" % candidate_weapon_id, "title": "强化：%s" % definition["title"], "description": "等级 %d → %d" % [weapons[candidate_weapon_id], int(weapons[candidate_weapon_id]) + 1], "category": "强化", "weight": 95})
-
-	for passive_id in passive_definitions.keys():
-		if not passives.has(passive_id):
-			var passive: Dictionary = passive_definitions[passive_id]
-			options.append({"id": "passive:%s" % passive_id, "title": "遗物：%s" % passive["title"], "description": passive["description"], "category": "遗物", "weight": 8 + int(round(relic_luck_bonus))})
-
-	options.append({"id": "stat:damage", "title": "黑血碎片", "description": "攻击 +0.06。", "category": "符文", "weight": 46})
-	options.append({"id": "stat:minor_damage", "title": "钝刃磨石", "description": "攻击 +0.02。", "category": "符文", "weight": 68})
-	options.append({"id": "stat:crit_chance", "title": "裂纹骰骨", "description": "暴击率 +1%。", "category": "符文", "weight": 42})
-	options.append({"id": "stat:cooldown", "title": "短咒残页", "description": "冷却缩短 3%。", "category": "符文", "weight": 42})
-	options.append({"id": "stat:radius", "title": "粗糙尺规", "description": "非终极武器范围 +4%。", "category": "符文", "weight": 44})
-	options.append({"id": "stat:projectile_speed", "title": "轻羽弹道", "description": "弹丸速度 +5%。", "category": "符文", "weight": 36})
-	options.append({"id": "stat:vitality", "title": "旧布绷带", "description": "生命 +8，移速 +4。", "category": "符文", "weight": 46})
-	options.append({"id": "stat:magnet", "title": "磁石耳坠", "description": "经验拾取范围 +10。", "category": "符文", "weight": 44})
-	options.append({"id": "stat:tiny_magnet", "title": "铁屑磁针", "description": "经验拾取范围 +4。", "category": "符文", "weight": 52})
-	options.append({"id": "stat:tiny_cooldown", "title": "风干墨条", "description": "冷却缩短 1%。", "category": "符文", "weight": 38})
-	options.append({"id": "stat:heal", "title": "生命药瓶", "description": "恢复 18% 最大生命。", "category": "符文", "weight": 48})
-	options.append({"id": "stat:invulnerability", "title": "薄纱护符", "description": "受伤无敌 +0.05秒。", "category": "符文", "weight": 52})
-	options.append({"id": "stat:nothing", "title": "发暗铜片", "description": "也许下一次会有好运。", "category": "符文", "weight": 38})
-
-	return _pick_options(options, count)
+	return weapon_config.build_upgrade_options(weapons, evolved, super_evolved, passives, weapon_focus, relic_luck_bonus, count)
 
 
 func build_slot_bundle() -> Dictionary:
-	var jackpot := randf() * 100.0 < slot_jackpot_chance_percent
-	var reels: Array[String] = []
-	if jackpot:
-		var symbol: String = ["weapon", "relic", "power", "fate", "jackpot"][randi() % 5]
-		reels = [symbol, symbol, symbol]
-	else:
-		for index in range(3):
-			reels.append(["weapon", "relic", "power", "fate", "jackpot"][randi() % 5])
-	return {
-		"reels": reels,
-		"jackpot": jackpot,
-		"options": build_upgrade_options(6 if jackpot else 3),
-		"auto_claim_all": jackpot
-	}
+	return weapon_config.build_slot_bundle(weapons, evolved, super_evolved, passives, weapon_focus, relic_luck_bonus, slot_jackpot_chance_percent)
 
 func apply_upgrade(option_id: String) -> Dictionary:
-	var parts := option_id.split(":")
-	if parts.size() < 2:
-		return {"kind": "none"}
-	var kind := parts[0]
-	var value := parts[1]
-	match kind:
-		"unlock":
-			weapons[value] = 1
-			weapon_focus[value] = int(weapon_focus.get(value, 0)) + 1
-			if value == "grave_familiar":
-				_sync_wingmen(true)
-			_refresh_synergies()
-			return {"kind": "weapon", "weapon": value}
-		"upgrade":
-			weapons[value] = min(MAX_WEAPON_LEVEL, int(weapons.get(value, 1)) + 1)
-			weapon_focus[value] = int(weapon_focus.get(value, 0)) + 1
-			if value == "grave_familiar":
-				_sync_wingmen(true)
-			_refresh_synergies()
-			return {"kind": "weapon", "weapon": value}
-		"passive":
-			passives[value] = true
-			_apply_passive_effect(value)
-			_refresh_synergies()
-			return {"kind": "passive", "passive": value, "effects": passive_effects.get(value, [])}
-		"evolve":
-			var definition: Dictionary = definitions[value]
-			evolved[value] = true
-			weapon_focus[value] = int(weapon_focus.get(value, 0)) + 2
-			if value == "grave_familiar":
-				_sync_wingmen(true)
-			_refresh_synergies()
-			return {"kind": "evolve", "weapon": value, "evolved_id": definition["evolved_id"]}
-		"super_evolve":
-			super_evolved[value] = true
-			weapon_focus[value] = int(weapon_focus.get(value, 0)) + 3
-			if value == "grave_familiar":
-				_sync_wingmen(true)
-			_refresh_synergies()
-			return {"kind": "super_evolve", "weapon": value}
-		"fusion":
-			var recipe: Dictionary = fusion_recipes[value]
-			weapons.erase(recipe["weapons"][0])
-			weapons.erase(recipe["weapons"][1])
-			evolved.erase(recipe["weapons"][0])
-			evolved.erase(recipe["weapons"][1])
-			super_evolved.erase(recipe["weapons"][0])
-			super_evolved.erase(recipe["weapons"][1])
-			weapons[value] = 10
-			_refresh_synergies()
-			return {"kind": "fusion", "weapon": value, "fusion_id": value}
-		"stat":
-			return {"kind": "stat", "stat": value}
-	return {"kind": "none"}
+	var result: Dictionary = weapon_config.apply_upgrade(option_id, weapons, evolved, super_evolved, passives, weapon_focus)
+	var kind := str(result.get("kind", "none"))
+	if kind in ["weapon", "evolve", "super_evolve"]:
+		if str(result.get("weapon", "")) == "grave_familiar":
+			_sync_wingmen(true)
+		_refresh_synergies()
+	elif kind == "passive":
+		_apply_passive_effect(str(result.get("passive", "")))
+		_refresh_synergies()
+	elif kind == "fusion":
+		_refresh_synergies()
+	return result
 
 func get_summary() -> String:
-	var pieces: Array[String] = []
-	for weapon_id in weapons.keys():
-		var title: String
-		if fusion_recipes.has(weapon_id):
-			title = fusion_recipes[weapon_id]["title"]
-		else:
-			title = definitions[weapon_id]["title"]
-		var suffix: String
-		if super_evolved.has(weapon_id):
-			suffix = "★★"
-		elif evolved.has(weapon_id):
-			suffix = "★"
-		else:
-			suffix = "Lv%d" % int(weapons[weapon_id])
-		pieces.append("%s %s" % [title, suffix])
-	return " | ".join(pieces)
+	return weapon_config.get_summary(weapons, evolved, super_evolved)
 
 func get_weapon_icon_ids() -> Array[String]:
-	var ids: Array[String] = []
-	for weapon_id in weapons.keys():
-		ids.append(str(weapon_id))
-	return ids
+	return weapon_config.get_weapon_icon_ids(weapons)
 
 func current_attack_power() -> float:
-	var base_damage := 36.0  # blood_bolt Lv1 base
-	var primary_weapon_id: String = locked_weapon_id if locked_weapon_id != "" else "blood_bolt"
-	if weapons.has(primary_weapon_id):
-		var level := int(weapons[primary_weapon_id])
-		base_damage = 28.0 + level * 8.0  # matches _fire_blood_bolt formula
-		if evolved.has(primary_weapon_id):
-			base_damage *= 1.9
-	return base_damage * damage_multiplier * synergy_damage_bonus * temp_damage_bonus
+	return weapon_config.current_attack_power(weapons, evolved, locked_weapon_id, damage_multiplier, synergy_damage_bonus, temp_damage_bonus)
 
 func get_passive_summary() -> String:
-	if passives.is_empty():
-		return "遗物: 无"
-	var pieces: Array[String] = []
-	for passive_id in passives.keys():
-		var passive: Dictionary = passive_definitions[passive_id]
-		pieces.append(passive["title"])
-	if not active_synergies.is_empty():
-		pieces.append("羁绊：" + " / ".join(active_synergies))
-	return "遗物: " + " / ".join(pieces)
+	return weapon_config.get_passive_summary(passives, active_synergies)
 
 func get_passive_icon_ids() -> Array[String]:
-	var ids: Array[String] = []
-	for passive_id in passives.keys():
-		ids.append(str(passive_id))
-	return ids
+	return weapon_config.get_passive_icon_ids(passives)
 
 func _fire_origin() -> Vector2:
 	return player.global_position + Vector2(-80, 80)
