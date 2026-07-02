@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://6dw580lt78e0"
-path="res://.godot/imported/generalspell_f4_supertaint.png-a82e6bbfead626d65b4c7b22b60d9099.ctex"
+path="res://.godot/imported/generalspell_f4_supertaint.png-84628955a9c540eb8b9d976a4e82d744.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/generalspell_f4_supertaint.png"
-dest_files=["res://.godot/imported/generalspell_f4_supertaint.png-a82e6bbfead626d65b4c7b22b60d9099.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/generalspell_f4_supertaint.png"
+dest_files=["res://.godot/imported/generalspell_f4_supertaint.png-84628955a9c540eb8b9d976a4e82d744.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bt2tlqjctjo5j"
-path="res://.godot/imported/artifact_f2_bloodleechmask.png-0ee4698d27dac7edc18cbd6e688806e4.ctex"
+path="res://.godot/imported/artifact_f2_bloodleechmask.png-ed701cbb553959b5fa04fec18c4e2c3a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/artifact_f2_bloodleechmask.png"
-dest_files=["res://.godot/imported/artifact_f2_bloodleechmask.png-0ee4698d27dac7edc18cbd6e688806e4.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/artifact_f2_bloodleechmask.png"
+dest_files=["res://.godot/imported/artifact_f2_bloodleechmask.png-ed701cbb553959b5fa04fec18c4e2c3a.ctex"]
 
 [params]
 

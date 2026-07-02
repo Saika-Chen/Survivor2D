@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c80s28s0elklj"
-path="res://.godot/imported/generalspell_f2_twilightsurge.png-1cd99cfbbf80b1287e77806f3919d7e2.ctex"
+path="res://.godot/imported/generalspell_f2_twilightsurge.png-1564d08e2471f846cf2822a5b71cc92e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/generalspell_f2_twilightsurge.png"
-dest_files=["res://.godot/imported/generalspell_f2_twilightsurge.png-1cd99cfbbf80b1287e77806f3919d7e2.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/generalspell_f2_twilightsurge.png"
+dest_files=["res://.godot/imported/generalspell_f2_twilightsurge.png-1564d08e2471f846cf2822a5b71cc92e.ctex"]
 
 [params]
 

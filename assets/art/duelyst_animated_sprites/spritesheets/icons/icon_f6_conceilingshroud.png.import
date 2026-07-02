@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dkwo3d5ind3ij"
-path="res://.godot/imported/icon_f6_conceilingshroud.png-345898f7eb53b2095f3556a31565b35a.ctex"
+path="res://.godot/imported/icon_f6_conceilingshroud.png-b44bc629eec3a6ac8bc1159e75d1ae22.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f6_conceilingshroud.png"
-dest_files=["res://.godot/imported/icon_f6_conceilingshroud.png-345898f7eb53b2095f3556a31565b35a.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f6_conceilingshroud.png"
+dest_files=["res://.godot/imported/icon_f6_conceilingshroud.png-b44bc629eec3a6ac8bc1159e75d1ae22.ctex"]
 
 [params]
 

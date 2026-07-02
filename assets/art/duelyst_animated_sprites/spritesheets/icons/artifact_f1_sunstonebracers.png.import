@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cua3y4h6jr2ms"
-path="res://.godot/imported/artifact_f1_sunstonebracers.png-8374c1b44c4bfd2d28f59bfb90b1e096.ctex"
+path="res://.godot/imported/artifact_f1_sunstonebracers.png-555847149b63538521c5494acd502994.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/artifact_f1_sunstonebracers.png"
-dest_files=["res://.godot/imported/artifact_f1_sunstonebracers.png-8374c1b44c4bfd2d28f59bfb90b1e096.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/artifact_f1_sunstonebracers.png"
+dest_files=["res://.godot/imported/artifact_f1_sunstonebracers.png-555847149b63538521c5494acd502994.ctex"]
 
 [params]
 

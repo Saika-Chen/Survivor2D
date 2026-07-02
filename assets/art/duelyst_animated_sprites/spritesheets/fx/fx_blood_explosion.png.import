@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjxvstv5cyo72"
-path="res://.godot/imported/fx_blood_explosion.png-4c9b4d918d3ad291220e5fcfefab2dbc.ctex"
+uid="uid://mfxhupl17pm3"
+path="res://.godot/imported/fx_blood_explosion.png-4e1c69e659895c3beffd8a707fe78775.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/fx/fx_blood_explosion.png"
-dest_files=["res://.godot/imported/fx_blood_explosion.png-4c9b4d918d3ad291220e5fcfefab2dbc.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/fx/fx_blood_explosion.png"
+dest_files=["res://.godot/imported/fx_blood_explosion.png-4e1c69e659895c3beffd8a707fe78775.ctex"]
 
 [params]
 

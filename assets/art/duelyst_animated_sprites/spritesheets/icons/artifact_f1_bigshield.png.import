@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dqqgwftv136fs"
-path="res://.godot/imported/artifact_f1_bigshield.png-df286a183a138eadc469ccf3c0912e0f.ctex"
+path="res://.godot/imported/artifact_f1_bigshield.png-29fe6f8f7a8d0afd3c1a100a99172208.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/artifact_f1_bigshield.png"
-dest_files=["res://.godot/imported/artifact_f1_bigshield.png-df286a183a138eadc469ccf3c0912e0f.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/artifact_f1_bigshield.png"
+dest_files=["res://.godot/imported/artifact_f1_bigshield.png-29fe6f8f7a8d0afd3c1a100a99172208.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dud1p43c6qbkx"
-path="res://.godot/imported/icon_f6_enfeeble.png-49e860a4cb32110ba443259b85d0e3e9.ctex"
+path="res://.godot/imported/icon_f6_enfeeble.png-dfd4ef869364038512fc95eec9ed408f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f6_enfeeble.png"
-dest_files=["res://.godot/imported/icon_f6_enfeeble.png-49e860a4cb32110ba443259b85d0e3e9.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f6_enfeeble.png"
+dest_files=["res://.godot/imported/icon_f6_enfeeble.png-dfd4ef869364038512fc95eec9ed408f.ctex"]
 
 [params]
 

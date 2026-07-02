@@ -17,15 +17,15 @@ func _ready() -> void:
 func play_weapon(weapon_family: String) -> void:
 	match weapon_family:
 		"projectile":
-			_play("weapon_projectile", 0.045, 0.82, 880.0, 0.14, 0.0, -12.0)
+			_play("weapon_projectile", 0.055, 0.58, 520.0, 0.04, 0.0, -17.0)
 		"laser":
-			_play("weapon_laser", 0.06, 0.75, 1320.0, 0.08, 0.0, -13.0)
+			_play("weapon_laser", 0.07, 0.52, 740.0, 0.03, 0.0, -18.0)
 		"burst":
-			_play("weapon_burst", 0.08, 0.72, 240.0, 0.55, 0.35, -11.0)
+			_play("weapon_burst", 0.09, 0.55, 190.0, 0.22, 0.18, -16.0)
 		"orbit":
-			_play("weapon_orbit", 0.05, 0.7, 560.0, 0.22, 0.0, -14.0)
+			_play("weapon_orbit", 0.06, 0.50, 420.0, 0.06, 0.0, -18.0)
 		"summon":
-			_play("weapon_summon", 0.05, 0.76, 460.0, 0.18, 0.0, -13.5)
+			_play("weapon_summon", 0.07, 0.50, 330.0, 0.04, 0.0, -17.5)
 
 func play_enemy_death(archetype: String) -> void:
 	if archetype == "boss":
@@ -45,6 +45,18 @@ func play_ui(kind: String) -> void:
 			_play("ui_jackpot", 0.09, 0.84, 980.0, 0.14, 0.0, -10.5)
 		"jackpot_step":
 			_play("ui_jackpot_step", 0.045, 0.74, 1180.0, 0.1, 0.0, -13.5)
+		"slot_tick":
+			_play("ui_slot_tick", 0.035, 0.42, 420.0, 0.05, 0.0, -18.0)
+
+func sound_profile(kind: String) -> Dictionary:
+	match kind:
+		"projectile":
+			return {"frequency": 520.0, "volume_db": -17.0}
+		"laser":
+			return {"frequency": 740.0, "volume_db": -18.0}
+		"slot_tick":
+			return {"frequency": 420.0, "volume_db": -18.0}
+	return {}
 
 func _play(sound_id: String, duration: float, amplitude: float, frequency: float, square_mix: float, noise_mix: float, volume_db: float) -> void:
 	var now := Time.get_ticks_msec()

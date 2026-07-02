@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cgtmo3wbjjsov"
-path="res://.godot/imported/icon_f2_mana_vortex.png-4614b87344cb2b946070ae60d73c8f4c.ctex"
+path="res://.godot/imported/icon_f2_mana_vortex.png-e6f47cf45eb72b60428d3399be5fd19f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f2_mana_vortex.png"
-dest_files=["res://.godot/imported/icon_f2_mana_vortex.png-4614b87344cb2b946070ae60d73c8f4c.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f2_mana_vortex.png"
+dest_files=["res://.godot/imported/icon_f2_mana_vortex.png-e6f47cf45eb72b60428d3399be5fd19f.ctex"]
 
 [params]
 

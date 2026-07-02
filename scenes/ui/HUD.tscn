@@ -11,7 +11,7 @@ offset_top = 66.0
 offset_right = 520.0
 offset_bottom = 214.0
 theme_override_font_sizes/font_size = 22
-theme_override_colors/font_color = Color(0.78, 0.96, 0.88, 1)
+theme_override_colors/font_color = Color(0.96, 1, 0.92, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
@@ -51,7 +51,7 @@ offset_top = 666.0
 offset_right = 780.0
 offset_bottom = 704.0
 theme_override_font_sizes/font_size = 18
-theme_override_colors/font_color = Color(0.82, 0.70, 0.92, 1)
+theme_override_colors/font_color = Color(0.96, 0.90, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
@@ -106,9 +106,9 @@ text = "第 02 波来袭"
 
 [node name="RelicsLabel" type="Label" parent="."]
 offset_left = 874.0
-offset_top = 58.0
+offset_top = 142.0
 offset_right = 1252.0
-offset_bottom = 142.0
+offset_bottom = 226.0
 theme_override_font_sizes/font_size = 16
 theme_override_colors/font_color = Color(0.92, 0.84, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
@@ -119,16 +119,16 @@ autowrap_mode = 2
 text = "遗物: 无"
 
 [node name="WeaponsLabel" type="Label" parent="."]
-offset_left = 380.0
-offset_top = 20.0
-offset_right = 850.0
-offset_bottom = 82.0
+offset_left = 874.0
+offset_top = 58.0
+offset_right = 1252.0
+offset_bottom = 138.0
 theme_override_font_sizes/font_size = 16
-theme_override_colors/font_color = Color(0.88, 0.82, 1, 1)
+theme_override_colors/font_color = Color(0.90, 0.98, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-horizontal_alignment = 1
+horizontal_alignment = 2
 autowrap_mode = 2
 text = "血咒弹 Lv1"
 
@@ -141,6 +141,16 @@ offset_right = 760.0
 offset_bottom = 650.0
 theme_override_font_sizes/font_size = 24
 text = "重新开始"
+
+[node name="MainMenuButton" type="Button" parent="."]
+visible = false
+process_mode = 3
+offset_left = 520.0
+offset_top = 660.0
+offset_right = 760.0
+offset_bottom = 716.0
+theme_override_font_sizes/font_size = 24
+text = "返回主菜单"
 
 [node name="MobileJoystick" type="Control" parent="."]
 visible = false
@@ -232,7 +242,7 @@ offset_top = 86.0
 offset_right = 674.0
 offset_bottom = 116.0
 theme_override_font_sizes/font_size = 18
-theme_override_colors/font_color = Color(0.74, 0.68, 0.82, 1)
+theme_override_colors/font_color = Color(0.96, 1, 0.92, 1)
 horizontal_alignment = 1
 text = "选择一种献祭回报，然后继续生存。"
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -242,7 +252,7 @@ offset_left = 40.0
 offset_top = 154.0
 offset_right = 704.0
 offset_bottom = 462.0
-columns = 3
+columns = 1
 theme_override_constants/separation = 18
 
 [node name="DamageButton" type="Button" parent="LevelUpOverlay/Panel/Options"]

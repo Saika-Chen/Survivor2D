@@ -1,24 +1,22 @@
 [gd_scene format=3 uid="uid://cjgutco4oscr5"]
 
 [ext_resource type="Script" uid="uid://chltgi50cdly" path="res://scripts/game/game.gd" id="1_game"]
-[ext_resource type="AudioStreamMP3" uid="uid://ciki77vxac21r" path="res://assets/audio/bgm.mp3" id="2_bgm"]
+[ext_resource type="AudioStream" uid="uid://ciki77vxac21r" path="res://assets/audio/bgm.mp3" id="2_bgm"]
 [ext_resource type="PackedScene" path="res://scenes/player/Player.tscn" id="2_player"]
 [ext_resource type="PackedScene" path="res://scenes/ui/HUD.tscn" id="3_hud"]
 [ext_resource type="Script" uid="uid://dfs50h0s1oqqv" path="res://scripts/game/arena.gd" id="4_arena"]
 [ext_resource type="Script" uid="uid://c7b76xf2ooxpk" path="res://scripts/weapons/weapon_manager.gd" id="5_weapon_manager"]
 [ext_resource type="Script" uid="uid://b1fpswecgtvd3" path="res://scripts/game/wave_director.gd" id="6_wave_director"]
-[ext_resource type="Script" uid="uid://c5u4vml0onj37" path="res://scripts/game/map_decor.gd" id="8_map_decor"]
 
 [node name="Main" type="Node2D" unique_id=2130296114]
 script = ExtResource("1_game")
 
 [node name="Arena" type="Node2D" parent="." unique_id=125699872]
 script = ExtResource("4_arena")
-
-[node name="MapDecor" type="Node2D" parent="." unique_id=190059015]
-script = ExtResource("8_map_decor")
+arena_size = Vector2(15600, 10800)
 
 [node name="Projectiles" type="Node2D" parent="." unique_id=1800689168]
+position = Vector2(73, -73)
 
 [node name="EnemyProjectiles" type="Node2D" parent="." unique_id=843895016]
 
@@ -44,10 +42,10 @@ volume_db = -10.0
 autoplay = true
 
 [node name="Player" parent="." unique_id=1669112802 instance=ExtResource("2_player")]
-position = Vector2(2600, 1800)
+position = Vector2(7800, 5400)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=384181705]
-zoom = Vector2(0.72, 0.72)
+zoom = Vector2(0.82, 0.82)
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bsev0rkvlydji"
-path="res://.godot/imported/icon_neutral_trinityheart.png-48a7a2ac97af7f8980eff38a0e9024e5.ctex"
+path="res://.godot/imported/icon_neutral_trinityheart.png-444c6017401483ab1b6052f343dbc820.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_neutral_trinityheart.png"
-dest_files=["res://.godot/imported/icon_neutral_trinityheart.png-48a7a2ac97af7f8980eff38a0e9024e5.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_neutral_trinityheart.png"
+dest_files=["res://.godot/imported/icon_neutral_trinityheart.png-444c6017401483ab1b6052f343dbc820.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://btt7tgbcdvdui"
-path="res://.godot/imported/fx_f3_fountainofyouth.png-2a26bfd412ed9d3f7c64f0d1571a7b33.ctex"
+uid="uid://duix08jvocid1"
+path="res://.godot/imported/fx_f3_fountainofyouth.png-afb7cdad60314350ef7a59a4b0909f62.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/fx/fx_f3_fountainofyouth.png"
-dest_files=["res://.godot/imported/fx_f3_fountainofyouth.png-2a26bfd412ed9d3f7c64f0d1571a7b33.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/fx/fx_f3_fountainofyouth.png"
+dest_files=["res://.godot/imported/fx_f3_fountainofyouth.png-afb7cdad60314350ef7a59a4b0909f62.ctex"]
 
 [params]
 

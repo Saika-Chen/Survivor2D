@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://lv7nd2kamkuc"
-path="res://.godot/imported/icon_f2_earthtwilight.png-3442755fe0990b70cade85de4de32f9a.ctex"
+path="res://.godot/imported/icon_f2_earthtwilight.png-7151b8ffcc35b5b9f8ac0dc239a5aaca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f2_earthtwilight.png"
-dest_files=["res://.godot/imported/icon_f2_earthtwilight.png-3442755fe0990b70cade85de4de32f9a.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f2_earthtwilight.png"
+dest_files=["res://.godot/imported/icon_f2_earthtwilight.png-7151b8ffcc35b5b9f8ac0dc239a5aaca.ctex"]
 
 [params]
 

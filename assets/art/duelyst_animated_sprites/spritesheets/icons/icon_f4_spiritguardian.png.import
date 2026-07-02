@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b1mirg5sciv57"
-path="res://.godot/imported/icon_f4_spiritguardian.png-87d85a3718f2904f160fbbb7911366ce.ctex"
+path="res://.godot/imported/icon_f4_spiritguardian.png-a6bed1cbc9b489141b5f51a772c0cbbe.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f4_spiritguardian.png"
-dest_files=["res://.godot/imported/icon_f4_spiritguardian.png-87d85a3718f2904f160fbbb7911366ce.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f4_spiritguardian.png"
+dest_files=["res://.godot/imported/icon_f4_spiritguardian.png-a6bed1cbc9b489141b5f51a772c0cbbe.ctex"]
 
 [params]
 

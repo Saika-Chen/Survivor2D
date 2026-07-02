@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cr33h87quf0kn"
-path="res://.godot/imported/fx_electricsphere.png-1312b4612ac360cb0652c3c96486b8f4.ctex"
+uid="uid://cd4alo6rkh2wt"
+path="res://.godot/imported/fx_electricsphere.png-2eb77941008078262ec417c377cca210.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/fx/fx_electricsphere.png"
-dest_files=["res://.godot/imported/fx_electricsphere.png-1312b4612ac360cb0652c3c96486b8f4.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/fx/fx_electricsphere.png"
+dest_files=["res://.godot/imported/fx_electricsphere.png-2eb77941008078262ec417c377cca210.ctex"]
 
 [params]
 

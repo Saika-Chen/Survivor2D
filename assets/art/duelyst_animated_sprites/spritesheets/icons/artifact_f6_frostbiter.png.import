@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bbo7s6ts5esyl"
-path="res://.godot/imported/artifact_f6_frostbiter.png-8601ee9599a5f87acb15ba00d63f0861.ctex"
+path="res://.godot/imported/artifact_f6_frostbiter.png-b5495e38fdcec81d9225ce5d19bc2964.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/artifact_f6_frostbiter.png"
-dest_files=["res://.godot/imported/artifact_f6_frostbiter.png-8601ee9599a5f87acb15ba00d63f0861.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/artifact_f6_frostbiter.png"
+dest_files=["res://.godot/imported/artifact_f6_frostbiter.png-b5495e38fdcec81d9225ce5d19bc2964.ctex"]
 
 [params]
 

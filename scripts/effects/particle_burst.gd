@@ -1,6 +1,12 @@
 extends GPUParticles2D
 
+signal despawn_requested(burst: GPUParticles2D)
+
 func configure(effect_type: String) -> void:
+	if finished.is_connected(queue_free):
+		finished.disconnect(queue_free)
+	if not finished.is_connected(_on_finished):
+		finished.connect(_on_finished)
 	one_shot = true
 	explosiveness = 0.88
 	lifetime = 0.55
@@ -35,4 +41,6 @@ func configure(effect_type: String) -> void:
 			material.initial_velocity_max = 330.0
 			modulate = Color(1.0, 0.45, 0.08, 0.95)
 	emitting = true
-	finished.connect(queue_free)
+
+func _on_finished() -> void:
+	despawn_requested.emit(self)

@@ -3,5 +3,7 @@
   "godotTools.lsp.serverPort": 6005,
   "files.associations": {
     "*.gd": "gdscript"
-  }
+  },
+  "claudeCodeChat.permissions.yoloMode": true,
+  "git.ignoreLimitWarning": true
 }

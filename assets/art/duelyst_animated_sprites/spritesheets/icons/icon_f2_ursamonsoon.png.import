@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dy62k75pb1rht"
-path="res://.godot/imported/icon_f2_ursamonsoon.png-a3ee00b0df55875a3a0113ca04e236eb.ctex"
+path="res://.godot/imported/icon_f2_ursamonsoon.png-cc330e59f57317cdfbff1b0631d52012.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f2_ursamonsoon.png"
-dest_files=["res://.godot/imported/icon_f2_ursamonsoon.png-a3ee00b0df55875a3a0113ca04e236eb.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f2_ursamonsoon.png"
+dest_files=["res://.godot/imported/icon_f2_ursamonsoon.png-cc330e59f57317cdfbff1b0631d52012.ctex"]
 
 [params]
 

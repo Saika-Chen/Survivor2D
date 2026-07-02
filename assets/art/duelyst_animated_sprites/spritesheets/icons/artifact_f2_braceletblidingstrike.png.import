@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cqjwppisprjh"
-path="res://.godot/imported/artifact_f2_braceletblidingstrike.png-e6ea715261e7ecc8a8c6c47d1bd6e7ff.ctex"
+path="res://.godot/imported/artifact_f2_braceletblidingstrike.png-1808a79fc3da693531de93181f6a9191.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/artifact_f2_braceletblidingstrike.png"
-dest_files=["res://.godot/imported/artifact_f2_braceletblidingstrike.png-e6ea715261e7ecc8a8c6c47d1bd6e7ff.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/artifact_f2_braceletblidingstrike.png"
+dest_files=["res://.godot/imported/artifact_f2_braceletblidingstrike.png-1808a79fc3da693531de93181f6a9191.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c0sw5xbbcqxs3"
-path="res://.godot/imported/icon_f2_heavens_eclipse.png-3ff313c8e6d40d0e28a09e1e7b3d7b45.ctex"
+path="res://.godot/imported/icon_f2_heavens_eclipse.png-303b7266447daeaa323525c67023815d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f2_heavens_eclipse.png"
-dest_files=["res://.godot/imported/icon_f2_heavens_eclipse.png-3ff313c8e6d40d0e28a09e1e7b3d7b45.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f2_heavens_eclipse.png"
+dest_files=["res://.godot/imported/icon_f2_heavens_eclipse.png-303b7266447daeaa323525c67023815d.ctex"]
 
 [params]
 

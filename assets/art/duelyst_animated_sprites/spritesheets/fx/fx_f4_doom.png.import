@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjtf8mtr6ae1p"
-path="res://.godot/imported/fx_f4_doom.png-81a037b384369e51947d1dc63006ce91.ctex"
+uid="uid://rabrppux3xtl"
+path="res://.godot/imported/fx_f4_doom.png-285f07ac6a86854b7aabc8c5de498ddd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/fx/fx_f4_doom.png"
-dest_files=["res://.godot/imported/fx_f4_doom.png-81a037b384369e51947d1dc63006ce91.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/fx/fx_f4_doom.png"
+dest_files=["res://.godot/imported/fx_f4_doom.png-285f07ac6a86854b7aabc8c5de498ddd.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://emenupqswxpp"
-path="res://.godot/imported/icon_f3_grandmirage.png-04810fe88005eaeb238a595d178eb03c.ctex"
+path="res://.godot/imported/icon_f3_grandmirage.png-aa7714e685a5474efb57eebeee828555.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f3_grandmirage.png"
-dest_files=["res://.godot/imported/icon_f3_grandmirage.png-04810fe88005eaeb238a595d178eb03c.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f3_grandmirage.png"
+dest_files=["res://.godot/imported/icon_f3_grandmirage.png-aa7714e685a5474efb57eebeee828555.ctex"]
 
 [params]
 

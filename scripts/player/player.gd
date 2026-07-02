@@ -9,14 +9,18 @@ signal died
 @export var speed := 338.0
 @export var max_health := 100.0
 @export var radius := 18.0
+@export var collision_scale_multiplier := 1.5
 @export var world_size := Vector2(5200, 3600)
-@export var invulnerability_duration := 2.0
+@export var invulnerability_duration := 1.0
 
 var health: float = max_health
 var facing_direction := Vector2.DOWN
 var virtual_joystick_vector := Vector2.ZERO
 var invulnerability_timer := 0.0
+var animation_state := ""
+var action_animation_timer := 0.0
 var passive_traits := {}
+var hero_data := {}
 @onready var invulnerability_sprite: Sprite2D = $Invulnerability
 @onready var glow_sprite: Sprite2D = $Glow
 @onready var animated_body: AnimatedSprite2D = $AnimatedBody
@@ -28,10 +32,12 @@ var passive_traits := {}
 @onready var facing_sprite: Sprite2D = $Facing
 
 func _ready() -> void:
+	radius *= collision_scale_multiplier
 	_update_visuals()
 
 func _physics_process(delta: float) -> void:
 	invulnerability_timer = max(0.0, invulnerability_timer - delta)
+	action_animation_timer = max(0.0, action_animation_timer - delta)
 	var input_vector := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if virtual_joystick_vector.length() > input_vector.length():
 		input_vector = virtual_joystick_vector
@@ -40,8 +46,9 @@ func _physics_process(delta: float) -> void:
 		facing_direction = new_facing
 	velocity = input_vector * speed
 	move_and_slide()
-	global_position = global_position.clamp(Vector2(32, 32), world_size - Vector2(32, 32))
+	global_position = global_position.clamp(Vector2(radius, radius), world_size - Vector2(radius, radius))
 	_update_runtime_visuals()
+	_update_animation_state(input_vector)
 
 func take_damage(amount: float) -> void:
 	if health <= 0 or invulnerability_timer > 0.0:
@@ -51,7 +58,11 @@ func take_damage(amount: float) -> void:
 	_update_runtime_visuals()
 	damaged.emit(health)
 	if health <= 0.0:
+		_set_animation_state("death", true)
 		died.emit()
+	else:
+		action_animation_timer = 0.18
+		_set_animation_state("hit", true)
 
 func increase_vitality() -> void:
 	max_health += 20.0
@@ -64,6 +75,12 @@ func heal_percent(percent: float) -> void:
 	health = min(max_health, health + max_health * percent)
 	damaged.emit(health)
 
+func heal(amount: float) -> void:
+	if health <= 0.0 or amount <= 0.0:
+		return
+	health = min(max_health, health + amount)
+	damaged.emit(health)
+
 func set_virtual_joystick_vector(input_vector: Vector2) -> void:
 	virtual_joystick_vector = input_vector.limit_length(1.0)
 
@@ -71,19 +88,31 @@ func add_passive_trait(trait_id: String) -> void:
 	passive_traits[trait_id] = true
 	_update_trait_overlay()
 
+func apply_hero(new_hero_data: Dictionary) -> void:
+	hero_data = new_hero_data
+	var mods: Dictionary = hero_data.get("mods", {})
+	if mods.has("health"):
+		max_health = max(25.0, max_health + float(mods["health"]))
+		health = max_health
+	if mods.has("speed"):
+		speed = max(80.0, speed + float(mods["speed"]))
+	if mods.has("invulnerability"):
+		invulnerability_duration += float(mods["invulnerability"])
+	_update_visuals()
+
 func _update_visuals() -> void:
 	var base_scale := radius / 18.0
 	invulnerability_sprite.texture = TextureFactory.player_layer("invulnerability")
 	glow_sprite.texture = TextureFactory.player_layer("glow")
 	glow_sprite.scale = Vector2.ONE * (base_scale * 1.18)
-	var body_style := DuelystTheme.player_style()
+	var body_style := DuelystTheme.player_style(hero_data)
 	if body_style.get("frames") != null:
 		animated_body.visible = true
 		animated_body.sprite_frames = body_style.get("frames")
 		animated_body.scale = Vector2.ONE * float(body_style.get("scale", 0.52))
 		animated_body.position = body_style.get("offset", Vector2.ZERO)
 		animated_body.speed_scale = float(body_style.get("speed", 10.0)) / 10.0
-		DuelystTheme.play_best_animation(animated_body)
+		_set_animation_state("idle", true)
 		cloak_sprite.visible = false
 		body_sprite.visible = false
 		bones_sprite.visible = false
@@ -132,3 +161,38 @@ func _update_trait_overlay() -> void:
 func _update_runtime_visuals() -> void:
 	invulnerability_sprite.visible = invulnerability_timer > 0.0 and int(invulnerability_timer * 12.0) % 2 == 0
 	animated_body.flip_h = facing_direction.x < -0.08
+
+func _update_animation_state(input_vector: Vector2) -> void:
+	if animated_body.sprite_frames == null:
+		return
+	if health <= 0.0:
+		_set_animation_state("death")
+		return
+	if action_animation_timer > 0.0:
+		return
+	if input_vector.length() > 0.05:
+		_set_animation_state("run")
+	else:
+		_set_animation_state("idle")
+
+func _set_animation_state(new_state: String, restart := false) -> void:
+	if animated_body.sprite_frames == null:
+		return
+	animation_state = new_state
+	var preferred: Array[String] = []
+	match new_state:
+		"run":
+			preferred = ["run", "idle", "breathing"]
+		"idle":
+			preferred = ["idle", "breathing", "run"]
+		"hit":
+			preferred = ["hit", "idle", "breathing"]
+		"death":
+			preferred = ["death", "hit", "idle"]
+		"attack":
+			preferred = ["attack", "cast", "caststart", "idle"]
+		"cast":
+			preferred = ["cast", "caststart", "castloop", "attack", "idle"]
+		_:
+			preferred = ["idle", "breathing", "run", "attack"]
+	DuelystTheme.play_animation(animated_body, preferred, restart)

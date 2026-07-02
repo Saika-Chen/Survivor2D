@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhn3ldmq6cinu"
-path="res://.godot/imported/icon_f2_eightgates.png-f231160b32574cabff8b8234478950f0.ctex"
+path="res://.godot/imported/icon_f2_eightgates.png-fdfa04bc055964d16ec007730e0930eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f2_eightgates.png"
-dest_files=["res://.godot/imported/icon_f2_eightgates.png-f231160b32574cabff8b8234478950f0.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f2_eightgates.png"
+dest_files=["res://.godot/imported/icon_f2_eightgates.png-fdfa04bc055964d16ec007730e0930eb.ctex"]
 
 [params]
 

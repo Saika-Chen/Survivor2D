@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c3tgb20qiibil"
-path="res://.godot/imported/generalspell_f5_egg.png-2e285feb6dca2b83c2a891918c719693.ctex"
+path="res://.godot/imported/generalspell_f5_egg.png-e49493562e9b240e9d8a66c30aba600e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/generalspell_f5_egg.png"
-dest_files=["res://.godot/imported/generalspell_f5_egg.png-2e285feb6dca2b83c2a891918c719693.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/generalspell_f5_egg.png"
+dest_files=["res://.godot/imported/generalspell_f5_egg.png-e49493562e9b240e9d8a66c30aba600e.ctex"]
 
 [params]
 

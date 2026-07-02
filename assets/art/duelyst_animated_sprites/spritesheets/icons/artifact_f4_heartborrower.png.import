@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bw7aqddj10qul"
-path="res://.godot/imported/artifact_f4_heartborrower.png-036c25910c50613c38fdcd9299be50e3.ctex"
+path="res://.godot/imported/artifact_f4_heartborrower.png-581becd628d59a7dc35b9a4ec43b4173.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/artifact_f4_heartborrower.png"
-dest_files=["res://.godot/imported/artifact_f4_heartborrower.png-036c25910c50613c38fdcd9299be50e3.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/artifact_f4_heartborrower.png"
+dest_files=["res://.godot/imported/artifact_f4_heartborrower.png-581becd628d59a7dc35b9a4ec43b4173.ctex"]
 
 [params]
 

@@ -1,5 +1,7 @@
 extends Node2D
 
+signal despawn_requested(projectile: Node2D)
+
 const TextureFactory := preload("res://scripts/visuals/texture_factory.gd")
 
 @export var speed := 260.0
@@ -12,6 +14,10 @@ var direction := Vector2.RIGHT
 @onready var sprite: Sprite2D = $Sprite
 
 func _ready() -> void:
+	reset_for_pool()
+
+func reset_for_pool() -> void:
+	lifetime = 6.0
 	sprite.texture = TextureFactory.enemy_projectile()
 	sprite.scale = Vector2.ONE * (radius / 11.0)
 
@@ -19,5 +25,6 @@ func _physics_process(delta: float) -> void:
 	lifetime -= delta
 	global_position += direction.normalized() * speed * delta
 	if lifetime <= 0.0 or not Rect2(Vector2.ZERO, world_size).grow(180.0).has_point(global_position):
-		queue_free()
+		despawn_requested.emit(self)
+		return
 	rotation = direction.angle()

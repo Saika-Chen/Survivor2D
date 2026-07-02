@@ -1,10 +1,10 @@
 extends RefCounted
 
 const RARITY_COLORS := {
-	"普通": Color(0.70, 0.78, 0.72),
-	"稀有": Color(0.30, 0.68, 1.0),
-	"史诗": Color(0.78, 0.34, 1.0),
-	"传说": Color(1.0, 0.66, 0.16)
+	"普通": Color(0.92, 1.0, 0.92),
+	"稀有": Color(0.68, 0.90, 1.0),
+	"史诗": Color(0.94, 0.72, 1.0),
+	"传说": Color(1.0, 0.88, 0.38)
 }
 
 const RARITY_BACKGROUNDS := {

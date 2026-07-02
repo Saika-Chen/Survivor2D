@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://brdn7dobj0vw5"
-path="res://.godot/imported/icon_f6_markofsolitude.png-bd9be358f44a1977804814bd23266f94.ctex"
+path="res://.godot/imported/icon_f6_markofsolitude.png-1ce3371235a0e6337f897ceb575494a2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f6_markofsolitude.png"
-dest_files=["res://.godot/imported/icon_f6_markofsolitude.png-bd9be358f44a1977804814bd23266f94.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f6_markofsolitude.png"
+dest_files=["res://.godot/imported/icon_f6_markofsolitude.png-1ce3371235a0e6337f897ceb575494a2.ctex"]
 
 [params]
 

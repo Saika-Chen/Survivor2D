@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c0s63uq3x0b0b"
-path="res://.godot/imported/generalspell_f5_overload.png-c5d1767b390eef3ce96366e0a4028049.ctex"
+path="res://.godot/imported/generalspell_f5_overload.png-8e41a1237bf2286909ba1ce286dd9321.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/generalspell_f5_overload.png"
-dest_files=["res://.godot/imported/generalspell_f5_overload.png-c5d1767b390eef3ce96366e0a4028049.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/generalspell_f5_overload.png"
+dest_files=["res://.godot/imported/generalspell_f5_overload.png-8e41a1237bf2286909ba1ce286dd9321.ctex"]
 
 [params]
 

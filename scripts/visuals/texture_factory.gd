@@ -2,6 +2,125 @@ extends RefCounted
 
 static var _cache := {}
 
+const ICON_BASE := "res://assets/art/duelyst_animated_sprites/spriteframes/icons/"
+const ITEM_ICON_IDS := {
+	"blood_bolt": "icon_f2_phoenixfire02",
+	"ghost_blades": "icon_f2_killingedge",
+	"shadow_spikes": "icon_f3_sandtrap",
+	"soul_nova": "icon_f1_holyimmolation",
+	"doom_laser": "icon_f4_doom",
+	"plague_bomb": "icon_f4_curseofagony",
+	"abyss_tentacle": "icon_f4_creepingtendrils",
+	"reaping_scythe": "artifact_f4_ragechackram",
+	"grave_familiar": "icon_f4_spookem",
+	"frost_orb": "icon_f6_frostburn",
+	"thunder_chain": "icon_f2_kagelightning",
+	"void_mines": "icon_f4_voidpulse",
+	"blood_pact": "artifact_f2_bloodleechmask",
+	"spirit_core": "icon_f2_ghost_lightning",
+	"abyss_mark": "icon_f4_lurkingfear",
+	"ember_crown": "icon_f1_afterglow",
+	"lens_of_ruin": "artifact_f2_unboundedenergyamulet",
+	"powder_heart": "icon_f5_meteorimpact",
+	"eldritch_eye": "icon_f4_aphoticdrain",
+	"bone_wheel": "artifact_f3_spinecleaver",
+	"clockwork_heart": "artifact_f3_thunderclap",
+	"frost_heart": "artifact_f6_frostbiter",
+	"storm_totem": "icon_f2_kagelightning",
+	"void_anchor": "artifact_f4_heartborrower",
+	"crimson_reaper": "icon_f5_bloodrage",
+	"psychic_tempest": "icon_f3_psychicconduit",
+	"abyss_lord": "icon_f4_gateofovervault",
+	"ruin_nova": "icon_f4_deathfirecrescendo",
+	"frost_legion": "icon_f6_winterswake",
+	"void_thunder": "icon_f4_voidpulse",
+	"stat:damage": "icon_f1_warsurge",
+	"stat:minor_damage": "icon_f1_presstheattack",
+	"stat:crit_chance": "icon_f2_cobrastrike",
+	"stat:cooldown": "icon_f2_inner_focus",
+	"stat:tiny_cooldown": "icon_f2_mistwalking",
+	"stat:radius": "icon_f3_stonestospears",
+	"stat:projectile_speed": "icon_f2_spellsword_wind",
+	"stat:vitality": "icon_f5_greaterfortitude",
+	"stat:magnet": "icon_f3_droplift",
+	"stat:tiny_magnet": "icon_f3_glimpse",
+	"stat:heal": "icon_f3_fountainofyouth",
+	"stat:invulnerability": "icon_f1_aegisbarrier",
+	"stat:nothing": "icon_neutral_riddle"
+}
+
+static func item_icon_frames(item_id: String) -> SpriteFrames:
+	return _fetch("item_icon_%s" % item_id, func() -> SpriteFrames:
+		var icon_id := str(ITEM_ICON_IDS.get(item_id, item_id))
+		var path := ICON_BASE + icon_id + ".tres"
+		if ResourceLoader.exists(path):
+			return load(path) as SpriteFrames
+		return null
+	)
+
+static func pixel_ui_asset(asset_id: String) -> Texture2D:
+	return _fetch("pixel_ui_%s" % asset_id, func() -> Texture2D:
+		var texture := _load_png_texture("res://assets/art/generated/ui/%s.png" % asset_id)
+		return texture if texture != null else warning_banner()
+	)
+
+static func pixel_slot_frame() -> Texture2D:
+	return _fetch("pixel_slot_frame_v2", func() -> Texture2D:
+		var image := Image.create(512, 340, false, Image.FORMAT_RGBA8)
+		image.fill(Color(0, 0, 0, 0))
+		# Outer dark frame with decorative border
+		_draw_rect(image, Rect2i(4, 4, 504, 332), Color(0.06, 0.02, 0.10, 0.98))
+		# Gold outer border
+		_draw_rect_outline(image, Rect2i(4, 4, 504, 332), 6, Color(0.88, 0.68, 0.15, 0.98))
+		# Inner dark panel
+		_draw_rect(image, Rect2i(14, 14, 484, 312), Color(0.08, 0.03, 0.12, 0.97))
+		# Inner gold trim
+		_draw_rect_outline(image, Rect2i(14, 14, 484, 312), 3, Color(0.76, 0.58, 0.12, 0.9))
+		# Title bar
+		_draw_rect(image, Rect2i(30, 22, 452, 36), Color(0.12, 0.05, 0.18, 0.96))
+		_draw_rect_outline(image, Rect2i(30, 22, 452, 36), 2, Color(0.82, 0.64, 0.18, 0.85))
+		# Three reel windows with ornate borders
+		for reel in range(3):
+			var rx := 48 + reel * 148
+			var ry := 76
+			# Outer glow
+			_draw_rect(image, Rect2i(rx - 4, ry - 4, 116, 116), Color(0.72, 0.44, 0.08, 0.5))
+			# Dark window bg
+			_draw_rect(image, Rect2i(rx, ry, 108, 108), Color(0.03, 0.01, 0.06, 0.98))
+			# Red-gold border
+			_draw_rect_outline(image, Rect2i(rx, ry, 108, 108), 5, Color(0.92, 0.18, 0.32, 0.96))
+			# Inner highlight
+			_draw_rect_outline(image, Rect2i(rx + 6, ry + 6, 96, 96), 1, Color(0.88, 0.72, 0.22, 0.45))
+			# Corner diamonds
+			for cx in [rx + 2, rx + 104]:
+				for cy in [ry + 2, ry + 104]:
+					image.set_pixel(cx, cy, Color(0.95, 0.82, 0.25, 0.9))
+		# Lever bar (right side)
+		_draw_rect(image, Rect2i(400, 50, 20, 100), Color(0.6, 0.42, 0.10, 0.95))
+		_draw_rect_outline(image, Rect2i(400, 50, 20, 100), 2, Color(0.9, 0.72, 0.18, 0.9))
+		# Lever knob
+		_draw_disc(image, Vector2(410, 56), 16.0, Color(0.95, 0.18, 0.22, 0.96))
+		_draw_disc(image, Vector2(410, 56), 10.0, Color(1.0, 0.3, 0.35, 0.9))
+		# Lever handle highlight
+		for y in range(74, 130, 4):
+			image.set_pixel(410, y, Color(1.0, 0.85, 0.3, 0.7))
+		# Bottom decorative bar
+		_draw_rect(image, Rect2i(30, 298, 452, 3), Color(0.8, 0.6, 0.15, 0.8))
+		_draw_rect(image, Rect2i(30, 304, 452, 2), Color(0.5, 0.35, 0.08, 0.6))
+		# Top title text area accents
+		for x in range(40, 470, 28):
+			image.set_pixel(x, 28, Color(1.0, 0.8, 0.25, 0.6))
+			image.set_pixel(x + 1, 28, Color(1.0, 0.8, 0.25, 0.6))
+			image.set_pixel(x, 50, Color(1.0, 0.8, 0.25, 0.6))
+			image.set_pixel(x + 1, 50, Color(1.0, 0.8, 0.25, 0.6))
+		return ImageTexture.create_from_image(image)
+	)
+
+static func _load_png_texture(path: String) -> Texture2D:
+	if not ResourceLoader.exists(path):
+		return null
+	return load(path) as Texture2D
+
 static func enemy_body(archetype: String) -> Texture2D:
 	return _fetch("enemy_body_%s" % archetype, func() -> Texture2D:
 		var image := Image.create(96, 96, false, Image.FORMAT_RGBA8)
@@ -108,6 +227,26 @@ static func pickup(pickup_type: String) -> Texture2D:
 			_draw_rect(image, Rect2i(22, 18, 20, 28), Color(0.08, 0.16, 0.10, 0.98))
 			_draw_rect(image, Rect2i(24, 23, 16, 18), Color(0.20, 1.0, 0.42, 0.98))
 			_draw_rect(image, Rect2i(29, 14, 6, 8), Color(0.86, 1.0, 0.82, 0.95))
+		elif pickup_type == "haste":
+			_draw_disc(image, Vector2(32, 32), 25.0, Color(0.20, 0.74, 1.0, 0.16))
+			_draw_rect(image, Rect2i(25, 17, 14, 32), Color(0.05, 0.10, 0.18, 0.98))
+			_draw_rect(image, Rect2i(27, 23, 10, 21), Color(0.34, 0.92, 1.0, 0.96))
+			_draw_rect(image, Rect2i(29, 13, 6, 8), Color(0.88, 0.98, 1.0, 0.96))
+			_draw_line(image, Vector2(17, 25), Vector2(6, 31), 3.0, Color(0.72, 0.96, 1.0, 0.86))
+			_draw_line(image, Vector2(19, 39), Vector2(8, 46), 3.0, Color(0.72, 0.96, 1.0, 0.72))
+			_draw_line(image, Vector2(44, 24), Vector2(56, 18), 3.0, Color(0.72, 0.96, 1.0, 0.86))
+		elif pickup_type == "chest" or pickup_type == "chest_open":
+			_draw_disc(image, Vector2(32, 34), 27.0, Color(1.0, 0.72, 0.22, 0.14))
+			_draw_rect(image, Rect2i(12, 26, 40, 24), Color(0.25, 0.08, 0.08, 0.98))
+			_draw_rect(image, Rect2i(15, 18, 34, 13), Color(0.42, 0.14, 0.08, 0.98))
+			_draw_rect_outline(image, Rect2i(12, 26, 40, 24), 3, Color(0.96, 0.70, 0.24, 0.98))
+			_draw_rect_outline(image, Rect2i(15, 18, 34, 13), 3, Color(0.96, 0.70, 0.24, 0.98))
+			_draw_rect(image, Rect2i(29, 30, 7, 9), Color(1.0, 0.86, 0.34, 0.98))
+			if pickup_type == "chest_open":
+				_draw_rect(image, Rect2i(14, 17, 36, 8), Color(0.18, 0.04, 0.08, 0.98))
+				_draw_line(image, Vector2(19, 16), Vector2(12, 7), 2.5, Color(1.0, 0.88, 0.42, 0.90))
+				_draw_line(image, Vector2(32, 14), Vector2(32, 3), 2.5, Color(0.58, 0.94, 1.0, 0.90))
+				_draw_line(image, Vector2(45, 16), Vector2(53, 7), 2.5, Color(1.0, 0.50, 0.70, 0.90))
 		elif pickup_type == "slot":
 			_draw_disc(image, Vector2(32, 32), 26.0, Color(1.0, 0.76, 0.14, 0.16))
 			_draw_rect_outline(image, Rect2i(12, 16, 40, 32), 4, Color(0.72, 0.10, 0.34, 0.98))
@@ -117,6 +256,20 @@ static func pickup(pickup_type: String) -> Texture2D:
 			_draw_disc(image, Vector2(42, 32), 4.0, Color(0.55, 1.0, 0.82, 0.96))
 			_draw_line(image, Vector2(50, 20), Vector2(56, 12), 2.5, Color(0.92, 0.74, 0.18, 0.98))
 			_draw_disc(image, Vector2(56, 12), 4.0, Color(1.0, 0.82, 0.26, 0.98))
+		elif pickup_type == "crystal":
+			_draw_disc(image, Vector2(32, 32), 25.0, Color(0.70, 0.25, 1.0, 0.18))
+			_fill_polygon(image, PackedVector2Array([
+				Vector2(32, 6), Vector2(50, 26), Vector2(42, 56), Vector2(22, 56), Vector2(14, 26)
+			]), Color(0.72, 0.34, 1.0, 0.98))
+			_draw_line(image, Vector2(32, 12), Vector2(32, 50), 2.5, Color(1.0, 0.88, 1.0, 0.92))
+			_draw_line(image, Vector2(20, 28), Vector2(44, 28), 2.0, Color(0.92, 0.72, 1.0, 0.78))
+		elif pickup_type == "bomb":
+			_draw_disc(image, Vector2(32, 36), 23.0, Color(1.0, 0.42, 0.12, 0.18))
+			_draw_disc(image, Vector2(31, 37), 18.0, Color(0.06, 0.05, 0.07, 0.98))
+			_draw_rect(image, Rect2i(32, 13, 10, 9), Color(0.18, 0.15, 0.14, 0.98))
+			_draw_line(image, Vector2(40, 14), Vector2(51, 7), 3.0, Color(0.92, 0.72, 0.24, 0.98))
+			_draw_disc(image, Vector2(53, 6), 5.0, Color(1.0, 0.28, 0.08, 0.98))
+			_draw_disc(image, Vector2(24, 30), 4.0, Color(0.55, 0.55, 0.62, 0.80))
 		else:
 			_draw_disc(image, Vector2(32, 32), 24.0, Color(0.18, 0.56, 1.0, 0.14))
 			_draw_ring(image, Vector2(24, 32), 11.0, 4.0, Color(0.28, 0.72, 1.0, 0.98))
@@ -405,7 +558,7 @@ static func _enemy_glow_color(archetype: String) -> Color:
 		_:
 			return Color(0.55, 0.02, 0.06, 0.20)
 
-static func _fetch(key: String, builder: Callable) -> Texture2D:
+static func _fetch(key: String, builder: Callable):
 	if not _cache.has(key):
 		_cache[key] = builder.call()
 	return _cache[key]

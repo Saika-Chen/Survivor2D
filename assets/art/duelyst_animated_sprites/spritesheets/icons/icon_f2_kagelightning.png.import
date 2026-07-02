@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://mlwilynhkcvd"
-path="res://.godot/imported/icon_f2_kagelightning.png-140492bf999173972dea90dbe35f87de.ctex"
+path="res://.godot/imported/icon_f2_kagelightning.png-72924279be8bd75eba74e2033c919f2e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f2_kagelightning.png"
-dest_files=["res://.godot/imported/icon_f2_kagelightning.png-140492bf999173972dea90dbe35f87de.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f2_kagelightning.png"
+dest_files=["res://.godot/imported/icon_f2_kagelightning.png-72924279be8bd75eba74e2033c919f2e.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://74c548oylsgg"
-path="res://.godot/imported/icon_f6_flashfreeze.png-354a7d301088b25768d4a1a2295d0e68.ctex"
+path="res://.godot/imported/icon_f6_flashfreeze.png-8125f4dbc6e2d3ccc36a9ce4a9b965fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f6_flashfreeze.png"
-dest_files=["res://.godot/imported/icon_f6_flashfreeze.png-354a7d301088b25768d4a1a2295d0e68.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f6_flashfreeze.png"
+dest_files=["res://.godot/imported/icon_f6_flashfreeze.png-8125f4dbc6e2d3ccc36a9ce4a9b965fa.ctex"]
 
 [params]
 

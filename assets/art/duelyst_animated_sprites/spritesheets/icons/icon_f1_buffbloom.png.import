@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bv8tygui8w85g"
-path="res://.godot/imported/icon_f1_buffbloom.png-5d13d70a6997c7e1f2c98a7df96e8e08.ctex"
+path="res://.godot/imported/icon_f1_buffbloom.png-9a0ad592eb414583bc946f1888287afc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f1_buffbloom.png"
-dest_files=["res://.godot/imported/icon_f1_buffbloom.png-5d13d70a6997c7e1f2c98a7df96e8e08.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f1_buffbloom.png"
+dest_files=["res://.godot/imported/icon_f1_buffbloom.png-9a0ad592eb414583bc946f1888287afc.ctex"]
 
 [params]
 

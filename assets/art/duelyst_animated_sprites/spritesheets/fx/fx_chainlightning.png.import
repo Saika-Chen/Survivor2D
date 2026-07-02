@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cg56di30hd3te"
-path="res://.godot/imported/fx_chainlightning.png-a9a0680c431635308cc4425a95678a41.ctex"
+uid="uid://cgr5a1ja1tmud"
+path="res://.godot/imported/fx_chainlightning.png-2937a0ba261ca8748f58ae50f2857484.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/fx/fx_chainlightning.png"
-dest_files=["res://.godot/imported/fx_chainlightning.png-a9a0680c431635308cc4425a95678a41.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/fx/fx_chainlightning.png"
+dest_files=["res://.godot/imported/fx_chainlightning.png-2937a0ba261ca8748f58ae50f2857484.ctex"]
 
 [params]
 

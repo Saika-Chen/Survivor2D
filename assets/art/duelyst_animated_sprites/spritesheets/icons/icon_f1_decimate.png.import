@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://drs6ifyeibju7"
-path="res://.godot/imported/icon_f1_decimate.png-063664ecf42cfd6a8d577bd4c7e360fd.ctex"
+path="res://.godot/imported/icon_f1_decimate.png-220a7b91ef7bb2bf0e56825ba794eb81.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f1_decimate.png"
-dest_files=["res://.godot/imported/icon_f1_decimate.png-063664ecf42cfd6a8d577bd4c7e360fd.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f1_decimate.png"
+dest_files=["res://.godot/imported/icon_f1_decimate.png-220a7b91ef7bb2bf0e56825ba794eb81.ctex"]
 
 [params]
 

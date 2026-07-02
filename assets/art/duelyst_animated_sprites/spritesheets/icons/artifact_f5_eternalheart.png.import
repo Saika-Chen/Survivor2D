@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c0nwshk5lek6r"
-path="res://.godot/imported/artifact_f5_eternalheart.png-71788498d6f34a3c5751ca2a5d29173f.ctex"
+path="res://.godot/imported/artifact_f5_eternalheart.png-5b128b29d6f46e95db8fc50e9aae5f23.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/artifact_f5_eternalheart.png"
-dest_files=["res://.godot/imported/artifact_f5_eternalheart.png-71788498d6f34a3c5751ca2a5d29173f.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/artifact_f5_eternalheart.png"
+dest_files=["res://.godot/imported/artifact_f5_eternalheart.png-5b128b29d6f46e95db8fc50e9aae5f23.ctex"]
 
 [params]
 

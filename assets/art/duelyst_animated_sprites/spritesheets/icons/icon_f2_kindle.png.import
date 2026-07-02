@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dxni4j4bbypkb"
-path="res://.godot/imported/icon_f2_kindle.png-2a6df24e7da7612d512db7703bff8550.ctex"
+path="res://.godot/imported/icon_f2_kindle.png-c9dcc729570c3143dc9aa44d643d3ce9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/duelyst_animated_sprites/spritesheets/icons/icon_f2_kindle.png"
-dest_files=["res://.godot/imported/icon_f2_kindle.png-2a6df24e7da7612d512db7703bff8550.ctex"]
+source_file="res://assets/art/duelyst_animated_sprites/spritesheets/icons/icon_f2_kindle.png"
+dest_files=["res://.godot/imported/icon_f2_kindle.png-c9dcc729570c3143dc9aa44d643d3ce9.ctex"]
 
 [params]
 

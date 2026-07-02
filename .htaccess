@@ -1,0 +1,6 @@
+# Godot 4 Web export requires SharedArrayBuffer
+# These headers must be set on the web server
+<IfModule mod_headers.c>
+	Header set Cross-Origin-Opener-Policy "same-origin"
+	Header set Cross-Origin-Embedder-Policy "require-corp"
+</IfModule>
