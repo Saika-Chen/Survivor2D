@@ -3,17 +3,24 @@ class_name RunEventSystem
 
 const EnemyScene := preload("res://scenes/enemy/Enemy.tscn")
 const EncounterDirectorScript := preload("res://scripts/game/EncounterDirector.gd")
+const WaveMutationDirectorScript := preload("res://scripts/game/WaveMutationDirector.gd")
 
 var game: Node
 var encounter_director
+var wave_mutation_director
 var pending_event := {}
 var active_blessings := {}
 var bounty_target_id := -1
 var bounty_expires_wave := -1
+var active_mutation := {}
+var mutation_expires_wave := -1
+var mutation_base_spawn_density := 0.0
+var mutation_base_alive_cap := 0
 
 func setup(owner: Node) -> void:
 	game = owner
 	encounter_director = EncounterDirectorScript.new()
+	wave_mutation_director = WaveMutationDirectorScript.new()
 
 func maybe_offer_wave_event(wave: int, is_major: bool) -> void:
 	if is_major or wave >= 30 or wave % 4 != 0:
@@ -31,6 +38,36 @@ func maybe_offer_wave_event(wave: int, is_major: bool) -> void:
 		str(pending_event.get("prompt", "做出你的选择。")),
 		false
 	)
+
+func maybe_apply_wave_mutation(wave: int, is_major: bool) -> void:
+	if game.level_up_pending or game.victory_pending:
+		return
+	if wave_mutation_director == null:
+		return
+	var mutation: Dictionary = wave_mutation_director.build_mutation(wave, is_major)
+	if mutation.is_empty():
+		return
+	_clear_wave_mutation()
+	active_mutation = mutation
+	mutation_expires_wave = wave + max(0, int(mutation.get("duration_waves", 1)) - 1)
+	if game.wave_director != null and game.wave_director.wave_config != null:
+		mutation_base_spawn_density = float(game.wave_director.wave_config.spawn_density_multiplier)
+		game.wave_director.wave_config.spawn_density_multiplier = mutation_base_spawn_density * float(mutation.get("spawn_density_multiplier", 1.0))
+		mutation_base_alive_cap = int(game.wave_director.max_alive_enemies)
+		game.wave_director.max_alive_enemies = max(12, mutation_base_alive_cap + int(mutation.get("max_alive_bonus", 0)))
+	var reward_type := str(mutation.get("reward_type", "none"))
+	var reward_amount := int(mutation.get("reward_amount", 0))
+	if reward_type == "crystal":
+		game.run_magic_crystals += reward_amount
+		game.hud.hint.text = "%s：获得 %d 个魔晶。" % [str(mutation.get("title", "波次词缀")), reward_amount]
+	elif reward_type == "reroll":
+		if game.level_system != null:
+			game.level_system.rerolls_left += reward_amount
+			game.rerolls_left = game.level_system.rerolls_left
+		game.hud.hint.text = "%s：获得 %d 次重掷。" % [str(mutation.get("title", "波次词缀")), reward_amount]
+	else:
+		game.hud.hint.text = "%s：%s" % [str(mutation.get("title", "波次词缀")), str(mutation.get("prompt", ""))]
+	game._update_hud()
 
 func resolve_event_choice(event_id: String) -> void:
 	match event_id:
@@ -104,6 +141,8 @@ func expire_wave_effects() -> void:
 		bounty_target_id = -1
 		bounty_expires_wave = -1
 		game.hud.hint.text = "悬赏过期，目标逃入黑暗。"
+	if mutation_expires_wave != -1 and game.current_wave > mutation_expires_wave:
+		_clear_wave_mutation()
 	if active_blessings.has("damage") and int(active_blessings["damage"]) <= game.current_wave:
 		active_blessings.erase("damage")
 		game.player_damage_multiplier /= 1.25
@@ -114,6 +153,17 @@ func expire_wave_effects() -> void:
 		active_blessings.erase("haste")
 		game.player.speed -= 50.0
 		game.weapon_manager.set_temporary_bonus("projectile_speed", 1.0)
+
+func _clear_wave_mutation() -> void:
+	if active_mutation.is_empty():
+		return
+	if game.wave_director != null and game.wave_director.wave_config != null:
+		if mutation_base_spawn_density > 0.0:
+			game.wave_director.wave_config.spawn_density_multiplier = mutation_base_spawn_density
+		if mutation_base_alive_cap > 0:
+			game.wave_director.max_alive_enemies = mutation_base_alive_cap
+	active_mutation.clear()
+	mutation_expires_wave = -1
 
 func start_bounty_event() -> void:
 	var enemy: Node2D = game._take_from_pool("enemy", EnemyScene)

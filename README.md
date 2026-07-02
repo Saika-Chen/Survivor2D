@@ -74,7 +74,3 @@ shaders/       GPU Shader
 "/Applications/Godot.app/Contents/MacOS/Godot" --headless --path /Users/mac/Documents/Codex/2026-06-28/wo/Survivor2D --script res://scripts/tests/rearchitecture_smoke.gd
 "/Applications/Godot.app/Contents/MacOS/Godot" --headless --path /Users/mac/Documents/Codex/2026-06-28/wo/Survivor2D --script res://scripts/tests/enemy_stats_smoke.gd
 ```
-
-
-
-

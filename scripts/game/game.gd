@@ -421,13 +421,26 @@ func _damage_enemy(enemy: Node2D, amount: float, source: Node = null) -> void:
 			for nearby in _nearby_enemies(enemy.global_position, 160.0):
 				if nearby != enemy and nearby.global_position.distance_to(enemy.global_position) <= 125.0:
 					_damage_enemy(nearby, 60.0)
+		var enemy_affix := str(enemy.get("elite_affix"))
+		if enemy_affix == "volatile":
+			for nearby in _nearby_enemies(enemy.global_position, 210.0):
+				if nearby != enemy and nearby.global_position.distance_to(enemy.global_position) <= 140.0:
+					_damage_enemy(nearby, 45.0)
+			_spawn_particle_burst(enemy.global_position, "death")
+			_add_shake(0.16, 10.0)
+		elif enemy_affix == "brood":
+			for index in range(3):
+				_spawn_enemy("chaser", enemy.global_position + Vector2.RIGHT.rotated(TAU * float(index) / 3.0 + randf() * 0.35) * 30.0)
+		elif enemy_affix == "mirror":
+			for index in range(2):
+				_spawn_enemy("chaser", enemy.global_position + Vector2.RIGHT.rotated(TAU * float(index) / 2.0 + randf() * 0.2) * 36.0)
 		if enemy.archetype == "boss":
 			_on_boss_defeated()
 		elif enemy.archetype == "bullet_boss":
 			_spawn_pickup(enemy.global_position, "slot")
 		elif run_event_system != null and enemy.get_instance_id() == run_event_system.bounty_target_id:
 			run_event_system.bounty_completed()
-		elif str(enemy.get("elite_affix")) == "splinter":
+		elif enemy_affix == "splinter":
 			_spawn_enemy("chaser", enemy.global_position + Vector2.RIGHT.rotated(randf() * TAU) * 24.0)
 
 func _spawn_xp_gem(spawn_position: Vector2, value: int) -> void:
@@ -733,6 +746,7 @@ func _on_wave_changed(wave: int, new_max_wave: int, time_left: float) -> void:
 		sfx_manager.play_ui("boss_wave" if is_major else "wave")
 		_vibrate_wave(is_major)
 		run_event_system.maybe_offer_wave_event(wave, is_major)
+		run_event_system.maybe_apply_wave_mutation(wave, is_major)
 
 func _on_boss_wave_started() -> void:
 	hud.hint.text = "第30波：深渊君王降临。"
@@ -955,7 +969,7 @@ func _maybe_apply_enemy_affix(enemy: Node2D, archetype: String) -> void:
 		chance = 10 + current_wave / 2
 	if randi() % 100 >= chance:
 		return
-	var affixes: Array[String] = ["swift", "warded", "furious", "splinter"]
+	var affixes: Array[String] = ["swift", "warded", "furious", "splinter", "volatile", "brood", "mirror"]
 	enemy.apply_affix(affixes[randi() % affixes.size()])
 
 func _add_shake(duration: float, strength: float) -> void:

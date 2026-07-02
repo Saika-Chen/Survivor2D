@@ -179,7 +179,7 @@ func gpu_hit_flash() -> float:
 	return clampf(hit_flash_timer / 0.16, 0.0, 1.0)
 
 func _apply_batched_visual_visibility() -> void:
-	if animated_body == null:
+	if animated_body == null or glow_sprite == null or body_sprite == null or mark_sprite == null or eyes_sprite == null:
 		return
 	var show_local := not batched_visual_enabled
 	glow_sprite.visible = show_local
@@ -243,6 +243,20 @@ func _process_elite(delta: float) -> void:
 				for index in range(2):
 					summon_requested.emit("splitter", global_position + Vector2.RIGHT.rotated(randf() * TAU) * 92.0)
 				_play_action_animation("cast", 0.24)
+		"blink":
+			_process_chaser(0.82)
+			if special_timer <= 0.0:
+				special_timer = 2.1
+				var blink_target := target.global_position + Vector2.RIGHT.rotated(randf() * TAU) * randf_range(84.0, 136.0)
+				global_position = blink_target.clamp(Vector2(radius, radius), world_size - Vector2(radius, radius))
+				knockback_velocity = Vector2.ZERO
+				_play_action_animation("cast", 0.18)
+		"bulwark":
+			_process_chaser(0.45)
+			if special_timer <= 0.0:
+				special_timer = 3.6
+				buff_multiplier = min(1.5, buff_multiplier + 0.08)
+				_play_action_animation("cast", 0.20)
 		_:
 			_process_chaser(0.92 if elite_variant == "swift" else 0.84)
 
@@ -364,7 +378,7 @@ func apply_knockback(direction: Vector2, force: float) -> void:
 	knockback_velocity += direction.normalized() * force
 
 func _configure_elite_variant() -> void:
-	var variants := ["swift", "buffer", "charger", "warded", "summoner", "suppressor", "mirror"]
+	var variants := ["swift", "buffer", "charger", "warded", "summoner", "suppressor", "mirror", "blink", "bulwark"]
 	elite_variant = variants[randi() % variants.size()]
 	match elite_variant:
 		"swift":
@@ -392,8 +406,20 @@ func _configure_elite_variant() -> void:
 			speed *= 1.18
 			max_health *= 1.65
 			health = max_health
+		"blink":
+			speed *= 0.96
+			max_health *= 1.18
+			health = max_health
+			special_timer = 0.9
+		"bulwark":
+			speed *= 0.70
+			max_health *= 2.6
+			health = max_health
+			contact_damage *= 1.2
 
 func _update_visuals() -> void:
+	if glow_sprite == null or animated_body == null or body_sprite == null or mark_sprite == null or eyes_sprite == null:
+		return
 	glow_sprite.texture = TextureFactory.enemy_glow(archetype)
 	var style := DuelystTheme.enemy_style(archetype)
 	if style.get("frames") != null:
@@ -419,31 +445,37 @@ func _update_visuals() -> void:
 	glow_scale_value = (radius + 14.0) / 64.0
 	if archetype == "boss" or archetype == "bullet_boss":
 		glow_scale_value = (radius + 28.0) / 64.0
-	if archetype == "elite":
-		match elite_variant:
-			"swift":
-				animated_body.modulate = Color(1.0, 0.92, 0.42, 1.0)
-				glow_sprite.modulate = Color(1.0, 0.92, 0.24, 0.62)
-			"buffer":
-				animated_body.modulate = Color(0.76, 0.48, 1.0, 1.0)
-				glow_sprite.modulate = Color(0.78, 0.38, 1.0, 0.62)
-			"charger":
-				animated_body.modulate = Color(1.0, 0.36, 0.24, 1.0)
-				glow_sprite.modulate = Color(1.0, 0.24, 0.18, 0.62)
-			"warded":
-				animated_body.modulate = Color(0.50, 1.0, 0.86, 1.0)
-				glow_sprite.modulate = Color(0.38, 1.0, 0.80, 0.62)
-			"summoner":
-				animated_body.modulate = Color(0.92, 0.52, 1.0, 1.0)
-				glow_sprite.modulate = Color(0.92, 0.28, 1.0, 0.72)
-			"suppressor":
-				animated_body.modulate = Color(0.42, 0.74, 1.0, 1.0)
-				glow_sprite.modulate = Color(0.24, 0.62, 1.0, 0.72)
-			"mirror":
-				animated_body.modulate = Color(1.0, 0.58, 0.88, 1.0)
-				glow_sprite.modulate = Color(1.0, 0.32, 0.72, 0.72)
-	elif archetype == "buffer":
-		glow_scale_value = (radius + 22.0) / 64.0
+		if archetype == "elite":
+			match elite_variant:
+				"swift":
+					animated_body.modulate = Color(1.0, 0.92, 0.42, 1.0)
+					glow_sprite.modulate = Color(1.0, 0.92, 0.24, 0.62)
+				"buffer":
+					animated_body.modulate = Color(0.76, 0.48, 1.0, 1.0)
+					glow_sprite.modulate = Color(0.78, 0.38, 1.0, 0.62)
+				"charger":
+					animated_body.modulate = Color(1.0, 0.36, 0.24, 1.0)
+					glow_sprite.modulate = Color(1.0, 0.24, 0.18, 0.62)
+				"warded":
+					animated_body.modulate = Color(0.50, 1.0, 0.86, 1.0)
+					glow_sprite.modulate = Color(0.38, 1.0, 0.80, 0.62)
+				"summoner":
+					animated_body.modulate = Color(0.92, 0.52, 1.0, 1.0)
+					glow_sprite.modulate = Color(0.92, 0.28, 1.0, 0.72)
+				"suppressor":
+					animated_body.modulate = Color(0.42, 0.74, 1.0, 1.0)
+					glow_sprite.modulate = Color(0.24, 0.62, 1.0, 0.72)
+				"mirror":
+					animated_body.modulate = Color(1.0, 0.58, 0.88, 1.0)
+					glow_sprite.modulate = Color(1.0, 0.32, 0.72, 0.72)
+				"blink":
+					animated_body.modulate = Color(0.54, 0.96, 1.0, 1.0)
+					glow_sprite.modulate = Color(0.28, 0.82, 1.0, 0.72)
+				"bulwark":
+					animated_body.modulate = Color(0.86, 0.84, 0.62, 1.0)
+					glow_sprite.modulate = Color(0.92, 0.72, 0.32, 0.68)
+		elif archetype == "buffer":
+			glow_scale_value = (radius + 22.0) / 64.0
 	body_sprite.scale = Vector2.ONE * body_scale_value
 	mark_sprite.scale = Vector2.ONE * body_scale_value
 	eyes_sprite.scale = Vector2.ONE * body_scale_value
@@ -466,9 +498,20 @@ func apply_affix(affix_id: String) -> void:
 		"splinter":
 			max_health *= 1.18
 			health = max_health
+		"volatile":
+			max_health *= 1.08
+			contact_damage *= 1.18
+		"brood":
+			max_health *= 1.12
+			special_timer = min(special_timer, 1.8)
+		"mirror":
+			speed *= 1.08
+			projectile_damage_multiplier *= 1.1
 	_update_visuals()
 
 func _update_buff_visual() -> void:
+	if glow_sprite == null or animated_body == null or mark_sprite == null:
+		return
 	var buffed := buff_multiplier > 1.0
 	DOTween.kill(self, "enemy_buff_scale")
 	glow_sprite.scale = Vector2.ONE * glow_scale_value

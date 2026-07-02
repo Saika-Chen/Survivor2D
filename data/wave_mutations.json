@@ -1,0 +1,31 @@
+{
+  "mutations": [
+    {
+      "id": "blood_moon",
+      "title": "血月潮汐",
+      "prompt": "敌潮变得更密集，战场也更危险。",
+      "spawn_density_multiplier": 1.18,
+      "max_alive_bonus": 18,
+      "reward_type": "none",
+      "reward_amount": 0
+    },
+    {
+      "id": "ashen_supply",
+      "title": "灰烬补给",
+      "prompt": "裂隙短暂安静，补给从灰烬里浮现。",
+      "spawn_density_multiplier": 0.90,
+      "max_alive_bonus": -12,
+      "reward_type": "crystal",
+      "reward_amount": 2
+    },
+    {
+      "id": "overdrive_hunt",
+      "title": "狂猎超频",
+      "prompt": "局势会更凶猛，但你会得到一次重掷机会。",
+      "spawn_density_multiplier": 1.08,
+      "max_alive_bonus": 10,
+      "reward_type": "reroll",
+      "reward_amount": 1
+    }
+  ]
+}
