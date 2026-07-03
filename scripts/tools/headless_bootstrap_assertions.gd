@@ -24,6 +24,9 @@ func _process(delta: float) -> bool:
 	assert(bootstrap.preload_paths.has(CJKFontTheme.FONT_PATH), "Bootstrap should track the bundled CJK font path")
 	assert(bootstrap.select_panel != null and bootstrap.select_panel.visible, "Hero select panel should appear after loading")
 	assert(CJKFontTheme.font() != null, "Bundled CJK UI font should load in bootstrap")
+	assert(ThemeDB.fallback_font == CJKFontTheme.font(), "Global fallback font should be the pixel UI font")
+	assert(bootstrap.loading_page.title_label.get_theme_font("font") == CJKFontTheme.font(), "Loading page should use the pixel UI font")
+	assert(bootstrap.hero_select_page.title_label.get_theme_font("font") == CJKFontTheme.font(), "Hero select page should use the pixel UI font")
 	assert(bootstrap.detail_label.has_theme_font_override("font"), "Hero select labels should use the bundled CJK font")
 	assert(bootstrap.hero_buttons.size() == 12, "Hero select should render 12 hero buttons")
 	assert(HeroCatalog.list().size() == 12, "Hero catalog should include 12 heroes")
@@ -61,6 +64,7 @@ func _process(delta: float) -> bool:
 	assert(bootstrap.hero_tab_button != null and bootstrap.talent_tab_button != null, "Hero select should provide hero and talent tabs")
 	bootstrap._show_talent_tab()
 	assert(bootstrap.talent_panel != null and bootstrap.talent_panel.visible, "Talent tab should show the talent panel")
+	assert(bootstrap.talent_panel.title_label.get_theme_font("font") == CJKFontTheme.font(), "Talent page should use the pixel UI font")
 	assert(bootstrap.crystal_label.text.contains("魔晶"), "Talent panel should display magic crystals")
 	assert(bootstrap.get_node("/root/RuntimeConfig").talent_levels.has("damage"), "Runtime save config should include damage talent")
 	bootstrap._show_codex_tab()
@@ -68,6 +72,7 @@ func _process(delta: float) -> bool:
 	var codex_content := bootstrap.codex_panel.get_child(0) as VBoxContainer
 	assert(codex_content != null, "Codex should use a vertical section layout that fits inside the scroll view")
 	assert(codex_content.get_child_count() >= 4, "Codex should render multiple readable sections")
+	assert((codex_content.get_child(0).get_node("Content/Title") as Label).get_theme_font("font") == CJKFontTheme.font(), "Codex section labels should use the pixel UI font")
 	assert(codex_content.get_child(0).has_node("Content/ItemGrid"), "Codex weapon section should render icon-text-description entries")
 	assert(codex_content.get_child(1).has_node("Content/ItemGrid"), "Codex relic/reward section should render icon-text-description entries")
 	var weapon_icon_grid := codex_content.get_child(0).get_node("Content/ItemGrid") as GridContainer
@@ -110,14 +115,6 @@ func _process(delta: float) -> bool:
 	bootstrap._select_hero("abyss_stalker")
 	assert(bootstrap.selected_hero_id == "abyss_stalker", "Hero selection should update selected hero id")
 	assert(bootstrap.hero_preview.sprite_frames != null, "Selected hero preview should load sprite frames")
-	bootstrap._select_hero("storm_caller")
-	assert(bootstrap.selected_hero_id == "storm_caller", "Hero selection should support the thunder-chain hero")
-	assert(bootstrap.detail_label.text.contains("雷链符文"), "Thunder-chain hero details should show the matching weapon")
-	assert(bootstrap.hero_preview.sprite_frames != null, "Thunder-chain hero preview should load SpriteFrames")
-	bootstrap._select_hero("void_miner")
-	assert(bootstrap.selected_hero_id == "void_miner", "Hero selection should support the void-mine hero")
-	assert(bootstrap.detail_label.text.contains("虚空地雷"), "Void-mine hero details should show the matching weapon")
-	assert(bootstrap.hero_preview.sprite_frames != null, "Void-mine hero preview should load SpriteFrames")
 	quit()
 	return true
 

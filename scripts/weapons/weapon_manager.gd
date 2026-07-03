@@ -499,7 +499,7 @@ func _add_projectile(projectile: Node2D) -> void:
 	var pid: String = projectile.weapon_id
 	if pid in ["blood_bolt", "crimson_judgment", "frost_orb", "glacial_comet"]:
 		projectile.radius *= 0.5
-	# B+D: Set ricochet + hit explosion per weapon type
+	# B + D：根据武器类型设置跳弹和命中爆炸。
 	var wid: String = projectile.weapon_id
 	match wid:
 		"blood_bolt", "crimson_judgment":
@@ -653,7 +653,7 @@ func _nearest_enemy(skip_count: int = 0, max_range: float = INF) -> Node2D:
 		return null
 	if skip_count <= 0 or nearest == null:
 		return nearest
-	# For skip_count > 0: collect top N+1, return the Nth
+	# 当 skip_count > 0 时：取最近的前 N+1 个，再返回第 N 个。
 	var candidates: Array = []
 	for enemy in children:
 		var d2 := player.global_position.distance_squared_to(enemy.global_position)

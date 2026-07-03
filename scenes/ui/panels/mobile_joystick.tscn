@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/panels/mobile_joystick.gd" id="1_script"]
+
+[node name="MobileJoystick" type="Control"]
+process_mode = 3
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_top = -214.0
+offset_right = 232.0
+offset_bottom = -18.0
+script = ExtResource("1_script")
+
+[node name="Backplate" type="ColorRect" parent="."]
+offset_left = -14.0
+offset_top = -14.0
+offset_right = 194.0
+offset_bottom = 194.0
+color = Color(0, 0, 0, 0.32)
+
+[node name="Base" type="Panel" parent="."]
+modulate = Color(0.96, 0.48, 1, 0.88)
+offset_right = 180.0
+offset_bottom = 180.0
+
+[node name="Ring" type="ColorRect" parent="Base"]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 170.0
+offset_bottom = 170.0
+color = Color(0.9, 0.96, 1, 0.2)
+
+[node name="Stick" type="Panel" parent="Base"]
+modulate = Color(0.86, 1, 0.94, 0.98)
+offset_left = 54.0
+offset_top = 54.0
+offset_right = 126.0
+offset_bottom = 126.0

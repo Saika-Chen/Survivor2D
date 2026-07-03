@@ -48,7 +48,7 @@ func tick(delta: float, alive_enemies := 0) -> void:
 	time_left = max(0.0, time_left - delta)
 	spawn_timer -= delta
 
-	# Spawn if we haven't hit the wave target AND there's room
+	# 如果还没达到本波目标，并且场上还有空位，就继续刷怪。
 	if wave_spawned_total < wave_target_total and spawn_timer <= 0.0:
 		var alive_cap := _current_alive_cap()
 		if alive_enemies < alive_cap:
@@ -57,12 +57,12 @@ func tick(delta: float, alive_enemies := 0) -> void:
 			wave_spawned_total += pack_size
 			spawn_timer = wave_config.spawn_timer_for_wave(wave)
 
-	# Wave ends: all spawned AND all killed (or timer ran out with what's left)
+	# 本波结束：已经刷完且都清掉，或者时间到了就先保持当前状态。
 	if wave_spawned_total >= wave_target_total:
 		if alive_enemies <= 0:
 			_advance_wave()
 	elif time_left <= 0.0:
-		# Timer ran out but enemies remain - just wait
+		# 时间到了但场上还有怪，就先等待它们被清掉。
 		wave_changed.emit(wave, max_wave, 0.0)
 
 func _advance_wave() -> void:

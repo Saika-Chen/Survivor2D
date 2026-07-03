@@ -32,6 +32,7 @@ const RunEventSystemScript := preload("res://scripts/game/RunEventSystem.gd")
 @onready var hud: CanvasLayer = $HUD
 @onready var camera: Camera2D = $Player/Camera2D
 @onready var bgm_player: AudioStreamPlayer = $BGMPlayer
+@onready var ui_manager = get_node("/root/UIManager")
 
 var bgm_stream_paths: Array[String] = [
 	"res://assets/audio/bgm.mp3",
@@ -121,22 +122,24 @@ func _ready() -> void:
 	_setup_bgm()
 	if has_node("Arena"):
 		player.world_size = $Arena.arena_size
+		_apply_camera_limits()
+	get_viewport().size_changed.connect(_apply_camera_limits)
 	_apply_selected_hero()
 	_apply_runtime_profile()
 	player.died.connect(_on_player_died)
 	player.damaged.connect(_on_player_damaged)
-	hud.upgrade_selected.connect(_on_upgrade_selected)
-	hud.reroll_requested.connect(_on_reroll_requested)
-	hud.restart_requested.connect(_on_restart_requested)
-	hud.main_menu_requested.connect(_on_main_menu_requested)
-	hud.exit_run_requested.connect(_on_exit_run_requested)
-	hud.jackpot_reward_granted.connect(_on_jackpot_reward_granted)
-	hud.jackpot_finished.connect(_on_jackpot_finished)
-	hud.joystick_changed.connect(player.set_virtual_joystick_vector)
+	ui_manager.upgrade_selected.connect(_on_upgrade_selected)
+	ui_manager.reroll_requested.connect(_on_reroll_requested)
+	ui_manager.restart_requested.connect(_on_restart_requested)
+	ui_manager.main_menu_requested.connect(_on_main_menu_requested)
+	ui_manager.exit_run_requested.connect(_on_exit_run_requested)
+	ui_manager.jackpot_reward_granted.connect(_on_jackpot_reward_granted)
+	ui_manager.jackpot_finished.connect(_on_jackpot_finished)
+	ui_manager.joystick_changed.connect(player.set_virtual_joystick_vector)
 	sfx_manager = Node.new()
 	sfx_manager.set_script(SFXManagerScript)
 	add_child(sfx_manager)
-	hud.slot_tick_requested.connect(_on_slot_tick_requested)
+	ui_manager.slot_tick_requested.connect(_on_slot_tick_requested)
 	weapon_manager.setup(player, enemies, projectiles, weapon_zones, ProjectileScene, WeaponZoneScene, str(selected_hero.get("initial_weapon", "blood_bolt")))
 	if weapon_manager.has_method("configure_hero_rules"):
 		weapon_manager.configure_hero_rules(selected_hero)
@@ -148,8 +151,8 @@ func _ready() -> void:
 		weapon_manager.set_zone_factory(Callable(self, "_take_weapon_zone_from_pool"))
 	if weapon_manager.has_method("set_zone_recycler"):
 		weapon_manager.set_zone_recycler(Callable(self, "_return_to_pool"))
-	if hud.has_method("set_ui_burst_pool"):
-		hud.set_ui_burst_pool(Callable(self, "_take_ui_burst_from_pool"), Callable(self, "_return_to_pool"))
+	if ui_manager.has_method("set_ui_burst_pool"):
+		ui_manager.set_ui_burst_pool(Callable(self, "_take_ui_burst_from_pool"), Callable(self, "_return_to_pool"))
 	_apply_selected_hero_weapon_mods()
 	weapon_manager.weapon_fired.connect(_on_weapon_fired)
 	wave_director.spawn_requested.connect(_on_wave_spawn_requested)
@@ -305,7 +308,7 @@ func _on_collision_tick() -> void:
 	if level_up_pending or victory_pending:
 		return
 	_process_xp_queue()
-	# Adaptive tick rate: slow down collision when FPS drops
+	# 自适应 tick 频率：帧率下降时放慢碰撞检查。
 	var fps := Engine.get_frames_per_second()
 	if fps < 25.0 and collision_tick_interval < 0.18:
 		collision_tick_interval = min(0.18, collision_tick_interval + 0.02)
@@ -348,7 +351,7 @@ func _check_projectile_hits() -> void:
 				projectile.set_meta(hit_key, true)
 				_damage_enemy(enemy, projectile.damage * player_damage_multiplier, projectile)
 				projectile.hit_count += 1
-				# Hit explosion
+				# 命中爆炸
 				var expl_radius: float = float(projectile.get("explosion_radius"))
 				if expl_radius > 0.0:
 					var expl_dmg: float = float(projectile.get("explosion_damage")) * player_damage_multiplier
@@ -359,7 +362,7 @@ func _check_projectile_hits() -> void:
 							_damage_enemy(nearby, expl_dmg, projectile)
 					_spawn_hit_explosion_effect(projectile.global_position, expl_radius)
 				if projectile.hit_count > projectile.pierce:
-					# Try ricochet before recycling
+					# 回收前先尝试跳弹。
 					var ricochet_ok := false
 					if projectile.has_method("try_ricochet"):
 						ricochet_ok = projectile.try_ricochet(enemies)
@@ -532,10 +535,10 @@ func _apply_pickup(pickup_type: String) -> void:
 				gem.target = player
 			for pickup in pickups.get_children():
 				pickup.target = player
-			hud.hint.text = "磁铁：全图灵魂正在靠近。"
+			ui_manager.set_hint("磁铁：全图灵魂正在靠近。")
 		"potion":
 			player.heal_percent(0.5)
-			hud.hint.text = "药瓶：恢复 50% 最大生命。"
+			ui_manager.set_hint("药瓶：恢复 50% 最大生命。")
 		"slot":
 			_start_slot_machine()
 		"haste":
@@ -547,7 +550,7 @@ func _apply_pickup(pickup_type: String) -> void:
 			run_magic_crystals += amount
 			if has_node("/root/RuntimeConfig"):
 				get_node("/root/RuntimeConfig").add_magic_crystals(amount)
-			hud.hint.text = "魔晶 +%d：可在天赋页强化初始属性。" % amount
+			ui_manager.set_hint("魔晶 +%d：可在天赋页强化初始属性。" % amount)
 		"bomb":
 			_apply_small_bomb()
 
@@ -574,7 +577,7 @@ func _apply_haste_potion() -> void:
 		player.speed += haste_speed_bonus
 		haste_active = true
 	haste_timer = 5.0
-	hud.hint.text = "极速药水：5秒内移速暴涨。"
+	ui_manager.set_hint("极速药水：5秒内移速暴涨。")
 
 func _update_haste(delta: float) -> void:
 	if not haste_active:
@@ -595,7 +598,7 @@ func _apply_small_bomb() -> void:
 			cleared += 1
 	_spawn_particle_burst(player.global_position, "death")
 	_add_shake(0.22, 14.0)
-	hud.hint.text = "小炸弹：清掉普通怪 %d 只，强敌扣半血。" % cleared
+	ui_manager.set_hint("小炸弹：清掉普通怪 %d 只，强敌扣半血。" % cleared)
 
 func _apply_weapon_traits(enemy: Node2D, damage_amount: float, source: Node) -> void:
 	if source == null or not ("traits" in source):
@@ -621,7 +624,7 @@ func _start_slot_machine() -> void:
 	var bundle: Dictionary = weapon_manager.build_slot_bundle()
 	level_up_pending = true
 	get_tree().paused = true
-	hud.show_slot_machine(bundle.get("reels", []), bundle.get("options", []), bool(bundle.get("jackpot", false)))
+	ui_manager.show_slot_machine(bundle.get("reels", []), bundle.get("options", []), bool(bundle.get("jackpot", false)))
 
 func _gain_experience(amount: int) -> void:
 	if level_system == null:
@@ -647,8 +650,8 @@ func _start_level_up() -> void:
 		rerolls_left = level_system.start_level_up()
 	get_tree().paused = true
 	_spawn_particle_burst(player.global_position, "level_up")
-	hud.show_level_up(weapon_manager.build_upgrade_options())
-	hud.set_rerolls_left(rerolls_left)
+	ui_manager.show_level_up(weapon_manager.build_upgrade_options())
+	ui_manager.set_rerolls_left(rerolls_left)
 
 func _check_enemy_contacts(delta: float) -> void:
 	for enemy in _nearby_enemies(player.global_position, player.radius + 180.0):
@@ -713,16 +716,16 @@ func _update_hud() -> void:
 	var contract_summary := ""
 	if run_event_system != null and run_event_system.has_method("contract_status_text"):
 		contract_summary = run_event_system.contract_status_text()
-	hud.set_stats(player.health, player.max_health, score, elapsed, enemies.get_child_count(), display_level, display_experience, display_experience_to_next, current_wave, max_wave, wave_time_left, weapon_manager.get_summary(), weapon_manager.get_passive_summary(), player_damage_multiplier * weapon_manager.current_attack_power(), weapon_manager.crit_chance, weapon_manager.crit_damage_multiplier, weapon_manager.lifesteal_chance, weapon_manager.lifesteal_amount, run_magic_crystals, contract_summary)
-	if hud.has_method("set_contract_card"):
+	ui_manager.set_stats(player.health, player.max_health, score, elapsed, enemies.get_child_count(), display_level, display_experience, display_experience_to_next, current_wave, max_wave, wave_time_left, weapon_manager.get_summary(), weapon_manager.get_passive_summary(), player_damage_multiplier * weapon_manager.current_attack_power(), weapon_manager.crit_chance, weapon_manager.crit_damage_multiplier, weapon_manager.lifesteal_chance, weapon_manager.lifesteal_amount, run_magic_crystals, contract_summary)
+	if ui_manager.has_method("set_contract_card"):
 		var contract_card_data: Dictionary = {}
 		if run_event_system != null and run_event_system.has_method("contract_card_data"):
 			contract_card_data = run_event_system.contract_card_data()
-		hud.set_contract_card(contract_card_data)
-	if hud.has_method("set_loadout_icons"):
-		hud.set_loadout_icons(weapon_manager.get_weapon_icon_ids(), weapon_manager.get_passive_icon_ids())
-	if hud.has_method("set_performance_stats"):
-		hud.set_performance_stats(
+		ui_manager.set_contract_card(contract_card_data)
+	if ui_manager.has_method("set_loadout_icons"):
+		ui_manager.set_loadout_icons(weapon_manager.get_weapon_icon_ids(), weapon_manager.get_passive_icon_ids())
+	if ui_manager.has_method("set_performance_stats"):
+		ui_manager.set_performance_stats(
 			Engine.get_frames_per_second(),
 			enemies.get_child_count(),
 			projectiles.get_child_count(),
@@ -755,7 +758,7 @@ func _on_wave_changed(wave: int, new_max_wave: int, time_left: float) -> void:
 		elif wave == 30:
 			alert_text = "深渊君王来袭"
 			is_major = true
-		hud.show_wave_alert(alert_text, is_major)
+		ui_manager.show_wave_alert(alert_text, is_major)
 		sfx_manager.play_ui("boss_wave" if is_major else "wave")
 		_vibrate_wave(is_major)
 		run_event_system.maybe_offer_wave_event(wave, is_major)
@@ -763,8 +766,8 @@ func _on_wave_changed(wave: int, new_max_wave: int, time_left: float) -> void:
 		run_event_system.maybe_apply_wave_mutation(wave, is_major)
 
 func _on_boss_wave_started() -> void:
-	hud.hint.text = "第30波：深渊君王降临。"
-	hud.show_wave_alert("深渊君王来袭", true)
+	ui_manager.set_hint("第30波：深渊君王降临。")
+	ui_manager.show_wave_alert("深渊君王来袭", true)
 	sfx_manager.play_ui("boss_wave")
 	_vibrate_for_boss()
 
@@ -794,12 +797,12 @@ func _on_player_damaged(health: float) -> void:
 
 func _on_player_died() -> void:
 	get_tree().paused = true
-	hud.show_game_over(score, elapsed)
+	ui_manager.show_game_over(score, elapsed)
 
 func _on_boss_defeated() -> void:
 	victory_pending = true
 	get_tree().paused = true
-	hud.show_victory(elapsed)
+	ui_manager.show_victory(elapsed)
 
 func _on_upgrade_selected(upgrade_id: String) -> void:
 	if str(upgrade_id).begins_with("contract:"):
@@ -810,7 +813,7 @@ func _on_upgrade_selected(upgrade_id: String) -> void:
 		return
 	_resolve_upgrade(upgrade_id)
 	level_up_pending = false
-	hud.hide_level_up()
+	ui_manager.hide_level_up()
 	get_tree().paused = false
 	_update_hud()
 
@@ -842,8 +845,8 @@ func _on_reroll_requested() -> void:
 	if not level_up_pending or level_system == null or not level_system.consume_reroll():
 		return
 	rerolls_left = level_system.rerolls_left
-	hud.show_level_up(weapon_manager.build_upgrade_options())
-	hud.set_rerolls_left(rerolls_left)
+	ui_manager.show_level_up(weapon_manager.build_upgrade_options())
+	ui_manager.set_rerolls_left(rerolls_left)
 
 
 func _resolve_upgrade(upgrade_id: String) -> void:
@@ -881,7 +884,7 @@ func _resolve_upgrade(upgrade_id: String) -> void:
 					"heal":
 						player.heal_percent(0.18)
 					"nothing":
-						hud.hint.text = "发暗铜片：你感觉命运笑了一下，但什么都没发生。"
+						ui_manager.set_hint("发暗铜片：你感觉命运笑了一下，但什么都没发生。")
 
 func _on_jackpot_reward_granted(upgrade_id: String) -> void:
 	_resolve_upgrade(upgrade_id)
@@ -891,7 +894,7 @@ func _on_jackpot_reward_granted(upgrade_id: String) -> void:
 
 func _on_jackpot_finished() -> void:
 	level_up_pending = false
-	hud.hide_level_up()
+	ui_manager.hide_level_up()
 	get_tree().paused = false
 	sfx_manager.play_ui("jackpot")
 	_vibrate_jackpot()
@@ -924,8 +927,8 @@ func _spawn_hit_effect(position: Vector2, amount: float, critical := false) -> v
 	if critical:
 		_add_shake(float(shake_profile.get("duration", 0.12)), float(shake_profile.get("strength", 7.0)))
 	var text := str(feedback.get("text", "%d" % int(round(amount))))
-	if hud != null and hud.has_method("show_damage_number"):
-		hud.show_damage_number(_world_to_hud_position(position + Vector2(0, -enemy_text_offset())), text, critical)
+	if ui_manager != null and ui_manager.has_method("show_damage_number"):
+		ui_manager.show_damage_number(_world_to_hud_position(position + Vector2(0, -enemy_text_offset())), text, critical)
 		return
 	_trim_effects(1)
 	var number := _take_effect_from_pool()
@@ -994,6 +997,19 @@ func _maybe_apply_enemy_affix(enemy: Node2D, archetype: String) -> void:
 func _add_shake(duration: float, strength: float) -> void:
 	shake_timer = max(shake_timer, duration)
 	shake_strength = max(shake_strength, strength)
+
+func _apply_camera_limits() -> void:
+	if not has_node("Arena"):
+		return
+	var viewport_size := get_viewport().get_visible_rect().size
+	var half_view := viewport_size * 0.5 / camera.zoom
+	var arena_size: Vector2 = $Arena.arena_size
+	camera.limit_left = 0
+	camera.limit_top = 0
+	camera.limit_right = int(arena_size.x)
+	camera.limit_bottom = int(arena_size.y)
+	# 平滑镜头必须先设边界，不然会发生越界抖动。
+	camera.limit_smoothed = true
 
 func _update_camera_shake(delta: float) -> void:
 	if shake_timer <= 0.0:

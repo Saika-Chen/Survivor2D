@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/panels/game_over_popup.gd" id="1_script"]
+
+[node name="GameOverPopup" type="Control"]
+process_mode = 3
+script = ExtResource("1_script")
+
+[node name="RestartButton" type="Button" parent="."]
+offset_left = 520.0
+offset_top = 594.0
+offset_right = 760.0
+offset_bottom = 650.0
+theme_override_font_sizes/font_size = 24
+text = "重新开始"
+
+[node name="MainMenuButton" type="Button" parent="."]
+offset_left = 520.0
+offset_top = 660.0
+offset_right = 760.0
+offset_bottom = 716.0
+theme_override_font_sizes/font_size = 24
+text = "返回主菜单"

@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 RuntimeConfig="*res://scripts/game/runtime_config.gd"
+UIManager="*res://scripts/ui/manager.gd"
 
 [display]
 
@@ -29,7 +30,7 @@ window/handheld/orientation=5
 
 [gui]
 
-theme/custom_font="res://assets/fonts/ArialUnicode.ttf"
+theme/custom_font="res://assets/fonts/fusion-pixel-12px-monospaced-zh_hans.ttf"
 theme/custom_font_size=18
 
 [input]
@@ -61,9 +62,7 @@ move_right={
 
 [rendering]
 
-2d/batching/sprite_batching=true
-2d/batching/item_buffer_size=16384
-2d/batching/batch_buffer_size=8192
-
 renderer/rendering_method="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
+2d/batching/sprite_batching=true
+2d/batching/batch_buffer_size=8192

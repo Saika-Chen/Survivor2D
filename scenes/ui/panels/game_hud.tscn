@@ -1,0 +1,250 @@
+[gd_scene format=3 uid="uid://blwekign1w4g2"]
+
+[ext_resource type="Script" path="res://scripts/ui/panels/game_hud.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bn37lijm5m1hr" path="res://ui/slice_0001.png" id="2_portrait_frame"]
+[ext_resource type="Texture2D" uid="uid://bhfmk6rmrlbfd" path="res://ui/slice_0008.png" id="3_mini_map"]
+[ext_resource type="Texture2D" uid="uid://rq1egybptmtf" path="res://ui/slice_0004.png" id="4_menu_frame"]
+[ext_resource type="Texture2D" uid="uid://dobdpjtxjaldt" path="res://ui/slice_0003.png" id="5_currency_gold"]
+[ext_resource type="Texture2D" uid="uid://cpb8pbang3bov" path="res://ui/slice_0007.png" id="6_currency_gem"]
+[ext_resource type="Texture2D" uid="uid://nyrmdo2uy035" path="res://ui/slice_0016.png" id="7_pause_badge"]
+[ext_resource type="Texture2D" uid="uid://c5orjb8ojge0g" path="res://ui/slice_0015.png" id="8_menu_strip"]
+[ext_resource type="Texture2D" uid="uid://brfpp66q5jatf" path="res://ui/slice_0037.png" id="9_hp_bar"]
+[ext_resource type="Texture2D" uid="uid://baug7t6g5grq8" path="res://ui/slice_0036.png" id="10_xp_bar"]
+
+[node name="GameHUD" type="Control" unique_id=198319199]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="PortraitArt" type="TextureRect" parent="." unique_id=96772210]
+texture = ExtResource("2_portrait_frame")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MapArt" type="TextureRect" parent="." unique_id=1391674023]
+texture = ExtResource("3_mini_map")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="StatsPanel" type="TextureRect" parent="." unique_id=1941047708]
+modulate = Color(1, 1, 1, 0.88)
+texture = ExtResource("4_menu_frame")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="RightPanel" type="TextureRect" parent="." unique_id=1388743176]
+modulate = Color(1, 1, 1, 0.92)
+texture = ExtResource("4_menu_frame")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CurrencyGoldBar" type="TextureRect" parent="." unique_id=2023300205]
+texture = ExtResource("5_currency_gold")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="GoldValue" type="Label" parent="CurrencyGoldBar" unique_id=1625380015]
+layout_mode = 0
+offset_left = 70.0
+offset_right = 172.0
+offset_bottom = 26.0
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="CurrencyGemBar" type="TextureRect" parent="." unique_id=642982187]
+texture = ExtResource("6_currency_gem")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="GemValue" type="Label" parent="CurrencyGemBar" unique_id=916188453]
+layout_mode = 0
+offset_left = 70.0
+offset_right = 172.0
+offset_bottom = 26.0
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="PauseBadge" type="TextureRect" parent="." unique_id=357456734]
+modulate = Color(1, 1, 1, 0.98)
+texture = ExtResource("7_pause_badge")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MenuStrip" type="TextureRect" parent="." unique_id=69418800]
+modulate = Color(1, 1, 1, 0.98)
+texture = ExtResource("8_menu_strip")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MenuLabel0" type="Label" parent="MenuStrip" unique_id=1559807388]
+layout_mode = 0
+offset_left = 54.0
+offset_right = 190.0
+text = "角色"
+vertical_alignment = 1
+
+[node name="MenuLabel1" type="Label" parent="MenuStrip" unique_id=1242959186]
+layout_mode = 0
+offset_left = 54.0
+offset_right = 190.0
+text = "武器"
+vertical_alignment = 1
+
+[node name="MenuLabel2" type="Label" parent="MenuStrip" unique_id=1381371017]
+layout_mode = 0
+offset_left = 54.0
+offset_right = 190.0
+text = "遗物"
+vertical_alignment = 1
+
+[node name="MenuLabel3" type="Label" parent="MenuStrip" unique_id=326889054]
+layout_mode = 0
+offset_left = 54.0
+offset_right = 190.0
+text = "成就"
+vertical_alignment = 1
+
+[node name="MenuLabel4" type="Label" parent="MenuStrip" unique_id=1339924918]
+layout_mode = 0
+offset_left = 54.0
+offset_right = 190.0
+text = "图鉴"
+vertical_alignment = 1
+
+[node name="MenuLabel5" type="Label" parent="MenuStrip" unique_id=1337521410]
+layout_mode = 0
+offset_left = 54.0
+offset_right = 190.0
+text = "设置"
+vertical_alignment = 1
+
+[node name="BottomXPBar" type="TextureProgressBar" parent="." unique_id=463805261]
+texture_under = ExtResource("10_xp_bar")
+texture_progress = ExtResource("10_xp_bar")
+tint_under = Color(0.18, 0.12, 0.25, 0.86)
+tint_progress = Color(0.78, 0.56, 1, 1)
+
+[node name="BottomLevelLabel" type="Label" parent="." unique_id=1326652873]
+text = "Lv.1"
+horizontal_alignment = 1
+
+[node name="WeaponIconRow" type="Control" parent="." unique_id=738418957]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="RelicIconRow" type="Control" parent="." unique_id=1052502750]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="ExitRunButton" type="Button" parent="." unique_id=1679306929]
+process_mode = 3
+z_index = 90
+custom_minimum_size = Vector2(128, 54)
+focus_mode = 0
+mouse_filter = 1
+text = "退出"
+
+[node name="PerformanceHUD" type="Label" parent="." unique_id=2066386563]
+process_mode = 3
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Stats" type="Label" parent="." unique_id=459808305]
+offset_left = 24.0
+offset_top = 66.0
+offset_right = 520.0
+offset_bottom = 214.0
+theme_override_colors/font_color = Color(0.96, 1, 0.92, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 22
+text = "生命: 100"
+
+[node name="HealthBar" type="TextureProgressBar" parent="." unique_id=645109340]
+offset_left = 24.0
+offset_top = 18.0
+offset_right = 384.0
+offset_bottom = 54.0
+value = 100.0
+stretch_margin_left = 10
+stretch_margin_top = 8
+stretch_margin_right = 10
+stretch_margin_bottom = 8
+texture_under = ExtResource("9_hp_bar")
+texture_progress = ExtResource("9_hp_bar")
+tint_under = Color(0.22, 0.02, 0.04, 0.82)
+tint_progress = Color(1, 0.06, 0.1, 1)
+
+[node name="HealthLabel" type="Label" parent="HealthBar" unique_id=1430263113]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_colors/font_color = Color(1, 0.96, 0.9, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.95)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 18
+text = "HP 100 / 100"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hint" type="Label" parent="." unique_id=1579298061]
+offset_left = 24.0
+offset_top = 666.0
+offset_right = 780.0
+offset_bottom = 704.0
+theme_override_colors/font_color = Color(0.96, 0.9, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 18
+text = "移动: WASD / 方向键  |  黑暗会回应击杀"
+
+[node name="WaveLabel" type="Label" parent="." unique_id=1356030904]
+offset_left = 874.0
+offset_top = 20.0
+offset_right = 1252.0
+offset_bottom = 54.0
+theme_override_colors/font_color = Color(1, 0.72, 0.46, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 24
+text = "第 01 / 30 波"
+horizontal_alignment = 2
+
+[node name="RelicsLabel" type="Label" parent="." unique_id=1144132471]
+offset_left = 874.0
+offset_top = 142.0
+offset_right = 1252.0
+offset_bottom = 226.0
+theme_override_colors/font_color = Color(0.92, 0.84, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 16
+text = "遗物: 无"
+horizontal_alignment = 2
+autowrap_mode = 2
+
+[node name="WeaponsLabel" type="Label" parent="." unique_id=708908819]
+offset_left = 874.0
+offset_top = 58.0
+offset_right = 1252.0
+offset_bottom = 138.0
+theme_override_colors/font_color = Color(0.9, 0.98, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 16
+text = "血咒弹 Lv1"
+horizontal_alignment = 2
+autowrap_mode = 2

@@ -89,7 +89,7 @@ func _physics_process(delta: float) -> void:
 	if target == null:
 		return
 
-	# Batched enemies: lightweight movement only, skip all AI
+	# 批处理敌人：只保留轻量移动，跳过全部 AI。
 	if batched_visual_enabled:
 		_ahead_timer += 1
 		if _ahead_timer >= 12:
@@ -193,7 +193,7 @@ func _apply_batched_visual_visibility() -> void:
 		_set_animation_state("idle", true)
 
 func _separate_from_enemies() -> void:
-	# Global frame counter: all enemies separate on same frames
+	# 全局帧计数：让所有敌人不要在同一帧里完全同步分离。
 	if Engine.get_physics_frames() % 3 != 0:
 		return
 	var sep_radius := radius * 5.0

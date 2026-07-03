@@ -1,6 +1,8 @@
 extends RefCounted
 class_name UpgradePanel
 
+# 升级面板工具：统一处理选项分类、文案和奖励文本。
+
 static func is_event_mode(options: Array) -> bool:
 	for option in options:
 		if not str(option.get("id", "")).begins_with("event:"):

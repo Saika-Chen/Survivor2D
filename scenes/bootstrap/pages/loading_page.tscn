@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://oews61p0ntt0"]
+
+[ext_resource type="Script" uid="uid://ccq6krabno4ml" path="res://scripts/ui/bootstrap/loading_page.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://bl6srsmj5yap5" path="res://ui/loadingbg.png" id="2_unog7"]
+
+[node name="LoadingPage" type="Control" unique_id=1660669817]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1468943791]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 2.9999924
+offset_top = -7.0000153
+offset_right = 224.0
+offset_bottom = 385.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.7597546, 0.7737027)
+mouse_filter = 2
+texture = ExtResource("2_unog7")
+
+[node name="Shade" type="ColorRect" parent="." unique_id=874620834]
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.03, 0.02, 0.04, 0.42)
+
+[node name="Center" type="CenterContainer" parent="." unique_id=1547547795]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Card" type="PanelContainer" parent="Center" unique_id=796556427]
+custom_minimum_size = Vector2(700, 250)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="Center/Card" unique_id=712937456]
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="Center/Card/Margin" unique_id=728674445]
+layout_mode = 2
+theme_override_constants/separation = 14
+alignment = 1
+
+[node name="Title" type="Label" parent="Center/Card/Margin/Content" unique_id=305935479]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.9, 0.48, 1)
+theme_override_font_sizes/font_size = 42
+text = "深渊幸存者"
+horizontal_alignment = 1
+
+[node name="Status" type="Label" parent="Center/Card/Margin/Content" unique_id=297759974]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.98, 1, 1)
+theme_override_font_sizes/font_size = 20
+text = "准备加载..."
+horizontal_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="Center/Card/Margin/Content" unique_id=1719723469]
+custom_minimum_size = Vector2(0, 28)
+layout_mode = 2
+value = 21.44
+
+[node name="ProgressLabel" type="Label" parent="Center/Card/Margin/Content" unique_id=893103317]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.84, 0.8, 1, 1)
+theme_override_font_sizes/font_size = 18
+text = "0 / 0"
+horizontal_alignment = 1

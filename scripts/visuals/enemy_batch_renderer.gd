@@ -43,7 +43,7 @@ func _process(delta: float) -> void:
 		frame_skip = 0
 		_rebuild_groups()
 	_animate_frames(delta * UPDATE_EVERY_N_FRAMES)
-	# Every frame: lightweight transform update
+	# 每一帧都要做：轻量级的坐标和朝向更新。
 	for archetype in BATCH_ARCHETYPES:
 		var enemies: Array = cached_grouped.get(archetype, [])
 		if enemies.size() > 0:
@@ -75,7 +75,7 @@ func _update_transforms(archetype: String, enemies: Array) -> void:
 		return
 	var batch := batches[archetype] as MultiMeshInstance2D
 	var multimesh := batch.multimesh
-	# Compact dead entries
+	# 清理已经失效的条目。
 	var i := enemies.size() - 1
 	while i >= 0:
 		if not is_instance_valid(enemies[i]):

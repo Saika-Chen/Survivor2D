@@ -1,0 +1,85 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/bootstrap/talent_page.gd" id="1_script"]
+
+[node name="TalentPage" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Frame" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Content" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_left = 72.0
+offset_top = 48.0
+offset_right = -72.0
+offset_bottom = -48.0
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Content"]
+offset_right = 900.0
+offset_bottom = 42.0
+theme_override_font_sizes/font_size = 32
+theme_override_colors/font_color = Color(1, 0.84, 0.34, 1)
+horizontal_alignment = 1
+text = "天赋"
+
+[node name="CrystalLabel" type="Label" parent="Content"]
+offset_right = 900.0
+offset_bottom = 30.0
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.84, 0.62, 1, 1)
+horizontal_alignment = 1
+text = "魔晶：0"
+
+[node name="TalentButtons" type="VBoxContainer" parent="Content"]
+offset_right = 900.0
+offset_bottom = 760.0
+theme_override_constants/separation = 10
+
+[node name="DamageButton" type="Button" parent="Content/TalentButtons"]
+text = "攻击"
+
+[node name="HealthButton" type="Button" parent="Content/TalentButtons"]
+text = "生命"
+
+[node name="SpeedButton" type="Button" parent="Content/TalentButtons"]
+text = "移速"
+
+[node name="RadiusButton" type="Button" parent="Content/TalentButtons"]
+text = "范围"
+
+[node name="MagnetButton" type="Button" parent="Content/TalentButtons"]
+text = "吸附"
+
+[node name="LifestealChanceButton" type="Button" parent="Content/TalentButtons"]
+text = "吸血率"
+
+[node name="LifestealAmountButton" type="Button" parent="Content/TalentButtons"]
+text = "吸血量"
+
+[node name="CritChanceButton" type="Button" parent="Content/TalentButtons"]
+text = "暴击率"
+
+[node name="CritDamageButton" type="Button" parent="Content/TalentButtons"]
+text = "爆伤"
+
+[node name="ExperienceGainButton" type="Button" parent="Content/TalentButtons"]
+text = "经验"
+
+[node name="LuckButton" type="Button" parent="Content/TalentButtons"]
+text = "幸运"

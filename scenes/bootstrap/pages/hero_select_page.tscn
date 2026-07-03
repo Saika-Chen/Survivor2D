@@ -1,0 +1,145 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/ui/bootstrap/hero_select_page.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://scenes/bootstrap/pages/talent_page.tscn" id="2_talent"]
+[ext_resource type="PackedScene" path="res://scenes/bootstrap/pages/codex_page.tscn" id="3_codex"]
+
+[node name="HeroSelectPage" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Shade" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.025, 0.016, 0.032, 0.82)
+
+[node name="MenuFrame" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Layout" type="VBoxContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_left = 54.0
+offset_top = 34.0
+offset_right = -54.0
+offset_bottom = -34.0
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Layout"]
+offset_right = 920.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 42
+theme_override_colors/font_color = Color(1, 0.88, 0.36, 1)
+horizontal_alignment = 1
+text = "选择英雄"
+
+[node name="TabRow" type="HBoxContainer" parent="Layout"]
+offset_right = 920.0
+offset_bottom = 60.0
+theme_override_constants/separation = 10
+
+[node name="HeroTabButton" type="Button" parent="Layout/TabRow"]
+text = "英雄"
+
+[node name="TalentTabButton" type="Button" parent="Layout/TabRow"]
+text = "天赋"
+
+[node name="CodexTabButton" type="Button" parent="Layout/TabRow"]
+text = "图鉴"
+
+[node name="PageArea" type="Control" parent="Layout"]
+size_flags_vertical = 3
+custom_minimum_size = Vector2(0, 760)
+
+[node name="HeroContent" type="Control" parent="Layout/PageArea"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HeroLayout" type="VBoxContainer" parent="Layout/PageArea/HeroContent"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+theme_override_constants/separation = 12
+
+[node name="MainRow" type="HBoxContainer" parent="Layout/PageArea/HeroContent/HeroLayout"]
+size_flags_vertical = 3
+theme_override_constants/separation = 14
+
+[node name="HeroListScroll" type="ScrollContainer" parent="Layout/PageArea/HeroContent/HeroLayout/MainRow"]
+custom_minimum_size = Vector2(0, 660)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 2
+
+[node name="HeroList" type="VBoxContainer" parent="Layout/PageArea/HeroContent/HeroLayout/MainRow/HeroListScroll"]
+theme_override_constants/separation = 8
+size_flags_horizontal = 3
+
+[node name="PreviewPanel" type="Panel" parent="Layout/PageArea/HeroContent/HeroLayout/MainRow"]
+custom_minimum_size = Vector2(250, 660)
+
+[node name="PreviewTitle" type="Label" parent="Layout/PageArea/HeroContent/HeroLayout/MainRow/PreviewPanel"]
+offset_left = 12.0
+offset_top = 16.0
+offset_right = 238.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(1, 0.9, 0.48, 1)
+horizontal_alignment = 1
+text = "英雄预览"
+
+[node name="HeroPreview" type="AnimatedSprite2D" parent="Layout/PageArea/HeroContent/HeroLayout/MainRow/PreviewPanel"]
+position = Vector2(125, 330)
+scale = Vector2(2.2, 2.2)
+centered = true
+
+[node name="DetailRow" type="HBoxContainer" parent="Layout/PageArea/HeroContent/HeroLayout"]
+custom_minimum_size = Vector2(0, 104)
+theme_override_constants/separation = 10
+
+[node name="DetailIconHolder" type="Control" parent="Layout/PageArea/HeroContent/HeroLayout/DetailRow"]
+custom_minimum_size = Vector2(76, 96)
+
+[node name="HeroDetailIcon" type="AnimatedSprite2D" parent="Layout/PageArea/HeroContent/HeroLayout/DetailRow/DetailIconHolder"]
+position = Vector2(38, 48)
+centered = true
+
+[node name="DetailLabel" type="Label" parent="Layout/PageArea/HeroContent/HeroLayout/DetailRow"]
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(0.88, 1, 0.92, 1)
+autowrap_mode = 3
+text = "英雄详情"
+
+[node name="TalentPage" parent="Layout/PageArea" instance=ExtResource("2_talent")]
+
+[node name="CodexPage" parent="Layout/PageArea" instance=ExtResource("3_codex")]
+
+[node name="StartButton" type="Button" parent="Layout"]
+custom_minimum_size = Vector2(0, 72)
+theme_override_font_sizes/font_size = 30
+text = "开始游戏"

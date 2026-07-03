@@ -1,6 +1,8 @@
 extends RefCounted
 class_name HUDController
 
+# HUD 文本拼装工具：统一生成战斗中需要显示的统计文本。
+
 static func format_stats(health: float, max_health: float, score: int, elapsed: float, enemy_count: int, level: int, experience: int, experience_to_next: int, wave: int, max_wave: int, time_left: float, attack_power: float, crit_chance: float, crit_damage: float, lifesteal_chance: float, lifesteal_amount: float, run_magic_crystals: int, contract_summary := "") -> String:
 	var seconds := int(elapsed) % 60
 	var minutes := int(elapsed) / 60

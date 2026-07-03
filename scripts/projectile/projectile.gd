@@ -96,7 +96,7 @@ func try_ricochet(enemies_node: Node2D) -> bool:
 	ricochet_count -= 1
 	direction = global_position.direction_to(nearest.global_position)
 	lifetime = max(lifetime, 1.5)
-	# Visual flash on ricochet
+	# 跳弹时闪一下，强化反馈。
 	var visual: Node2D = animated_sprite if animated_sprite.visible else sprite
 	visual.modulate = Color(2.0, 2.0, 2.0, 1.0)
 	var tween := DOTween.sequence(self, "ricochet_flash")

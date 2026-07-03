@@ -251,11 +251,11 @@ static func _extract_frame_image(frame_tex: Texture2D) -> Image:
 			return null
 		if not _spritesheet_image_cache.has(sheet_path):
 			var sheet_img: Image = null
-			# Try ResourceLoader first (Web-compatible)
+			# 先尝试 ResourceLoader（兼容 Web）。
 			var tex: Texture2D = load(sheet_path) as Texture2D
 			if tex != null:
 				sheet_img = tex.get_image()
-			# Fallback: direct file load (PC/Android)
+			# 兜底：直接从文件读取（PC / Android）。
 			if sheet_img == null:
 				sheet_img = Image.load_from_file(sheet_path)
 			if sheet_img == null:
